@@ -2,6 +2,21 @@ body{
     padding-top:20px;
 }
 
+h1{
+    color:#298C6C;
+}
+.subtitle{
+    color:#DA806A;
+}
+
+nav{
+    margin-bottom:20px;
+}
+
+figure{
+    margin-top:10px;
+}
+
 #asheville-photo{
     max-width:100%;
     max-height:480px;
@@ -13,6 +28,25 @@ body{
     margin-right: auto;
 }
 
-.commit{
-    background-color:#298C6C;
+/* Remove the Action Network Logo */
+.can_embed #logo_wrap {
+	display: none !important;
+}
+
+/* Button Background Color */
+.can_embed .can_button,
+.can_embed #can_embed_form input[type="submit"],
+.can_embed #can_embed_form .button,
+.can_embed #donate_auto_modal input[type="submit"],
+.can_embed #donate_auto_modal .button {
+	background-color: #298C6C !important;
+}
+
+/* Button Background Color on Hover */
+.can_embed .can_button:hover,
+.can_embed #can_embed_form input[type="submit"]:hover,
+.can_embed #can_embed_form .button:hover,
+.can_embed #donate_auto_modal input[type="submit"]:hover,
+.can_embed #donate_auto_modal .button:hover {
+	background-color: #DA806A !important;
 }

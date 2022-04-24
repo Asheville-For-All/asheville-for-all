@@ -2,9 +2,14 @@ body{
     padding-top:20px;
 }
 
+.container{
+    max-width:40rem;
+}
+
 h1{
     color:#298C6C;
 }
+
 .subtitle{
     color:#DA806A;
 }

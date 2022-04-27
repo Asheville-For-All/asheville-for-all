@@ -2,6 +2,21 @@ body{
     padding-top:20px;
 }
 
+.footer{
+    margin-top:6rem;
+    background-color:black;
+    color:lightgray;
+    padding-top:5rem;
+    padding-bottom:7rem;
+}
+
+.footer a{
+    color:gray;
+}
+.footer a:visited{
+    color:gray;
+}
+
 .container{
     max-width:40rem;
 }

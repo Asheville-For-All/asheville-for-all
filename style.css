@@ -2,6 +2,13 @@ body{
     padding-top:20px;
 }
 
+a{
+    color: #298C6C;
+}
+a:hover{
+    color: #DA806A;
+}
+
 .footer{
     margin-top:6rem;
     background-color:black;

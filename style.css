@@ -60,6 +60,10 @@ figure{
     margin-right: auto;
 }
 
+.dropdown-item.active{
+    background-color:#DA806A;
+}
+
 /* Remove the Action Network Logo */
 .can_embed #logo_wrap {
 	display: none !important;

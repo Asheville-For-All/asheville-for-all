@@ -28,6 +28,10 @@ a:hover{
     max-width:40rem;
 }
 
+.footer .container{
+    max-width:25rem;
+}
+
 h1{
     color:#298C6C;
 }

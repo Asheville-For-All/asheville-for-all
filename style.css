@@ -24,7 +24,7 @@ a:hover{
     color:gray;
 }
 
-.container, .nav{
+.container{
     max-width:40rem;
 }
 

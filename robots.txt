@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /*.md
+
+User-agent: *
+Disallow: /osa.html

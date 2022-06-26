@@ -30,27 +30,27 @@ The Open Space Amendment incentivizes “urban infill,” which just means that 
 
 And in addition to encouraging the development of an overall greater supply of homes in the area, the amendment also incentivizes steps that builders can take to price homes more affordably.
 
-### Anti-Gentrification
-
-Gentrification is a scary word that gets thrown around a lot. It's become a powerful rhetorical weapon, and so it's also become over-used.
-
-Opponents of this amendment will tell you that it will “gentrify” Asheville. But this reflects a poor understanding of what causes gentrification.
-
-The simple truth is that gentrification, or displacement, is what happens when not enough housing gets built for low- and middle-income folks. When housing supply doesn't keep up with demand, rents and home prices shoot up, and with scarce housing options, families of different backgrounds, shapes, sizes, and income levels are forced to compete with one another. It's a zero-sum game that means some people are necessarily going to be pushed out.
-
-The solution to gentrification is to build more housing in places where infrastructure and opportunities exist, so we're not pitting people against one another.
-
-This is exactly what the Open Space Amendment is designed to incentivize.
-
 ### Environmental Justice
 
 Opponents of the Open Space Amendment describe themselves as “environmentalists.” But in the face of the ongoing climate catastrophe, they represent an outdated style of environmentalism that is too individualistic. It misses the big picture.
 
 There exists an older, more individualistic kind of environmentalism where an individual or a family just wants to surround themselves with greenery and nature. That might mean having a big yard and maintaining a garden, perhaps. Or it might mean owning a house where one can enjoy a "mountain view."
 
-But if you have big houses separated from one another with vast lawns, that's not environmentally sustainable at all. It means big highways, and big SUVs, because everything is so spread out, and no one can conveniently walk or take transit to where they need to go. And the more that our neighborhoods sprawl out, the more likely those mountains will be covered with subdivisions themselves.
+But if you have nothing but detached, single-family homes separated from one another with vast lawns, that's not environmentally sustainable at all. It means big roads and big highways, because everything is so spread out and no one can conveniently walk or take transit to where they need to go. And the more that our neighborhoods sprawl out, the more likely those mountains will be covered with subdivisions themselves.
 
 For every single downtown Asheville worker that has to find housing in Weaverville or Candler, we would need to plant *hundreds* of trees to offset the carbon emissions from their daily commutes. That's why being able to build more housing in places where there are already jobs, infrastructure, and amenities is what battling climate change is all about.
+
+This is exactly what the Open Space Amendment is designed to incentivize.
+
+### Anti-Gentrification
+
+Gentrification is a scary word that gets thrown around a lot. It's become a powerful rhetorical weapon, and so it's also become over-used in confusing ways.
+
+Opponents of this amendment will tell you that it will “gentrify” Asheville. But this reflects a poor understanding of what causes gentrification.
+
+The simple truth is that gentrification, or displacement, is what happens when not enough housing gets built for low- and middle-income folks. When housing supply doesn't keep up with demand, rents and home prices shoot up, and with scarce housing options, families of different backgrounds, shapes, sizes, and income levels are forced to compete with one another. It's a zero-sum game that means some people are necessarily going to be pushed out.
+
+The solution to gentrification is to build more housing in places where infrastructure and opportunities exist, so we're not pitting people against one another.
 
 This is exactly what the Open Space Amendment is designed to incentivize.
 
@@ -64,7 +64,7 @@ But the Open Space Amendment is a good start.
 
 ## How Can I Help?
 
-You can help right and it will take less than five minutes. Let the City Council know that you support the Open Space Amendment.
+You can help right now and it will take less than five minutes. Let the City Council know that you support the Open Space Amendment.
 
 We've created a form that makes it easy to instantly send an email to Asheville City Council:
 

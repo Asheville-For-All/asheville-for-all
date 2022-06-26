@@ -1,4 +1,8 @@
-# What Is the Open Space Amendment?
+# Support Asheville's Open Space Amendment
+
+<!-- tab bar goes here? -->
+
+## What Is the Open Space Amendment?
 
 The Open Space Amendment is a small revision to the city's zoning code.
 
@@ -8,11 +12,13 @@ It will allow people that build homes a little more flexibility, specifically in
 
 You can read more about the amendment in [this *Citizen-Times* article](https://www.citizen-times.com/story/news/local/2022/03/10/asheville-propose-zoning-amendment-reduce-open-space-requirements/9441722002/). An image from the article below illustrates well how the amendment will solve a problem with Asheville's current zoning code:
 
-<img style="margin-top:1rem;margin-bottom:1rem;" src="img/open-space-amendment-figure.webp"></img>
+<figure style="border-top:1px solid black;border-bottom:1px solid black;margin-top:1rem;margin-bottom:1rem;"><img style="max-width:100%" src="img/open-space-amendment-figure.webp"></img></figure>
 
-# Why Should I Support The Open Space Amendment?
+Find the current city code's “Open Space Standards” [here](https://library.municode.com/nc/asheville/codes/code_of_ordinances?nodeId=PTIICOOR_CH7DE_ARTXIDEDEST_S7-11-4OPSPST), and the proposed Open Space Amendment [here](https://drive.google.com/file/d/1zLtI4Ea13kIzbsqi4zOZadst4Akots2c/view).
 
-## Economic Diversity
+## Why Should I Support The Open Space Amendment?
+
+### Economic Diversity
 
 Housing is a human right. But there is a housing crisis in Asheville.
 
@@ -24,7 +30,7 @@ The Open Space Amendment incentivizes “urban infill,” which just means that 
 
 And in addition to encouraging the development of an overall greater supply of homes in the area, the amendment also incentivizes steps that builders can take to price homes more affordably.
 
-## Anti-Gentrification
+### Anti-Gentrification
 
 Gentrification is a scary word that gets thrown around a lot. It's become a powerful weapon, and so it's also become over-used.
 
@@ -36,7 +42,7 @@ The solution to gentrification is to build more housing in places where infrastr
 
 This is exactly what the Open Space Amendment is designed to incentivize.
 
-## Environmental Justice
+### Environmental Justice
 
 Opponents of the Open Space Amendment describe themselves as “environmentalists.” But in the face of the ongoing climate catastrophe, they represent an outdated style of environmentalism that is too individualistic. It misses the big picture.
 
@@ -48,8 +54,18 @@ For every single downtown Asheville worker that has to find housing in Weavervil
 
 This is exactly what the Open Spaces Amendment is designed to incentivize.
 
-# How Can I Help?
+### Are There Drawbacks?
+
+The new Open Space Amendment is not perfect. In particular, while it creates fixes that make it easier for us to have buildings with eight or more units in parts of the city that are already zoned for higher densities, there is much more work to do on the zoning code to allow for more “gentle density“ citywide.
+
+That work includes decreasing lot size minimums, abolishing exclusionary zoning, and more. [Stay connected with us](stay-connected.html) so you can help in that work too.
+
+But the Open Space Amendment is a good start. 
+
+## How Can I Help?
 
 Let the City Council know that you support the Open Space Amendment.
+
+We've created a form that makes it easy to instantly send an email to Asheville City Council:
 
 PUT ACTION NETWORK EMBED HERE

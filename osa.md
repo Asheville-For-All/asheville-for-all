@@ -32,7 +32,7 @@ And in addition to encouraging the development of an overall greater supply of h
 
 ### Anti-Gentrification
 
-Gentrification is a scary word that gets thrown around a lot. It's become a powerful weapon, and so it's also become over-used.
+Gentrification is a scary word that gets thrown around a lot. It's become a powerful rhetorical weapon, and so it's also become over-used.
 
 Opponents of this amendment will tell you that it will “gentrify” Asheville. But this reflects a poor understanding of what causes gentrification.
 
@@ -52,7 +52,7 @@ But if you have big houses separated from one another with vast lawns, that's no
 
 For every single downtown Asheville worker that has to find housing in Weaverville or Candler, we would need to plant *hundreds* of trees to offset the carbon emissions from their daily commutes. That's why being able to build more housing in places where there are already jobs, infrastructure, and amenities is what battling climate change is all about.
 
-This is exactly what the Open Spaces Amendment is designed to incentivize.
+This is exactly what the Open Space Amendment is designed to incentivize.
 
 ### Are There Drawbacks?
 
@@ -64,7 +64,7 @@ But the Open Space Amendment is a good start.
 
 ## How Can I Help?
 
-Let the City Council know that you support the Open Space Amendment.
+You can help right and it will take less than five minutes. Let the City Council know that you support the Open Space Amendment.
 
 We've created a form that makes it easy to instantly send an email to Asheville City Council:
 

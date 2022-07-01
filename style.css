@@ -1,12 +1,14 @@
-body{
-    padding-top:20px;
-}
 
 a{
     color: #298C6C;
 }
 a:hover{
     color: #DA806A;
+}
+
+header{
+    margin-top:20px;
+    padding-top:10px;
 }
 
 .footer{
@@ -115,4 +117,18 @@ figure{
   
   #back-to-top:hover {
     background-color: #555; /* Add a dark-grey background on hover */
+  }
+
+  #action-banner{
+    color:white;
+    background-color:#298C6C;
+    padding:1rem;
+    margin-bottom:5em;
+    margin-top:0px;
+  }
+  #action-banner a{
+color:white;
+  }
+  #action-banner a:visited{
+    color:white;
   }

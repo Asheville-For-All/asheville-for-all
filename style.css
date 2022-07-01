@@ -127,8 +127,14 @@ figure{
     margin-top:0px;
   }
   #action-banner a{
-color:white;
+    display:block;
+    color:#DA806A;
+    background-color:white;
+    text-align:center;
+    padding:1rem;
+    border-radius:0.25rem;
+    margin:1rem;
   }
   #action-banner a:visited{
-    color:white;
+    color:#DA806A;
   }

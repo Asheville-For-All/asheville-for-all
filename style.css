@@ -38,9 +38,16 @@ h1{
     color:#298C6C;
 }
 
-h2{
+h2,h3{
     margin-bottom:1rem;
     margin-top:1rem;
+}
+
+h4{
+    font-style: italic;
+    margin-top:1rem;
+    margin-bottom:1rem;
+    padding-left:1rem;
 }
 
 .subtitle{

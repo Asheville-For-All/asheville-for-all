@@ -1,3 +1,7 @@
+---
+title: Asheville For All - Support the Open Space Amendment
+---
+
 # Support Asheville's Open Space Amendment
 
 <!-- tab bar goes here? -->

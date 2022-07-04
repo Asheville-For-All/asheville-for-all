@@ -1,3 +1,7 @@
+---
+title: Asheville For All - Glossary
+---
+
 ## Glossary of Housing Related Terms
 
 <h3 class="glossary-entry" id="developer">Developer</h3>

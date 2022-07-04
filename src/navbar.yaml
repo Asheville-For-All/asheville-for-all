@@ -1,0 +1,41 @@
+---
+-
+  name: Home
+  type: page
+  url: index.html
+-
+  name: Learn More
+  type: category
+  collection:
+  - 
+    name: About Housing
+    url: resources.html
+    type: subpage
+  -
+    name: About Asheville For All
+    url: about.html
+    type: subpage
+-
+  name: Stay Connected
+  type: page
+  url: stay-connected.html
+-
+  name: Take Action!
+  type: category
+  collection:
+  -
+    name: Join Us
+    type: subpage
+    url: join.html
+  -
+    name: Open Space Amendment
+    type: subpage
+    url: osa-1.html
+  -
+    name: Upzone Asheville
+    type: subpage
+    url: take-action.html
+  -
+    name: Events
+    type: subpage
+    url: events.html

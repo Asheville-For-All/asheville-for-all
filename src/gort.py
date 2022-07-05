@@ -151,6 +151,13 @@ def get_Dropdown_Code(subObject, activePageURL):
         returnString = returnString + s
     returnString = returnString + post
 
+filename = input("Enter a filename (example: 'index.md'): ")
+
+if os.path.isfile(filename) == True:
+    gortify(filename)
+else:
+    print("Sorry, this doesn't appear to be a valid file name.")
+
 
 
 

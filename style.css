@@ -145,3 +145,7 @@ figure{
   #action-banner a:visited{
     color:#DA806A;
   }
+
+  header a{
+    border:none;
+  }

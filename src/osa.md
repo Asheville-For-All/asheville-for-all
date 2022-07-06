@@ -1,5 +1,6 @@
 ---
 title: Asheville For All - Support the Open Space Amendment
+action banner: n
 ---
 
 # Support Asheville's Open Space Amendment

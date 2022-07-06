@@ -18,8 +18,8 @@ def gortify(filename):
     fn = filename
     navBarObj = []
     frame = ""
-    navbar = ""
     main = []
+    mainstring = ""
     metadata = []
     header = ""
     footer = ""
@@ -50,9 +50,16 @@ def gortify(filename):
     else:
         frame.replace("{{title}}", "Asheville For All")
 
+        if 'action banner' in metadata and metadata["action banner"] == "y":
+            frame.replace("{{action banner}}", "") #TODO
+        else:
+            frame.replace("{{action banner", "")
+
     frame.replace("{{header}}", header)
     frame.replace("{{footer}}", footer)
-    frame.replace("{{main}}", markdown.markdown(main[1]))
+
+    mainstring = '<main class="container">' + markdown.markdown(main[1]) + '</main>'
+    frame.replace("{{main}}", mainstring)
 
     frame.replace("{{navbar}}", get_Navbar_code(navBarObj, newFileName))
 

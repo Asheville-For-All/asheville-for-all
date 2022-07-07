@@ -55,5 +55,6 @@ action banner: n
 
 ### Recommended Podcast Episodes
 
+- [*Why Is This Happening? with Chris Hayes*, ”The Affordable Housing Crisis with Ned Resnikoff,” July 6, 2022.](https://www.msnbc.com/msnbc-podcast/why-is-this-happening/discussing-affordable-housing-crisis-ned-resnikoff-podcast-transcript-n1296852)
 - <a href="https://99percentinvisible.org/episode/the-missing-middle/" target="_blank"><i>99% Invisible</i>, “The Missing Middle,” May 17, 2022</a>
 - <a href="https://www.nytimes.com/2021/07/23/podcasts/transcript-ezra-klein-interviews-jerusalem-demsas.html" target="_blank">Ezra Klein & Jerusalem Demsas, “How Blue Cities Became So Outrageously Unaffordable,” July 23, 2021</a>

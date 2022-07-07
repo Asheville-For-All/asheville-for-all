@@ -45,6 +45,10 @@ def gortify(filename):
 
     metadata = yaml.load(main[0])
 
+    if 'multi-page' in metadata and metadata["multi-page"] == 'y':
+        pass
+        ########TODO ###############
+
     if 'title' in metadata:
         frame.replace("{{title}}", metadata.title)
     else:
@@ -62,8 +66,6 @@ def gortify(filename):
     frame.replace("{{main}}", mainstring)
 
     frame.replace("{{navbar}}", get_Navbar_code(navBarObj, newFileName))
-
-    ##TODO just need to output the file now
 
     f=open(newFileName, "w")
     f.write(frame)

@@ -7,6 +7,7 @@ action banner: n
 
 - <a href="https://bookshop.org/a/83543/9780520356214" target="_blank"><i>Generation Priced Out</i> by Randy Shaw</a>
 - <a href="https://bookshop.org/a/83543/9780815739289" target="_blank"><i>Fixer-Upper</i> by Jenny Schuetz</a>
+- [*Golden Gates* by Connor Dougherty](https://bookshop.org/a/83543/9780525560234)
 - <a href="https://bookshop.org/a/83543/9781642831337" target="_blank"><i>The Affordable City</i> by Shane Phillips</a>
 
 ### Recommended Videos

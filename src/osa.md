@@ -16,11 +16,13 @@ It will allow people that build homes a little more flexibility, specifically in
 
 “Open space” describes the parts of a lot where there are no buildings or parking lots. Currently, the city's code makes it near impossible to build apartment building on small lots, because of an onerous requirement where lots need 500 square feet of open space *per unit*. This makes reasonably-sized multi-level apartment buildings nearly impossible to build.
 
-You can read more about the amendment in [this *Citizen-Times* article](https://www.citizen-times.com/story/news/local/2022/03/10/asheville-propose-zoning-amendment-reduce-open-space-requirements/9441722002/). An image from the article below illustrates well how the amendment will solve a problem with Asheville's current zoning code:
+The image below, taken from <a href="https://www.citizen-times.com/story/news/local/2022/03/10/asheville-propose-zoning-amendment-reduce-open-space-requirements/9441722002/" target="_blank">a *Citizen-Times* article</a>, illustrates well how the amendment will solve a problem with Asheville's current zoning code:
 
 <figure style="border-top:1px solid black;border-bottom:1px solid black;margin-top:1rem;margin-bottom:1rem;"><img style="max-width:100%" src="img/open-space-amendment-figure.webp"></img></figure>
 
-Find the current city code's “Open Space Standards” [here](https://library.municode.com/nc/asheville/codes/code_of_ordinances?nodeId=PTIICOOR_CH7DE_ARTXIDEDEST_S7-11-4OPSPST), and the proposed Open Space Amendment [here](https://drive.google.com/file/d/1zLtI4Ea13kIzbsqi4zOZadst4Akots2c/view).
+You can find the current city code's “Open Space Standards” [here](https://library.municode.com/nc/asheville/codes/code_of_ordinances?nodeId=PTIICOOR_CH7DE_ARTXIDEDEST_S7-11-4OPSPST), and the proposed Open Space Amendment [here](https://drive.google.com/file/d/1zLtI4Ea13kIzbsqi4zOZadst4Akots2c/view).
+
+Click “Next” to read about why you should voice support for the Open Space Amendment.
 
 ## Why Should I Support The Open Space Amendment?
 
@@ -66,7 +68,9 @@ The new Open Space Amendment is not perfect. In particular, while it creates fix
 
 That work includes decreasing lot size minimums, abolishing exclusionary zoning, and more. [Stay connected with us](stay-connected.html) so you can help in that work too.
 
-But the Open Space Amendment is a good start. 
+But the Open Space Amendment is a good start.
+
+Click “Next” to find out how you can help.
 
 ## How Can I Help?
 

@@ -1,6 +1,7 @@
 ---
 title: Asheville For All - Learn More About Housing
 action banner: n
+multi-page: n
 ---
 
 ### Recommended Books

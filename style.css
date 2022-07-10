@@ -26,6 +26,10 @@ header{
     color:gray;
 }
 
+.footer a:hover{
+    color:white;
+}
+
 .container{
     max-width:40rem;
 }
@@ -148,4 +152,26 @@ figure{
 
   header a{
     border:none;
+  }
+
+  #site-map table{
+text-align:left;
+vertical-align:top;
+color:gray;
+  }
+
+  th, td{
+    padding-left:0.35em;
+    padding-right:0.35em;
+    padding-bottom:0.35em;
+    vertical-align:top;
+  }
+
+  footer ul{
+    list-style-type: none;
+    margin: 0px;
+    padding:0px;
+  }
+  footer li{
+    padding-bottom:0.35em;
   }

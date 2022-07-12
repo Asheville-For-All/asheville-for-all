@@ -1,7 +1,6 @@
 ---
 title: Asheville For All - Glossary
 action banner: n
-multi-page: n
 ---
 
 ## Glossary of Housing Related Terms

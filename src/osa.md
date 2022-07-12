@@ -1,12 +1,13 @@
 ---
 title: Asheville For All - Support the Open Space Amendment
 action banner: n
-multi-page: y
+multi-page:
+  common-heading: Support Asheville's Open Space Amendment
+  tabs:
+    - About the Open Space Amendment
+    - Why Support the Amendment?
+    - How Can I Help?
 ---
-
-# Support Asheville's Open Space Amendment
-
-<!-- tab bar goes here? -->
 
 ## What Is the Open Space Amendment?
 
@@ -23,6 +24,8 @@ The image below, taken from <a href="https://www.citizen-times.com/story/news/lo
 You can find the current city code's “Open Space Standards” [here](https://library.municode.com/nc/asheville/codes/code_of_ordinances?nodeId=PTIICOOR_CH7DE_ARTXIDEDEST_S7-11-4OPSPST), and the proposed Open Space Amendment [here](https://drive.google.com/file/d/1zLtI4Ea13kIzbsqi4zOZadst4Akots2c/view).
 
 Click “Next” to read about why you should voice support for the Open Space Amendment.
+
+---
 
 ## Why Should I Support The Open Space Amendment?
 
@@ -72,10 +75,12 @@ But the Open Space Amendment is a good start.
 
 Click “Next” to find out how you can help.
 
+---
+
 ## How Can I Help?
 
 You can help right now and it will take less than five minutes. Let the City Council know that you support the Open Space Amendment.
 
 We've created a form that makes it easy to instantly send an email to Asheville City Council:
 
-PUT ACTION NETWORK EMBED HERE
+<!-- PUT ACTION NETWORK EMBED HERE -->

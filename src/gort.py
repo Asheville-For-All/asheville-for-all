@@ -45,7 +45,7 @@ def gortify(filename):
 
     metadata = yaml.load(main[0])
 
-    if 'multi-page' in metadata and metadata["multi-page"] == 'y':
+    if 'multi-page' in metadata:
         pass
         ########TODO ###############
 

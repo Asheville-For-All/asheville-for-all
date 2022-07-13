@@ -11,9 +11,6 @@ def gortify(filename):
     
     Parameters:
     filename (str): an .md file, with a yaml section at the top, separated by "---\n" on the first and last lines.
-    
-    Returns:
-    TK TK
     """ ## info on python docstrings here:https://www.geeksforgeeks.org/python-docstrings/
 
     fn = filename
@@ -165,9 +162,9 @@ def buildSinglePage(frame, header, footer, metadata, main, navBarObj, filename):
 def buildMultiPage(frame, header, footer, metadata, main, navBarObj, filename):
     numPages = len(metadata["multi-page"]["tabs"])
     count = 0
-    newFileName = filename.split('.')[0] + "-" + count + ".html"
     for t in metadata["multi-page"]["tabs"]:
         count = count + 1
+        newFileName = filename.split('.')[0] + "-" + count + ".html"
         newPage = copy.copy(frame)
         if 'title' in metadata:
             newPage.replace("{{title}}", metadata.title)
@@ -180,7 +177,7 @@ def buildMultiPage(frame, header, footer, metadata, main, navBarObj, filename):
         newPage.replace("{{header}}", header)
         newPage.replace("{{footer}}", footer)
         mainstring = '<main class="container"><h1>' + metadata["multi-page"]["common-heading"] + '</h1>'
-        mainstring = mainstring + generateTabBar(count, metadata["multi-page"]["tabs"])
+        mainstring = mainstring + generateTabBar(count, metadata["multi-page"]["tabs"], newFileName)
         mainstring = mainstring + markdown.markdown(main[count]) + "</main>" #TODO still need to generate bottom nav buttons here
         newPage.replace("{{main}}", mainstring)
         newPage.replace("{{navbar}}", get_Navbar_code(navBarObj, newFileName))
@@ -188,16 +185,18 @@ def buildMultiPage(frame, header, footer, metadata, main, navBarObj, filename):
         f.write(newPage)
         f.close()
 
-def generateTabBar(count, tabList):
-    pre = '''<div class="mb-5 mt-5"><ul class="nav nav-tabs nav-justified">'''
+def generateTabBar(count, tabList, newFilename):
+    s = '''<div class="mb-5 mt-5"><ul class="nav nav-tabs nav-justified">'''
     post = '''</ul></div>'''
     i = 0
     for t in tabList:
         i= i+1
         if count == i:
-            pass #TODO this is the active tab
+            s = s + '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + newFilename + '">' + tabList[i-1] + '</a></li>'
         else:
-            pass #TODO this is not the active tab
+            s = s + '<li class="nav-item"><a class="nav-link" aria-current="page" href="' + newFilename + '">' + tabList[i-1] + '</a></li>'
+    s = s + post
+    return s
 
 filename = input("Enter a filename (example: 'index.md'): ")
 

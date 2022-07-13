@@ -1,6 +1,7 @@
 ## python 3.9
 
 import os
+import copy
 import yaml #this uses pyyaml library
 import markdown ##this uses python markdown https://python-markdown.github.io/reference/
 
@@ -9,7 +10,7 @@ def gortify(filename):
     Takes a single .md file and outputs an assembled html file.
     
     Parameters:
-    filename (str): an .md file, with a yaml section at the top, separated by "__\n" on the first and last lines.
+    filename (str): an .md file, with a yaml section at the top, separated by "---\n" on the first and last lines.
     
     Returns:
     TK TK
@@ -23,13 +24,12 @@ def gortify(filename):
     metadata = []
     header = ""
     footer = ""
-    newFileName = fn.split('.')[0] + ".html"
 
     with open(fn) as f:
         m = f.read()
         main = m.split('---\n')
         main.pop(0)
-        ## main now has two list items: the first is a YAML string, the second is the main HTML content.
+        ## main now has two list items: the first is a YAML string, the second is the main HTML content. If it is a multi-page doc, there will be several list items.
 
     with open("frame.html") as f:
         frame = f.read()
@@ -46,8 +46,14 @@ def gortify(filename):
     metadata = yaml.load(main[0])
 
     if 'multi-page' in metadata:
-        pass
-        ########TODO ###############
+        buildMultiPage()
+
+    else:
+        buildSinglePage(frame, header, footer, metadata, main, navBarObj, fn)
+
+def buildSinglePage(frame, header, footer, metadata, main, navBarObj, filename):
+
+    newFileName = filename.split('.')[0] + ".html"
 
     if 'title' in metadata:
         frame.replace("{{title}}", metadata.title)
@@ -71,7 +77,33 @@ def gortify(filename):
     f.write(frame)
     f.close()
 
-    print("Done! Output file: " + newFileName)
+def buildMultiPage(frame, header, footer, metadata, main, navBarObj, filename):
+    numPages = len(metadata["multi-page"]["tabs"])
+    count = 1
+    newFileName = filename.split('.')[0] + "-" + count + ".html"
+    for t in metadata["multi-page"]["tabs"]:
+        newPage = copy.copy(frame)
+        if 'title' in metadata:
+            newPage.replace("{{title}}", metadata.title)
+        else:
+            newPage.replace("{{title}}", "Asheville For All")
+        if 'action banner' in metadata and metadata["action banner"] == "y":
+            newPage.replace("{{action banner}}", "") #TODO
+        else:
+                newPage.replace("{{action banner", "")
+        newPage.replace("{{header}}", header)
+        newPage.replace("{{footer}}", footer)
+        mainstring = '<main class="container"><h1>' + metadata["multi-page"]["common-heading"] + '</h1>'
+        mainstring = mainstring + generateTabBar(count, metadata["multi-page"]["tabs"])
+        mainstring = mainstring + markdown.markdown(main[count]) + "</main>"
+        newPage.replace("{{main}}", mainstring)
+        newPage.replace("{{navbar}}", get_Navbar_code(navBarObj, newFileName))
+        f=open(newFileName, "w")
+        f.write(newPage)
+        f.close()
+
+def generateTabBar(count, tabList):
+    pass #TODO
 
 ## ----HELPER CODE FOR NAVBAR: ---- ##
 

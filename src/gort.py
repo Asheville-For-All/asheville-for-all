@@ -185,17 +185,42 @@ def buildMultiPage(frame, header, footer, metadata, main, navBarObj, filename):
         f.close()
 
 def generateMultiPageBottomButtons(numOfTabs, count):
-    s = '''<nav class="mt-5">
+    prevFileName = ""
+    nextFileName = ""
+    if count == 1:
+        prevFileName = ""
+    else:
+        pass #TODO define prevFileName - see below?
+    if count == numOfTabs:
+        nextFileName = ""
+    else:
+        pass #TODO define nextFileName - see below?
 
-      <ul class="pagination">
-        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="osa-2.html">Next</a></li>
-      </ul>
-    </nav>''' #TODO
+    s = '<nav class="mt-5"><ul class="pagination">'
+    if count == 1:
+        s += '<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>'
+    else:
+        s += '<li class="page-item"><a class="page-link" href="' + prevFileName + '">Previous</a></li>'
+    if count == numOfTabs:
+        s += '<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>'
+    else:
+        s += '<li class="page-item"><a class="page-link" href="' + nextFileName + '">Next</a></li>'
+    s += '</ul></nav>'
+    return s
+
+'''#TODO I need to fix this stuff above and below. I need to maybe generate a list of filenames for the tabs, that might be the easiest way. Then I can pass that list along.'''
+
+def generateMultiPageFileNameList (filename, numOfTabs):
+    '''start with the original filename, ending in .md'''
+    l = []
+    i = 1
+    while i <= numOfTabs:
+        l.append() #TODO finish this.
+        i += 1
+    return l
 
 
-
-def generateTabBar(count, tabList, newFilename):
+def generateTabBar(count, tabList, newFilename): #TODO This is wrong. It's putting the same filename in every tab. see above
     s = '''<div class="mb-5 mt-5"><ul class="nav nav-tabs nav-justified">'''
     post = '''</ul></div>'''
     i = 0

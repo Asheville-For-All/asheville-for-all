@@ -1,6 +1,7 @@
 ## python 3.9
 
 import os
+import re
 import copy
 import yaml #this uses pyyaml library
 import markdown ##this uses python markdown https://python-markdown.github.io/reference/
@@ -24,9 +25,7 @@ def gortify(filename):
 
     with open(fn) as f:
         m = f.read()
-        main = m.split('---\n')
-        main.pop(0)
-        ## main now has two list items: the first is a YAML string, the second is the main HTML content. If it is a multi-page doc, there will be several list items.
+        main = splitMain(m)
 
     with open("frame.html") as f:
         frame = f.read()
@@ -178,12 +177,23 @@ def buildMultiPage(frame, header, footer, metadata, main, navBarObj, filename):
         newPage.replace("{{footer}}", footer)
         mainstring = '<main class="container"><h1>' + metadata["multi-page"]["common-heading"] + '</h1>'
         mainstring = mainstring + generateTabBar(count, metadata["multi-page"]["tabs"], newFileName)
-        mainstring = mainstring + markdown.markdown(main[count]) + "</main>" #TODO still need to generate bottom nav buttons here
+        mainstring = mainstring + markdown.markdown(main[count]) + generateMultiPageBottomButtons(numPages, count) + "</main>"
         newPage.replace("{{main}}", mainstring)
         newPage.replace("{{navbar}}", get_Navbar_code(navBarObj, newFileName))
         f=open(newFileName, "w")
         f.write(newPage)
         f.close()
+
+def generateMultiPageBottomButtons(numOfTabs, count):
+    s = '''<nav class="mt-5">
+
+      <ul class="pagination">
+        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="osa-2.html">Next</a></li>
+      </ul>
+    </nav>''' #TODO
+
+
 
 def generateTabBar(count, tabList, newFilename):
     s = '''<div class="mb-5 mt-5"><ul class="nav nav-tabs nav-justified">'''
@@ -198,12 +208,37 @@ def generateTabBar(count, tabList, newFilename):
     s = s + post
     return s
 
+def splitMain(str):
+    '''This takes the content of an .md file, and splits it apart at the "---" lines. That way you get a array with the YAML info first, and then the page (or pages, if its a multi-page .md file) next.
+    
+    Parameters:
+    str (str): The content of a markdown file, with a YAML section at the top.
+    
+    Returns:
+    An array of strings, the first string being the YAML metadata, and subsequent string or strings being different main page content.'''
+    rString = "^(---)$"
+    x = re.compile(rString, re.MULTILINE)
+    arr = x.split(str)
+    if arr[0] == "":
+        arr.pop[0]
+    return arr
+
+def emDashReplacer(str):
+    '''Replaces three dashes with an em dash. Note that the three dashes can't appear at the very start or the very end of a line. They should be surrounded by spaces or letters.'''
+    rString = "(?<=.)---(?=.)"
+    x = re.compile(rString)
+    return x.sub("—", str) #note that this character is an em-dash
+
+## Main Code:
+
 filename = input("Enter a filename (example: 'index.md'): ")
 
 if os.path.isfile(filename) == True:
     gortify(filename)
 else:
     print("Sorry, this doesn't appear to be a valid file name.")
+
+
 
 
 

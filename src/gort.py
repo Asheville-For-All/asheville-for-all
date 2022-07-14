@@ -161,9 +161,10 @@ def buildSinglePage(frame, header, footer, metadata, main, navBarObj, filename):
 def buildMultiPage(frame, header, footer, metadata, main, navBarObj, filename):
     numPages = len(metadata["multi-page"]["tabs"])
     count = 0
+    rootFileName = filename.split('.')[0]
     for t in metadata["multi-page"]["tabs"]:
         count = count + 1
-        newFileName = filename.split('.')[0] + "-" + count + ".html"
+        newFileName = rootFileName + "-" + count + ".html"
         newPage = copy.copy(frame)
         if 'title' in metadata:
             newPage.replace("{{title}}", metadata.title)
@@ -177,24 +178,24 @@ def buildMultiPage(frame, header, footer, metadata, main, navBarObj, filename):
         newPage.replace("{{footer}}", footer)
         mainstring = '<main class="container"><h1>' + metadata["multi-page"]["common-heading"] + '</h1>'
         mainstring = mainstring + generateTabBar(count, metadata["multi-page"]["tabs"], newFileName)
-        mainstring = mainstring + markdown.markdown(main[count]) + generateMultiPageBottomButtons(numPages, count) + "</main>"
+        mainstring = mainstring + markdown.markdown(main[count]) + generateMultiPageBottomButtons(numPages, count, rootFileName) + "</main>"
         newPage.replace("{{main}}", mainstring)
         newPage.replace("{{navbar}}", get_Navbar_code(navBarObj, newFileName))
         f=open(newFileName, "w")
         f.write(newPage)
         f.close()
 
-def generateMultiPageBottomButtons(numOfTabs, count):
+def generateMultiPageBottomButtons(numOfTabs, count, rootFileName):
     prevFileName = ""
     nextFileName = ""
     if count == 1:
         prevFileName = ""
     else:
-        pass #TODO define prevFileName - see below?
+        pass #TODO define prevFileName - use the rootFileName
     if count == numOfTabs:
         nextFileName = ""
     else:
-        pass #TODO define nextFileName - see below?
+        pass #TODO define nextFileName - use the rootFileName
 
     s = '<nav class="mt-5"><ul class="pagination">'
     if count == 1:
@@ -208,19 +209,7 @@ def generateMultiPageBottomButtons(numOfTabs, count):
     s += '</ul></nav>'
     return s
 
-'''#TODO I need to fix this stuff above and below. I need to maybe generate a list of filenames for the tabs, that might be the easiest way. Then I can pass that list along.'''
-
-def generateMultiPageFileNameList (filename, numOfTabs):
-    '''start with the original filename, ending in .md'''
-    l = []
-    i = 1
-    while i <= numOfTabs:
-        l.append() #TODO finish this.
-        i += 1
-    return l
-
-
-def generateTabBar(count, tabList, newFilename): #TODO This is wrong. It's putting the same filename in every tab. see above
+def generateTabBar(count, tabList, newFilename): #TODO This is wrong. It's putting the same filename in every tab. I need to use the rootFileName, not the newFileName, and build it back out for each tab. Make sure to change newFileName to rootFileName where it's being called too.
     s = '''<div class="mb-5 mt-5"><ul class="nav nav-tabs nav-justified">'''
     post = '''</ul></div>'''
     i = 0

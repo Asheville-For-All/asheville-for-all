@@ -219,8 +219,10 @@ def splitMain(str):
     rString = "^(---)$"
     x = re.compile(rString, re.MULTILINE)
     arr = x.split(str)
-    if arr[0] == "":
-        arr.pop[0]
+    if arr[0] == "" or arr[0] == "\n":
+        arr.pop(0)
+    if arr[-1] == "" or arr[-1] == "\n":
+        arr.pop(-1)
     return arr
 
 def emDashReplacer(str):

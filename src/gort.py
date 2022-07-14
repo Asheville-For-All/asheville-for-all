@@ -164,7 +164,7 @@ def buildMultiPage(frame, header, footer, metadata, main, navBarObj, filename):
     rootFileName = filename.split('.')[0]
     for t in metadata["multi-page"]["tabs"]:
         count = count + 1
-        newFileName = rootFileName + "-" + count + ".html"
+        newFileName = rootFileName + "-" + str(count) + ".html"
         newPage = copy.copy(frame)
         if 'title' in metadata:
             newPage.replace("{{title}}", metadata.title)
@@ -191,11 +191,11 @@ def generateMultiPageBottomButtons(numOfTabs, count, rootFileName):
     if count == 1:
         prevFileName = ""
     else:
-        pass #TODO define prevFileName - use the rootFileName
+        prevFileName = rootFileName + "-" + str(count - 1) + ".html"
     if count == numOfTabs:
         nextFileName = ""
     else:
-        pass #TODO define nextFileName - use the rootFileName
+        nextFileName = rootFileName + "-" + str(count + 1) + ".html"
 
     s = '<nav class="mt-5"><ul class="pagination">'
     if count == 1:

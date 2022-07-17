@@ -22,6 +22,7 @@ def gortify(filename):
     metadata = []
     header = ""
     footer = ""
+    actionBanner = ""
 
     with open(fn) as f:
         m = f.read()
@@ -39,13 +40,17 @@ def gortify(filename):
     with open("navbar.yaml") as f:
         navBarObj = yaml.load(f.read())
 
+    if os.path.exists("action-banner.html"):
+        with open("action-banner.html") as f:
+            actionBanner = f.read()
+
     metadata = yaml.load(main[0])
 
     if 'multi-page' in metadata:
-        buildMultiPage()
+        buildMultiPage(frame, header, footer, metadata, main, navBarObj, fn, actionBanner)
 
     else:
-        buildSinglePage(frame, header, footer, metadata, main, navBarObj, fn)
+        buildSinglePage(frame, header, footer, metadata, main, navBarObj, fn, actionBanner)
 
 def get_Navbar_code(navMapDictObj, activePageURL):
     """
@@ -132,7 +137,7 @@ def get_Dropdown_Code(subObject, activePageURL):
         returnString = returnString + s
     returnString = returnString + post
 
-def buildSinglePage(frame, header, footer, metadata, main, navBarObj, filename):
+def buildSinglePage(frame, header, footer, metadata, main, navBarObj, filename, actionBanner=""):
 
     newFileName = filename.split('.')[0] + ".html"
 
@@ -142,7 +147,7 @@ def buildSinglePage(frame, header, footer, metadata, main, navBarObj, filename):
         frame.replace("{{title}}", "Asheville For All")
 
         if 'action banner' in metadata and metadata["action banner"] == "y":
-            frame.replace("{{action banner}}", "") #TODO
+            frame.replace("{{action banner}}", actionBanner)
         else:
             frame.replace("{{action banner", "")
 
@@ -158,7 +163,7 @@ def buildSinglePage(frame, header, footer, metadata, main, navBarObj, filename):
     f.write(frame)
     f.close()
 
-def buildMultiPage(frame, header, footer, metadata, main, navBarObj, filename):
+def buildMultiPage(frame, header, footer, metadata, main, navBarObj, filename, actionBanner=""):
     numPages = len(metadata["multi-page"]["tabs"])
     count = 0
     rootFileName = filename.split('.')[0]
@@ -171,7 +176,7 @@ def buildMultiPage(frame, header, footer, metadata, main, navBarObj, filename):
         else:
             newPage.replace("{{title}}", "Asheville For All")
         if 'action banner' in metadata and metadata["action banner"] == "y":
-            newPage.replace("{{action banner}}", "") #TODO
+            newPage.replace("{{action banner}}", actionBanner)
         else:
                 newPage.replace("{{action banner", "")
         newPage.replace("{{header}}", header)

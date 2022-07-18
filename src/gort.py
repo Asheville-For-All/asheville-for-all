@@ -178,11 +178,11 @@ def buildMultiPage(frame, header, footer, metadata, main, navBarObj, filename, a
         if 'action banner' in metadata and metadata["action banner"] == "y":
             newPage.replace("{{action banner}}", actionBanner)
         else:
-                newPage.replace("{{action banner", "")
+            newPage.replace("{{action banner", "")
         newPage.replace("{{header}}", header)
         newPage.replace("{{footer}}", footer)
         mainstring = '<main class="container"><h1>' + metadata["multi-page"]["common-heading"] + '</h1>'
-        mainstring = mainstring + generateTabBar(count, metadata["multi-page"]["tabs"], newFileName)
+        mainstring = mainstring + generateTabBar(count, metadata["multi-page"]["tabs"], rootFileName)
         mainstring = mainstring + markdown.markdown(main[count]) + generateMultiPageBottomButtons(numPages, count, rootFileName) + "</main>"
         newPage.replace("{{main}}", mainstring)
         newPage.replace("{{navbar}}", get_Navbar_code(navBarObj, newFileName))
@@ -214,16 +214,17 @@ def generateMultiPageBottomButtons(numOfTabs, count, rootFileName):
     s += '</ul></nav>'
     return s
 
-def generateTabBar(count, tabList, newFilename): #TODO This is wrong. It's putting the same filename in every tab. I need to use the rootFileName, not the newFileName, and build it back out for each tab. Make sure to change newFileName to rootFileName where it's being called too.
+def generateTabBar(count, tabList, rootFileName):
     s = '''<div class="mb-5 mt-5"><ul class="nav nav-tabs nav-justified">'''
     post = '''</ul></div>'''
     i = 0
     for t in tabList:
         i= i+1
+        newFileName = rootFileName + "-" + str(i) + ".html"
         if count == i:
-            s = s + '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + newFilename + '">' + tabList[i-1] + '</a></li>'
+            s = s + '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + newFileName + '">' + tabList[i-1] + '</a></li>'
         else:
-            s = s + '<li class="nav-item"><a class="nav-link" aria-current="page" href="' + newFilename + '">' + tabList[i-1] + '</a></li>'
+            s = s + '<li class="nav-item"><a class="nav-link" aria-current="page" href="' + newFileName + '">' + tabList[i-1] + '</a></li>'
     s = s + post
     return s
 

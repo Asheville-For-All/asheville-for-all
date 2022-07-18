@@ -23,11 +23,15 @@ action banner: n
 - <a href="https://mountainx.com/opinion/aesthetic-anti-capitalism-is-hurting-ashevilles-working-class/" target="_blank">“Aesthetic Anti-capitalism is Hurting Asheville’s Working Class” by Andrew Paul, June 5, 2022.</a>
 - <a href="https://mountainx.com/opinion/amendment-promotes-healthy-communities-and-the-environment/" target="_blank">“Amendment Promotes Healthy Communities and the Environment” by Susan Bean, March 21, 2022.</a>
 
+#### Research Reports
+
+- [“Housing Underproduction in the U.S. 2022” by Up For Growth, July 2022.](https://www.upforgrowth.org/underproduction)
+- <a href="https://escholarship.org/uc/item/5d00z61m" target="_blank">“Research Roundup: The Effect of Market-Rate Development on Neighborhood Rents” by Shane Phillips, Michael Manville, and Michael Lens, February 2021.</a>
+
 #### Zoning, Housing Supply, and Housing Costs
 
 - <a href="https://www.theatlantic.com/ideas/archive/2022/06/zoning-housing-affordability-nimby-parking-houston/661289/" target="_blank">“Cancel Zoning” by M. Nolan Gray, June 21, 2022.</a>
 - <a href="https://www.sightline.org/2021/09/29/nine-reasons-to-end-exclusionary-zoning/" target="_blank">“Nine Reasons to End Exclusionary Zoning” by Dan Bertolet, September 29, 2021.</a>
-- <a href="https://escholarship.org/uc/item/5d00z61m" target="_blank">“Research Roundup: The Effect of Market-Rate Development on Neighborhood Rents” by Shane Phillips, Michael Manville, and Michael Lens, February 2021.</a>
 - <a href="https://www.brookings.edu/opinions/exclusionary-zoning-is-opportunity-hoarding-by-upper-middle-class/" target="_blank">“‘Exclusionary Zoning’ Is Opportunity Hoarding by Upper Middle Class” by Richard V. Reeves, May 24, 2017.</a>
 
 #### Housing Politics
@@ -52,6 +56,13 @@ action banner: n
 #### The Homelessness Crisis
 
 - <a href="https://www.sightline.org/2022/03/16/homelessness-is-a-housing-problem/" target="_blank">“Homelessness Is a Housing Problem” by Gregg Colburn and Clayton Page Alden, March 16, 2022.</a>
+
+<!--
+#### Housing 101
+
+- [“17 Head-Scratcher Housing Terms, Defined” by Rachel Quednau, April 3, 2018.](https://www.strongtowns.org/journal/2018/3/30/17-head-scratcher-housing-words-defined)
+
+-->
 
 ### Recommended Podcast Episodes
 

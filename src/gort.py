@@ -87,7 +87,7 @@ def get_Navbar_code(navMapDictObj, activePageURL):
     '''
     returnString = pre
     for i in n:
-        if n[i]["type"] == "page":
+        if n[i]["type"] == "page": #TODO oops I coded this part wrong. "i" is not an index. It's an object inside the array n. Duh. Need to fix.
 
             s = '"<li class="nav-item"><a class="nav-link'
             if n[i].url == a:

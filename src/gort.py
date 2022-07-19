@@ -7,6 +7,27 @@ import copy
 import yaml #this uses pyyaml library
 import markdown ##this uses python markdown https://python-markdown.github.io/reference/
 
+def printc(color, string):
+  '''Print in a chosen color. 
+  
+  parameters:
+  color (str): Options are yellow, green, red, blue, purple, cyan.
+  string (str): the string you want printed.'''
+  str = ""
+  if color=="yellow":
+    str += "\033[0;33m"
+  elif color=="green":
+    str += "\033[1;32m"
+  elif color=="red":
+    str += "\033[1;31m"
+  elif color=="blue":
+    str += "\033[1;34m"
+  elif color=="purple":
+    str += "\033[1;35m"
+  elif color=="cyan":
+    str += "\033[1;36m"
+  print(str + string + "\033[00m")
+
 def gortify(filename):
     """
     Takes a single .md file and outputs an assembled html file.
@@ -46,7 +67,7 @@ def gortify(filename):
 
     metadata = yaml.safe_load(main[0])
 
-    print("\033[0;33m Loaded metadata: " + str(metadata) + "\033[00m")
+    printc("yellow","Loaded metadata: " + str(metadata))
 
     if 'multi-page' in metadata:
         buildMultiPage(frame, header, footer, metadata, main, navBarObj, fn, actionBanner)
@@ -241,9 +262,8 @@ def splitMain(str):
     rString = "^---$"
     x = re.compile(rString, re.MULTILINE)
     arr = x.split(str)
-    print("\033[1;34mSTRING SPLITTER ARRAY RESULTS:")
-    print(arr)
-    print("\033[00m")
+    printc("cyan","STRING SPLITTER ARRAY RESULTS:")
+    printc("cyan",arr)
     if arr[0] == "" or arr[0] == "\n":
         arr.pop(0)
     if arr[-1] == "" or arr[-1] == "\n":
@@ -261,7 +281,7 @@ def emDashReplacer(str):
 print("Current working directory is: " + os.getcwd())
 print("Directory of script is: " + os.path.dirname(sys.argv[0]))
 os.chdir(os.path.dirname(sys.argv[0]))
-print("\033[1;35mChanging working directory to: " + os.path.dirname(sys.argv[0]) + "\033[00m")
+printc("purple", "Changing working directory to: " + os.path.dirname(sys.argv[0]))
 
 filename = input("\033[1;32mEnter a filename (example: 'index.md'): \033[00m")
 
@@ -269,7 +289,7 @@ if os.path.exists(os.path.join(os.getcwd(), filename)) == True:
     print("\033[1;32m Getting started on " + filename + " . . .\033[00m")
     gortify(filename)
 else:
-    print("Sorry, this doesn't appear to be a valid file name.")
+    printc("red", "Sorry, this doesn't appear to be a valid file name.")
 
 
 

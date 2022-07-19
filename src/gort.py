@@ -1,6 +1,7 @@
 ## python 3.9
 
 import os
+import sys
 import re
 import copy
 import yaml #this uses pyyaml library
@@ -18,7 +19,6 @@ def gortify(filename):
     navBarObj = []
     frame = ""
     main = []
-    mainstring = ""
     metadata = []
     header = ""
     footer = ""
@@ -38,13 +38,15 @@ def gortify(filename):
         footer = f.read()
 
     with open("navbar.yaml") as f:
-        navBarObj = yaml.load(f.read())
+        navBarObj = yaml.safe_load(f.read())
 
     if os.path.exists("action-banner.html"):
         with open("action-banner.html") as f:
             actionBanner = f.read()
 
-    metadata = yaml.load(main[0])
+    metadata = yaml.safe_load(main[0])
+
+    print("\033[0;33m Loaded metadata: " + str(metadata) + "\033[00m")
 
     if 'multi-page' in metadata:
         buildMultiPage(frame, header, footer, metadata, main, navBarObj, fn, actionBanner)
@@ -85,7 +87,7 @@ def get_Navbar_code(navMapDictObj, activePageURL):
     '''
     returnString = pre
     for i in n:
-        if n[i].type == "page":
+        if n[i]["type"] == "page":
 
             s = '"<li class="nav-item"><a class="nav-link'
             if n[i].url == a:
@@ -142,7 +144,7 @@ def buildSinglePage(frame, header, footer, metadata, main, navBarObj, filename, 
     newFileName = filename.split('.')[0] + ".html"
 
     if 'title' in metadata:
-        frame.replace("{{title}}", metadata.title)
+        frame.replace("{{title}}", metadata["title"])
     else:
         frame.replace("{{title}}", "Asheville For All")
 
@@ -236,9 +238,12 @@ def splitMain(str):
     
     Returns:
     An array of strings, the first string being the YAML metadata, and subsequent string or strings being different main page content.'''
-    rString = "^(---)$"
+    rString = "^---$"
     x = re.compile(rString, re.MULTILINE)
     arr = x.split(str)
+    print("\033[1;34mSTRING SPLITTER ARRAY RESULTS:")
+    print(arr)
+    print("\033[00m")
     if arr[0] == "" or arr[0] == "\n":
         arr.pop(0)
     if arr[-1] == "" or arr[-1] == "\n":
@@ -253,9 +258,15 @@ def emDashReplacer(str):
 
 ## Main Code:
 
-filename = input("Enter a filename (example: 'index.md'): ")
+print("Current working directory is: " + os.getcwd())
+print("Directory of script is: " + os.path.dirname(sys.argv[0]))
+os.chdir(os.path.dirname(sys.argv[0]))
+print("\033[1;35mChanging working directory to: " + os.path.dirname(sys.argv[0]) + "\033[00m")
 
-if os.path.isfile(filename) == True:
+filename = input("\033[1;32mEnter a filename (example: 'index.md'): \033[00m")
+
+if os.path.exists(os.path.join(os.getcwd(), filename)) == True:
+    print("\033[1;32m Getting started on " + filename + " . . .\033[00m")
     gortify(filename)
 else:
     print("Sorry, this doesn't appear to be a valid file name.")

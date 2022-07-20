@@ -193,6 +193,8 @@ def buildMultiPage(frame, header, footer, metadata, main, navBarObj, filename, a
     for t in metadata["multi-page"]["tabs"]:
         count = count + 1
         newFileName = rootFileName + "-" + str(count) + ".html"
+        if "alternate-numbering" in metadata["multi-page"] and metadata["multi-page"]["alternate-numbering"] == "y" and count == 1:
+            newFileName = rootFileName + ".html"
         newPage = copy.copy(frame)
         if 'title' in metadata:
             newPage.replace("{{title}}", metadata.title)

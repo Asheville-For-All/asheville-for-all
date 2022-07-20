@@ -205,21 +205,25 @@ def buildMultiPage(frame, header, footer, metadata, main, navBarObj, filename, a
         newPage.replace("{{header}}", header)
         newPage.replace("{{footer}}", footer)
         mainstring = '<main class="container"><h1>' + metadata["multi-page"]["common-heading"] + '</h1>'
-        mainstring = mainstring + generateTabBar(count, metadata["multi-page"]["tabs"], rootFileName)
-        mainstring = mainstring + markdown.markdown(main[count]) + generateMultiPageBottomButtons(numPages, count, rootFileName) + "</main>"
+        mainstring = mainstring + generateTabBar(count, metadata["multi-page"]["tabs"], rootFileName, metadata["multi-page"]["alternate-numbering"])
+        mainstring = mainstring + markdown.markdown(main[count]) + generateMultiPageBottomButtons(numPages, count, rootFileName, metadata["multi-page"]["alternate-numbering"]) + "</main>"
         newPage.replace("{{main}}", mainstring)
         newPage.replace("{{navbar}}", get_Navbar_code(navBarObj, newFileName))
         f=open(newFileName, "w")
         f.write(newPage)
         f.close()
 
-def generateMultiPageBottomButtons(numOfTabs, count, rootFileName):
+def generateMultiPageBottomButtons(numOfTabs, count, rootFileName, alternateNumbering):
     prevFileName = ""
     nextFileName = ""
+    
     if count == 1:
         prevFileName = ""
     else:
-        prevFileName = rootFileName + "-" + str(count - 1) + ".html"
+        if alternateNumbering == "y" and count == 2:
+            prevFileName = rootFileName + ".html"
+        else:
+            prevFileName = rootFileName + "-" + str(count - 1) + ".html"
     if count == numOfTabs:
         nextFileName = ""
     else:
@@ -237,13 +241,15 @@ def generateMultiPageBottomButtons(numOfTabs, count, rootFileName):
     s += '</ul></nav>'
     return s
 
-def generateTabBar(count, tabList, rootFileName):
+def generateTabBar(count, tabList, rootFileName, alternateNumbering):
     s = '''<div class="mb-5 mt-5"><ul class="nav nav-tabs nav-justified">'''
     post = '''</ul></div>'''
     i = 0
     for t in tabList:
         i= i+1
         newFileName = rootFileName + "-" + str(i) + ".html"
+        if alternateNumbering == "y" and i==1:
+            newFileName = rootFileName + ".html"
         if count == i:
             s = s + '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + newFileName + '">' + tabList[i-1] + '</a></li>'
         else:

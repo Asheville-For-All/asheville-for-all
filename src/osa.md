@@ -2,6 +2,7 @@
 title: Asheville For All - Support the Open Space Amendment
 action banner: n
 multi-page:
+  alternate-numbering: n
   common-heading: Support Asheville's Open Space Amendment
   tabs:
     - About the Open Space Amendment

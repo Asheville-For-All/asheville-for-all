@@ -108,27 +108,27 @@ def get_Navbar_code(navMapDictObj, activePageURL):
     '''
     returnString = pre
     for o in n:
-        if o["type"] == "page": #TODO I think I need to change anything in dot notation, oops.
+        if o["type"] == "page":
 
             s = '"<li class="nav-item"><a class="nav-link'
-            if o.url == a:
+            if o["url"] == a:
                 s = s + ' active" aria-current="page" '
             else:
                 s = s + '" '
-            s = s + 'href="' + o.url + '" '
+            s = s + 'href="' + o["url"] + '" '
             if 'target' in o:
-                if o.target == "blank":
+                if o["target"] == "blank":
                     s = s + 'target="_blank"'
             s = s + '>'
             nameString = ''
             if 'svg' in o:
-                nameString = o.name + " " + o.svg
+                nameString = o["name"] + " " + o["svg"]
             else:
-                nameString = o.name
+                nameString = o["name"]
             s = s + nameString + '</a></li>'
             returnString = returnString + s
-        if o.type == "category":
-            returnString = returnString + get_Dropdown_Code(o.collection, a)
+        if o["type"] == "category":
+            returnString = returnString + get_Dropdown_Code(o["collection"], a)
     returnString = returnString + post
     return returnString
 
@@ -142,20 +142,20 @@ def get_Dropdown_Code(subObject, activePageURL):
     returnString = pre
     for o in so:
         s = '<li><a class="dropdown-item'
-        if o.url == a:
+        if o["url"] == a:
             s = s + ' active" aria-current="page" '
         else:
             s = s + '" '
-        s = s + 'href="' + o.url + '" '
+        s = s + 'href="' + o["url"] + '" '
         if 'target' in o:
-            if o.target == "blank":
+            if o["target"] == "blank":
                 s = s + 'target="_blank"'
         s = s + '>'
         nameString = ''
         if 'svg' in o:
-            nameString = o.name + " " + o.svg
+            nameString = o["name"] + " " + o["svg"]
         else:
-            nameString = o.name
+            nameString = o["name"]
         s = s + nameString + "</a></li>"
         returnString = returnString + s
     returnString = returnString + post
@@ -197,7 +197,7 @@ def buildMultiPage(frame, header, footer, metadata, main, navBarObj, filename, a
             newFileName = rootFileName + ".html"
         newPage = copy.copy(frame)
         if 'title' in metadata:
-            newPage.replace("{{title}}", metadata.title)
+            newPage.replace("{{title}}", metadata["title"])
         else:
             newPage.replace("{{title}}", "Asheville For All")
         if 'action banner' in metadata and metadata["action banner"] == "y":

@@ -107,28 +107,28 @@ def get_Navbar_code(navMapDictObj, activePageURL):
     </nav>
     '''
     returnString = pre
-    for i in n:
-        if n[i]["type"] == "page": #TODO oops I coded this part wrong. "i" is not an index. It's an object inside the array n. Duh. Need to fix.
+    for o in n:
+        if o["type"] == "page": #TODO I think I need to change anything in dot notation, oops.
 
             s = '"<li class="nav-item"><a class="nav-link'
-            if n[i].url == a:
+            if o.url == a:
                 s = s + ' active" aria-current="page" '
             else:
                 s = s + '" '
-            s = s + 'href="' + n[i].url + '" '
-            if 'target' in n[i]:
-                if n[i].target == "blank":
+            s = s + 'href="' + o.url + '" '
+            if 'target' in o:
+                if o.target == "blank":
                     s = s + 'target="_blank"'
             s = s + '>'
             nameString = ''
-            if 'svg' in n[i]:
-                nameString = n[i].name + " " + n[i].svg
+            if 'svg' in o:
+                nameString = o.name + " " + o.svg
             else:
-                nameString = n[i].name
+                nameString = o.name
             s = s + nameString + '</a></li>'
             returnString = returnString + s
-        if n[i].type == "category":
-            returnString = returnString + get_Dropdown_Code(n[i].collection, a)
+        if o.type == "category":
+            returnString = returnString + get_Dropdown_Code(o.collection, a)
     returnString = returnString + post
     return returnString
 
@@ -140,22 +140,22 @@ def get_Dropdown_Code(subObject, activePageURL):
     '''
     post = '</ul></li>'
     returnString = pre
-    for i in so:
+    for o in so:
         s = '<li><a class="dropdown-item'
-        if so[i].url == a:
+        if o.url == a:
             s = s + ' active" aria-current="page" '
         else:
             s = s + '" '
-        s = s + 'href="' + so[i].url + '" '
-        if 'target' in so[i]:
-            if so[i].target == "blank":
+        s = s + 'href="' + o.url + '" '
+        if 'target' in o:
+            if o.target == "blank":
                 s = s + 'target="_blank"'
         s = s + '>'
         nameString = ''
-        if 'svg' in so[i]:
-            nameString = so[i].name + " " + so[i].svg
+        if 'svg' in o:
+            nameString = o.name + " " + o.svg
         else:
-            nameString = so[i].name
+            nameString = o.name
         s = s + nameString + "</a></li>"
         returnString = returnString + s
     returnString = returnString + post

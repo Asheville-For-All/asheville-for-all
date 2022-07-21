@@ -61,6 +61,8 @@ def gortify(filename):
     with open("navbar.yaml") as f:
         navBarObj = yaml.safe_load(f.read())
 
+    printc("purple", "Here's what your navbar object looks like:\n"+ str(navBarObj))
+
     if os.path.exists("action-banner.html"):
         with open("action-banner.html") as f:
             actionBanner = f.read()
@@ -75,7 +77,7 @@ def gortify(filename):
     else:
         buildSinglePage(frame, header, footer, metadata, main, navBarObj, fn, actionBanner)
 
-def get_Navbar_code(navMapDictObj, activePageURL):
+def get_Navbar_code(navMapDictObj, activePageURL): #TODO looks like there's some tiny bugs in here causing quote marks on the final nav bar.
     """
     This function makes the html code for the navbar of a given page.
 
@@ -128,15 +130,16 @@ def get_Navbar_code(navMapDictObj, activePageURL):
             s = s + nameString + '</a></li>'
             returnString = returnString + s
         if o["type"] == "category":
-            returnString = returnString + get_Dropdown_Code(o["collection"], a)
+            returnString = returnString + get_Dropdown_Code(o["name"],o["collection"], a)
     returnString = returnString + post
     return returnString
 
-def get_Dropdown_Code(subObject, activePageURL):
+def get_Dropdown_Code(name, subObject, activePageURL):
+    printc("cyan", "Working on a dropdown now. Here's what the 'sub object' looks like:\n" + str(subObject))
     so = subObject
     a = activePageURL
     pre = '''
-    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Learn More</a><ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">''' + name + '''</a><ul class="dropdown-menu" aria-labelledby="navbarDropdown">
     '''
     post = '</ul></li>'
     returnString = pre
@@ -159,32 +162,34 @@ def get_Dropdown_Code(subObject, activePageURL):
         s = s + nameString + "</a></li>"
         returnString = returnString + s
     returnString = returnString + post
+    return returnString
 
 def buildSinglePage(frame, header, footer, metadata, main, navBarObj, filename, actionBanner=""):
 
     newFileName = filename.split('.')[0] + ".html"
 
     if 'title' in metadata:
-        frame.replace("{{title}}", metadata["title"])
+        frame = frame.replace("{{title}}", metadata["title"])
     else:
-        frame.replace("{{title}}", "Asheville For All")
+        frame = frame.replace("{{title}}", "Asheville For All")
 
         if 'action banner' in metadata and metadata["action banner"] == "y":
-            frame.replace("{{action banner}}", actionBanner)
+            frame = frame.replace("{{action banner}}", actionBanner)
         else:
-            frame.replace("{{action banner", "")
+            frame = frame.replace("{{action banner}}", "")
 
-    frame.replace("{{header}}", header)
-    frame.replace("{{footer}}", footer)
+    frame = frame.replace("{{header}}", header)
+    frame = frame.replace("{{footer}}", footer)
 
     mainstring = '<main class="container">' + markdown.markdown(main[1]) + '</main>'
-    frame.replace("{{main}}", mainstring)
+    frame = frame.replace("{{main}}", mainstring)
 
-    frame.replace("{{navbar}}", get_Navbar_code(navBarObj, newFileName))
+    frame = frame.replace("{{navbar}}", get_Navbar_code(navBarObj, newFileName))
 
     f=open(newFileName, "w")
     f.write(frame)
     f.close()
+    printc("green", "Created file: " + newFileName)
 
 def buildMultiPage(frame, header, footer, metadata, main, navBarObj, filename, actionBanner=""):
     numPages = len(metadata["multi-page"]["tabs"])
@@ -197,23 +202,24 @@ def buildMultiPage(frame, header, footer, metadata, main, navBarObj, filename, a
             newFileName = rootFileName + ".html"
         newPage = copy.copy(frame)
         if 'title' in metadata:
-            newPage.replace("{{title}}", metadata["title"])
+            newPage = newPage.replace("{{title}}", metadata["title"])
         else:
-            newPage.replace("{{title}}", "Asheville For All")
+            newPage = newPage.replace("{{title}}", "Asheville For All")
         if 'action banner' in metadata and metadata["action banner"] == "y":
-            newPage.replace("{{action banner}}", actionBanner)
+            newPage = newPage.replace("{{action banner}}", actionBanner)
         else:
-            newPage.replace("{{action banner", "")
-        newPage.replace("{{header}}", header)
-        newPage.replace("{{footer}}", footer)
+            newPage = newPage.replace("{{action banner", "")
+        newPage = newPage.replace("{{header}}", header)
+        newPage = newPage.replace("{{footer}}", footer)
         mainstring = '<main class="container"><h1>' + metadata["multi-page"]["common-heading"] + '</h1>'
         mainstring = mainstring + generateTabBar(count, metadata["multi-page"]["tabs"], rootFileName, metadata["multi-page"]["alternate-numbering"])
         mainstring = mainstring + markdown.markdown(main[count]) + generateMultiPageBottomButtons(numPages, count, rootFileName, metadata["multi-page"]["alternate-numbering"]) + "</main>"
-        newPage.replace("{{main}}", mainstring)
-        newPage.replace("{{navbar}}", get_Navbar_code(navBarObj, newFileName))
+        newPage = newPage.replace("{{main}}", mainstring)
+        newPage = newPage.replace("{{navbar}}", get_Navbar_code(navBarObj, newFileName))
         f=open(newFileName, "w")
         f.write(newPage)
         f.close()
+        printc("green", "Created file: " + newFileName)
 
 def generateMultiPageBottomButtons(numOfTabs, count, rootFileName, alternateNumbering):
     prevFileName = ""
@@ -259,7 +265,7 @@ def generateTabBar(count, tabList, rootFileName, alternateNumbering):
     s = s + post
     return s
 
-def splitMain(str):
+def splitMain(string):
     '''This takes the content of an .md file, and splits it apart at the "---" lines. That way you get a array with the YAML info first, and then the page (or pages, if its a multi-page .md file) next.
     
     Parameters:
@@ -269,9 +275,9 @@ def splitMain(str):
     An array of strings, the first string being the YAML metadata, and subsequent string or strings being different main page content.'''
     rString = "^---$"
     x = re.compile(rString, re.MULTILINE)
-    arr = x.split(str)
+    arr = x.split(string)
     printc("cyan","STRING SPLITTER ARRAY RESULTS:")
-    printc("cyan",arr)
+    printc("cyan",str(arr))
     if arr[0] == "" or arr[0] == "\n":
         arr.pop(0)
     if arr[-1] == "" or arr[-1] == "\n":

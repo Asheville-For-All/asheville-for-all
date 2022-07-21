@@ -13,20 +13,8 @@ def printc(color, string):
   parameters:
   color (str): Options are yellow, green, red, blue, purple, cyan.
   string (str): the string you want printed.'''
-  str = ""
-  if color=="yellow":
-    str += "\033[0;33m"
-  elif color=="green":
-    str += "\033[1;32m"
-  elif color=="red":
-    str += "\033[1;31m"
-  elif color=="blue":
-    str += "\033[1;34m"
-  elif color=="purple":
-    str += "\033[1;35m"
-  elif color=="cyan":
-    str += "\033[1;36m"
-  print(str + string + "\033[00m")
+  colors = {"yellow":"\033[0;33m", "green":"\033[1;32m", "red":"\033[1;31m", "blue":"\033[1;34m", "purple":"\033[1;35m", "cyan":"\033[1;36m"}
+  print(colors["color"] + string + "\033[00m")
 
 def gortify(filename):
     """
@@ -135,7 +123,6 @@ def get_Navbar_code(navMapDictObj, activePageURL): #TODO looks like there's some
     return returnString
 
 def get_Dropdown_Code(name, subObject, activePageURL):
-    printc("cyan", "Working on a dropdown now. Here's what the 'sub object' looks like:\n" + str(subObject))
     so = subObject
     a = activePageURL
     pre = '''
@@ -276,8 +263,6 @@ def splitMain(string):
     rString = "^---$"
     x = re.compile(rString, re.MULTILINE)
     arr = x.split(string)
-    printc("cyan","STRING SPLITTER ARRAY RESULTS:")
-    printc("cyan",str(arr))
     if arr[0] == "" or arr[0] == "\n":
         arr.pop(0)
     if arr[-1] == "" or arr[-1] == "\n":
@@ -291,6 +276,8 @@ def emDashReplacer(str):
     return x.sub("—", str) #note that this character is an em-dash
 
 ## Main Code:
+
+#TODO make an option for "ALL" files.
 
 print("Current working directory is: " + os.getcwd())
 print("Directory of script is: " + os.path.dirname(sys.argv[0]))

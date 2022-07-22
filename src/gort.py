@@ -65,7 +65,7 @@ def gortify(filename):
     else:
         buildSinglePage(frame, header, footer, metadata, main, navBarObj, fn, actionBanner)
 
-def get_Navbar_code(navMapDictObj, activePageURL): #TODO looks like there's some tiny bugs in here causing quote marks on the final nav bar.
+def get_Navbar_code(navMapDictObj, activePageURL):
     """
     This function makes the html code for the navbar of a given page.
 
@@ -100,7 +100,7 @@ def get_Navbar_code(navMapDictObj, activePageURL): #TODO looks like there's some
     for o in n:
         if o["type"] == "page":
 
-            s = '"<li class="nav-item"><a class="nav-link'
+            s = '<li class="nav-item"><a class="nav-link'
             if o["url"] == a:
                 s = s + ' active" aria-current="page" '
             else:

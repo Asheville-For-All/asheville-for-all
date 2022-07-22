@@ -60,6 +60,7 @@ action banner: n
 <!--
 #### Housing 101
 
+- [“Landlords Are Not Developers (and Vice Versa)” by Daniel Herriges, September 2, 2021](https://www.strongtowns.org/journal/2021/9/2/landlords-are-not-developers-and-vice-versa)
 - [“17 Head-Scratcher Housing Terms, Defined” by Rachel Quednau, April 3, 2018.](https://www.strongtowns.org/journal/2018/3/30/17-head-scratcher-housing-words-defined)
 
 -->

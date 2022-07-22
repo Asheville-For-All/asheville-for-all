@@ -277,16 +277,23 @@ def emDashReplacer(str):
 
 ## Main Code:
 
-#TODO make an option for "ALL" files.
-
 print("Current working directory is: " + os.getcwd())
 print("Directory of script is: " + os.path.dirname(sys.argv[0]))
 os.chdir(os.path.dirname(sys.argv[0]))
 printc("purple", "Changing working directory to: " + os.path.dirname(sys.argv[0]))
 
-filename = input("\033[1;32mEnter a filename (example: 'index.md'): \033[00m")
+filename = input("\033[1;32mEnter a filename (example: 'index.md') or type 'ALL' for all html files: \033[00m")
 
-if os.path.exists(os.path.join(os.getcwd(), filename)) == True:
+if filename == "ALL" or filename == "all":
+    count = 0
+    printc("blue","Processing all '.md' files in the current directory.")
+    for x in os.listdir():
+        if x.endswith('.md'):
+            print("\033[1;32m Getting started on " + x + " . . .\033[00m")
+            gortify(x)
+            count += 1
+    printc("blue", "Completed processing all markdown files. Processed " + str(count) " files.")
+elif os.path.exists(os.path.join(os.getcwd(), filename)):
     print("\033[1;32m Getting started on " + filename + " . . .\033[00m")
     gortify(filename)
 else:

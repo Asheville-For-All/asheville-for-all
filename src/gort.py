@@ -14,7 +14,7 @@ def printc(color, string):
   color (str): Options are yellow, green, red, blue, purple, cyan.
   string (str): the string you want printed.'''
   colors = {"yellow":"\033[0;33m", "green":"\033[1;32m", "red":"\033[1;31m", "blue":"\033[1;34m", "purple":"\033[1;35m", "cyan":"\033[1;36m"}
-  print(colors["color"] + string + "\033[00m")
+  print(colors[color] + string + "\033[00m")
 
 def gortify(filename):
     """
@@ -160,10 +160,10 @@ def buildSinglePage(frame, header, footer, metadata, main, navBarObj, filename, 
     else:
         frame = frame.replace("{{title}}", "Asheville For All")
 
-        if 'action banner' in metadata and metadata["action banner"] == "y":
-            frame = frame.replace("{{action banner}}", actionBanner)
-        else:
-            frame = frame.replace("{{action banner}}", "")
+    if 'action banner' in metadata and metadata["action banner"] == "y":
+        frame = frame.replace("{{action banner}}", actionBanner)
+    else:
+        frame = frame.replace("{{action banner}}", "")
 
     frame = frame.replace("{{header}}", header)
     frame = frame.replace("{{footer}}", footer)
@@ -282,7 +282,7 @@ print("Directory of script is: " + os.path.dirname(sys.argv[0]))
 os.chdir(os.path.dirname(sys.argv[0]))
 printc("purple", "Changing working directory to: " + os.path.dirname(sys.argv[0]))
 
-filename = input("\033[1;32mEnter a filename (example: 'index.md') or type 'ALL' for all html files: \033[00m")
+filename = input("\033[1;32mEnter a markdown file name (example: 'index.md') or type 'ALL' for all .md files: \033[00m")
 
 if filename == "ALL" or filename == "all":
     count = 0
@@ -292,7 +292,7 @@ if filename == "ALL" or filename == "all":
             print("\033[1;32m Getting started on " + x + " . . .\033[00m")
             gortify(x)
             count += 1
-    printc("blue", "Completed processing all markdown files. Processed " + str(count) " files.")
+    printc("blue", "Completed processing all markdown files. Processed " + str(count) + " files.")
 elif os.path.exists(os.path.join(os.getcwd(), filename)):
     print("\033[1;32m Getting started on " + filename + " . . .\033[00m")
     gortify(filename)

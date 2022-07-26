@@ -199,6 +199,8 @@ def buildMultiPage(frame, header, footer, metadata, main, navBarObj, filename, a
         newPage = newPage.replace("{{header}}", header)
         newPage = newPage.replace("{{footer}}", footer)
         mainstring = '<main class="container"><h1>' + metadata["multi-page"]["common-heading"] + '</h1>'
+        if metadata["multi-page"].get("common-heading", "") != "":
+            mainstring += "<div class='alert alert-warning mt-5 mb-5'>" + metadata["multi-page"]["common-alert"] + "</div>"
         mainstring = mainstring + generateTabBar(count, metadata["multi-page"]["tabs"], rootFileName, metadata["multi-page"]["alternate-numbering"])
         mainstring = mainstring + markdown.markdown(main[count]) + generateMultiPageBottomButtons(numPages, count, rootFileName, metadata["multi-page"]["alternate-numbering"]) + "</main>"
         newPage = newPage.replace("{{main}}", mainstring)

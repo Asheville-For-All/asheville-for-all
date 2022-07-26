@@ -4,6 +4,7 @@ action banner: n
 multi-page:
   alternate-numbering: n
   common-heading: Support Asheville's Open Space Amendment
+  common-alert: <p>The Asheville City Council voted to approve the Open Space Amendment on July 26, 2022.</p>
   tabs:
     - About the Open Space Amendment
     - Why Support the Amendment?
@@ -84,4 +85,8 @@ You can help right now and it will take less than five minutes. Let the City Cou
 
 We've created a form that makes it easy to instantly send an email to Asheville City Council:
 
-<!-- PUT ACTION NETWORK EMBED HERE -->
+<div id="action-network-outer" class="mt-5 mb-5">
+
+<div class="alert alert-info"><p>This form is no longer active.</p></alert></div>
+
+</div>

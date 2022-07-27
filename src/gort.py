@@ -6,6 +6,7 @@ import re
 import copy
 import yaml #this uses pyyaml library
 import markdown ##this uses python markdown https://python-markdown.github.io/reference/
+import ab
 
 def printc(color, string):
   '''Print in a chosen color. 
@@ -52,8 +53,8 @@ def gortify(filename):
     printc("purple", "Here's what your navbar object looks like:\n"+ str(navBarObj))
 
     if os.path.exists("action-banner.html"):
-        with open("action-banner.html") as f:
-            actionBanner = f.read()
+        abo = ab.getABObject("action-banner.html")
+        actionBanner = ab.getABString(abo)
 
     metadata = yaml.safe_load(main[0])
 
@@ -160,7 +161,6 @@ def buildSinglePage(frame, header, footer, metadata, main, navBarObj, filename, 
     else:
         frame = frame.replace("{{title}}", "Asheville For All")
 
-#TODO update action banner code to handle expired metadata
     if 'action banner' in metadata and metadata["action banner"] == "y":
         frame = frame.replace("{{action banner}}", actionBanner)
     else:
@@ -179,7 +179,6 @@ def buildSinglePage(frame, header, footer, metadata, main, navBarObj, filename, 
     f.close()
     printc("green", "Created file: " + newFileName)
 
-#TODO update action banner code to handle expired metadata
 def buildMultiPage(frame, header, footer, metadata, main, navBarObj, filename, actionBanner=""):
     numPages = len(metadata["multi-page"]["tabs"])
     count = 0

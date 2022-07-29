@@ -58,9 +58,11 @@ action banner: n
 - <a href="https://www.sightline.org/2022/03/16/homelessness-is-a-housing-problem/" target="_blank">“Homelessness Is a Housing Problem” by Gregg Colburn and Clayton Page Alden, March 16, 2022.</a>
 
 <!--
-#### Housing 101
+#### Housing 101 and other potentially useful articles??
 
-- [“Landlords Are Not Developers (and Vice Versa)” by Daniel Herriges, September 2, 2021](https://www.strongtowns.org/journal/2021/9/2/landlords-are-not-developers-and-vice-versa)
+- [“Apartheid by Another Name” by M. Nolan Gray, July 4, 2022.](https://nextcity.org/urbanist-news/apartheid-by-another-name-how-zoning-regulations-perpetuate-segregation)
+- [“Landlords Are Not Developers (and Vice Versa)” by Daniel Herriges, September 2, 2021.](https://www.strongtowns.org/journal/2021/9/2/landlords-are-not-developers-and-vice-versa)
+- [“How is Affordable Housing Created?” by *Local Housing Solutions*, May 13, 2021.](https://localhousingsolutions.org/housing-101-the-basics/how-is-affordable-housing-created/)
 - [“17 Head-Scratcher Housing Terms, Defined” by Rachel Quednau, April 3, 2018.](https://www.strongtowns.org/journal/2018/3/30/17-head-scratcher-housing-words-defined)
 
 -->

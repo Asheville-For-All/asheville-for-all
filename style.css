@@ -175,3 +175,9 @@ color:gray;
   footer li{
     padding-bottom:0.35em;
   }
+  blockquote{
+    padding:2rem;
+    margin-left:1rem;
+    margin-right:1rem;
+    background-color:lightgray;
+  }

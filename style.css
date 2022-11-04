@@ -187,5 +187,5 @@ color:gray;
     background-color:lightgray;
   }
   span.bg-primary{
-    background-color:#DA806A;
+    background-color:#DA806A !important;
   }

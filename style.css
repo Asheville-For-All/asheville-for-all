@@ -186,6 +186,6 @@ color:gray;
     margin-right:1rem;
     background-color:lightgray;
   }
-  span.bg-primary{
+  .bg-primary.badge{
     background-color:#DA806A !important;
   }

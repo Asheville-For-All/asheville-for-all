@@ -192,3 +192,10 @@ color:gray;
   .badge.bg-secondary{
     background-color:#298C6C !important;
   }
+  
+  .post-bottom-nav{
+    gap:2em;
+  }
+  .post-bottom-nav-item{
+    min-width: 9em;
+  }

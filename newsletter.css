@@ -1,0 +1,22 @@
+.newsletter h2{
+  margin-top:3rem;background-color:#298C6C;color:white;padding:1rem;
+}
+
+.newsletter h2#member-corner{background-color:#DA806A;}
+
+.newsletter a{
+  color: #298C6C;
+}
+.newsletter a:hover{
+  color: #DA806A;
+}
+
+.newsletter blockquote{
+  background-color:lightgray;padding:1em;margin-top:1rem;margin-bottom:1rem;
+  }
+
+.newsletter h2.blog-title{
+  background-color:white !important;
+  color: black !important;
+  padding:0em !important;
+}

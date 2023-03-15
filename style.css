@@ -155,6 +155,10 @@ figure{
     color:#DA806A;
   }
 
+  .action_owner{
+    display:none;
+  }
+
   header a{
     border:none;
   }

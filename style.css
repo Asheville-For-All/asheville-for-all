@@ -203,3 +203,19 @@ color:gray;
   .post-bottom-nav-item{
     min-width: 9em;
   }
+
+  .figure{
+    border-top: rgb(224, 224, 224) solid 1px;
+    border-bottom: rgb(224, 224, 224) solid 1px;
+  }
+  .figure-caption{
+    padding-top:1em;
+  }
+
+  .btn-primary{
+    background-color: #298C6C;
+    border-color:#1A5945;
+  }
+  .btn-primary:hover{
+    background-color:#1A5945;
+  }

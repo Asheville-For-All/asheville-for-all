@@ -123,6 +123,9 @@
     .action_target, #can_main_col, .action_sidebar > h4{
         display:none;
     }
+    .action_status_tracker{
+        display:none;
+    }
 </style>
 
 <h2>Sign the Letter to City Council</h2>
@@ -133,7 +136,7 @@
 </div>
 
 <div style="position:fixed;left:1em;bottom:-20em;border-radius:0.5em 0.5em 0em 0em;padding:1em;color: #298C6C;background-color:white;border:1px black solid;transition: bottom 0.4s" id="scrollDownToAddName">
-Scroll to add your name ⬇️
+<span id="num-sigs-collected">-</span> signatures collected<br/>Scroll to add your name ⬇️
 </div>
 
 <script>
@@ -161,6 +164,41 @@ function setScrollMessage(){
 
 window.addEventListener('scroll', setScrollMessage);
 window.addEventListener('resize', setScrollMessage);
+
+function customCounter(){
+
+  const incrementerVal = 7;
+
+  let target = document.getElementsByClassName('action_status_running_total')[0];
+
+  let innerText = target.innerHTML;
+
+  let numText = innerText.split(" ")[0];
+
+  let newNumber = parseInt(numText) + incrementerVal;
+
+  document.getElementById("num-sigs-collected").innerHTML = String(newNumber);
+}
+
+function checkIfCounterLoaded(){
+
+  setTimeout(function(){
+
+    let target = document.getElementsByClassName('action_status_running_total')[0];
+
+    if (target == undefined){
+        checkIfCounterLoaded();
+    }
+
+    else{
+        customCounter();
+    }
+
+  }, 1000);
+
+}
+
+checkIfCounterLoaded();
 
 </script>
 

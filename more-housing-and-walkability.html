@@ -130,77 +130,8 @@
 
 <h2>Sign the Letter to City Council</h2>
 <div id="action-network-outer" class="mt-5 mb-5">
-
-<link href='https://actionnetwork.org/css/style-embed-whitelabel-v3.css' rel='stylesheet' type='text/css' /><script src='https://actionnetwork.org/widgets/v5/form/support-more-housing-and-greater-walkability-for-asheville?format=js&source=widget&style=full'></script><div id='can-form-area-support-more-housing-and-greater-walkability-for-asheville' style='width: 100%'></div>
-
+    <div class="alert alert-info"><p>This form is no longer active.</p></alert></div>
 </div>
-
-<div style="position:fixed;left:1em;bottom:-20em;border-radius:0.5em 0.5em 0em 0em;padding:1em;color: #298C6C;background-color:white;border:1px black solid;transition: bottom 0.4s" id="scrollDownToAddName">
-<span id="num-sigs-collected">-</span> signatures collected<br/>Scroll to add your name ⬇️
-</div>
-
-<script>
-
-popUp = document.getElementById("scrollDownToAddName");
-actNet = document.getElementById("action-network-outer");
-popUpHeight = popUp.offsetHeight;
-
-function setScrollMessage(){
-    actNetPosition = actNet.offsetTop;
-    viewportHeight = window.innerHeight;
-
-    if (document.scrollTop < viewportHeight || document.documentElement.scrollTop < viewportHeight)
-    {
-        popUp.style.bottom = "-" + popUpHeight.toString() + "px";
-    }
-    else if (document.scrollTop < actNetPosition - viewportHeight || document.documentElement.scrollTop < actNetPosition-viewportHeight)
-    {
-        popUp.style.bottom = "-1px";
-    }
-    else{
-        popUp.style.bottom = "-" + popUpHeight.toString() + "px";
-    }
-}
-
-window.addEventListener('scroll', setScrollMessage);
-window.addEventListener('resize', setScrollMessage);
-
-function customCounter(){
-
-  const incrementerVal = 7;
-
-  let target = document.getElementsByClassName('action_status_running_total')[0];
-
-  let innerText = target.innerHTML;
-
-  let numText = innerText.split(" ")[0];
-
-  let newNumber = parseInt(numText) + incrementerVal;
-
-  document.getElementById("num-sigs-collected").innerHTML = String(newNumber);
-}
-
-function checkIfCounterLoaded(){
-
-  setTimeout(function(){
-
-    let target = document.getElementsByClassName('action_status_running_total')[0];
-
-    if (target == undefined){
-        checkIfCounterLoaded();
-    }
-
-    else{
-        customCounter();
-    }
-
-  }, 1000);
-
-}
-
-checkIfCounterLoaded();
-
-</script>
 
 <div class="footnote">
 <hr />

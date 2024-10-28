@@ -114,6 +114,20 @@ figure{
 	background-color: #DA806A !important;
 }
 
+/*exception for color of button on green panels */
+.panel-green input[type="submit"]{
+  background-color:#DA806A !important;
+}
+.panel-green .can_embed #can_embed_form input[type="submit"]{
+  background-color:#DA806A !important;
+}
+.panel-green input[type="submit"]:hover{
+  background-color:#FAE4DE !important;
+}
+.can_embed #can_embed_form input[type="submit"]:hover{
+  background-color:#FAE4DE !important;
+}
+
 #back-to-top {
     display: none; /* Hidden by default */
     position: fixed; /* Fixed/sticky position */

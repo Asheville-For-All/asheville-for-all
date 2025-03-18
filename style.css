@@ -233,3 +233,25 @@ color:gray;
   .btn-primary:hover{
     background-color:#1A5945;
   }
+
+  .scoreBox{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content:flex-start;
+    gap:1em;
+    margin-top:1rem;
+    margin-bottom:1rem;
+    }
+  .scoreCard{
+    max-width:45%;
+    min-width:18rem;
+    margin-top:0px;
+    margin-bottom:0px;}
+
+@media screen and (max-width: 36rem) {
+  .scoreCard {
+    max-width:100%;
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+}

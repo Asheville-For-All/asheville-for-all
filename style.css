@@ -254,4 +254,11 @@ color:gray;
     flex-basis: 0;
     flex-grow: 1;
   }
+  .scoreCard-solo{
+    max-width: 100% !important;
+  }
+}
+
+.scoreCard-solo{
+  max-width:100% !important;
 }

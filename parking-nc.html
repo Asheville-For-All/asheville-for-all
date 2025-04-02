@@ -104,13 +104,86 @@
     #can_embed_form_inner > h4{
         display:none;
     }
+    .action_target, #can_main_col, .action_sidebar > h4{
+        display:none;
+    }
+    .action_status_tracker{
+        display:none;
+    }
 </style>
 
-<div id="action-network-outer">
+<div id="action-network-outer" class="mt-5 mb-5">
 
-<link href='https://actionnetwork.org/css/style-embed-whitelabel-v3.css' rel='stylesheet' type='text/css' /><script src='https://actionnetwork.org/widgets/v5/letter/people-over-parking-for-north-carolina?format=js&source=widget'></script><div id='can-letter-area-people-over-parking-for-north-carolina' style='width: 100%'></div>
+<link href='https://actionnetwork.org/css/style-embed-whitelabel-v3.css' rel='stylesheet' type='text/css' /><script src='https://actionnetwork.org/widgets/v5/letter/people-over-parking-for-north-carolina?format=js&source=widget&style=full'></script><div id='can-letter-area-people-over-parking-for-north-carolina' style='width: 100%'></div>
 
 </div>
+
+<div style="position:fixed;left:1em;bottom:-20em;border-radius:0.5em 0.5em 0em 0em;padding:1em;color: #298C6C;background-color:white;border:1px black solid;transition: bottom 0.4s" id="scrollDownToAddName">
+<span id="num-sigs-collected">-</span> letters sent<br/>Scroll to send your letters! ⬇️
+</div>
+
+<script>
+
+popUp = document.getElementById("scrollDownToAddName");
+actNet = document.getElementById("action-network-outer");
+popUpHeight = popUp.offsetHeight;
+
+function setScrollMessage(){
+    actNetPosition = actNet.offsetTop;
+    viewportHeight = window.innerHeight;
+
+    if (document.scrollTop < viewportHeight || document.documentElement.scrollTop < viewportHeight)
+    {
+        popUp.style.bottom = "-" + popUpHeight.toString() + "px";
+    }
+    else if (document.scrollTop < actNetPosition - viewportHeight || document.documentElement.scrollTop < actNetPosition-viewportHeight)
+    {
+        popUp.style.bottom = "-1px";
+    }
+    else{
+        popUp.style.bottom = "-" + popUpHeight.toString() + "px";
+    }
+}
+
+window.addEventListener('scroll', setScrollMessage);
+window.addEventListener('resize', setScrollMessage);
+
+function customCounter(){
+
+  const incrementerVal = 9;
+
+  let target = document.getElementsByClassName('action_status_running_total')[0];
+
+  let innerText = target.innerHTML;
+
+  let numText = innerText.split(" ")[0];
+
+  let newNumber = parseInt(numText) + incrementerVal;
+
+  document.getElementById("num-sigs-collected").innerHTML = String(newNumber);
+}
+
+function checkIfCounterLoaded(){
+
+  setTimeout(function(){
+
+    let target = document.getElementsByClassName('action_status_running_total')[0];
+
+    if (target == undefined){
+        checkIfCounterLoaded();
+    }
+
+    else{
+        customCounter();
+    }
+
+  }, 1000);
+
+}
+
+checkIfCounterLoaded();
+
+</script>
 
   </main>
 

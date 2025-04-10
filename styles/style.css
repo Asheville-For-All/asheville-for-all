@@ -1,0 +1,283 @@
+a, h1 {
+    color: #298C6C;
+}
+h3{
+  color: #DA806A;
+}
+.our-solutions h3{
+  color:white;
+}
+h3, h4{
+  font-style: italic;
+}
+a:hover{
+    color: #DA806A;
+}
+
+header{
+    margin-top:20px;
+    padding-top:10px;
+}
+
+.footer{
+    margin-top:6rem;
+    background-color:black;
+    color:lightgray;
+    padding-top:5rem;
+    padding-bottom:7rem;
+}
+
+.footer a{
+    color:gray;
+}
+.footer a:visited{
+    color:gray;
+}
+
+.footer a:hover{
+    color:white;
+}
+
+.updated{
+  color: #DA806A;
+  font-style: italic;
+}
+
+.place{
+  color:gray;
+}
+
+.container{
+    max-width:40rem;
+}
+
+.footer .container{
+    max-width:25rem;
+}
+
+.title-box{
+  margin-top:1em;
+  margin-bottom:1.5em;
+}
+
+.subtitle{
+    color:#DA806A;
+}
+
+.img-thumb{
+  height:12rem;
+  width:100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  border:1px solid gray;
+  max-width:100%;
+  max-height:12rem;
+}
+
+.footnote{
+  font-size: small;
+}
+
+nav.navbar{
+    margin-bottom:20px;
+    background-color:white;
+}
+
+.sticky{
+  box-shadow: 0 4px 2px -2px rgba(128,128,128,0.3);
+}
+
+.nav-link:hover
+{
+    text-decoration: underline;
+}
+
+figure{
+    margin-top:10px;
+}
+
+#asheville-photo{
+    max-width:100%;
+    max-height:480px;
+    height:auto;
+    border-top:20px;
+    border-bottom:20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dropdown-item.active{
+    background-color:#DA806A;
+}
+
+/*exception for color of button on green panels */
+.panel-green input[type="submit"]{
+  background-color:#DA806A !important;
+}
+.panel-green .can_embed #can_embed_form input[type="submit"]{
+  background-color:#DA806A !important;
+}
+.panel-green input[type="submit"]:hover{
+  background-color:#FAE4DE !important;
+}
+.can_embed #can_embed_form input[type="submit"]:hover{
+  background-color:#FAE4DE !important;
+}
+
+  #action-banner{
+    color:white;
+    background-color:#298C6C;
+    padding:1rem;
+    margin-bottom:5em;
+    margin-top:0px;
+  }
+  #action-banner a{
+    display:block;
+    color:#DA806A;
+    background-color:white;
+    text-align:center;
+    padding:1rem;
+    border-radius:0.25rem;
+    margin:1rem;
+  }
+  #action-banner a:visited{
+    color:#DA806A;
+  }
+
+  header a{
+    border:none;
+  }
+
+  #site-map table{
+text-align:left;
+vertical-align:top;
+color:gray;
+  }
+
+  th, td{
+    padding-left:0.35em;
+    padding-right:0.35em;
+    padding-bottom:0.35em;
+    vertical-align:top;
+  }
+
+  footer ul{
+    list-style-type: none;
+    margin: 0px;
+    padding:0px;
+  }
+  footer li{
+    padding-bottom:0.35em;
+  }
+  blockquote{
+    padding:2rem;
+    margin-left:1rem;
+    margin-right:1rem;
+    background-color:lightgray;
+  }
+  .badge.bg-primary{
+    background-color:#DA806A !important;
+  }
+  .badge.bg-secondary{
+    background-color:#298C6C !important;
+  }
+
+  .post-bottom-nav{
+    gap:2em;
+  }
+  .post-bottom-nav-item{
+    min-width: 9em;
+  }
+
+  .figure{
+    border-top: rgb(224, 224, 224) solid 1px;
+    border-bottom: rgb(224, 224, 224) solid 1px;
+  }
+  .figure-caption{
+    padding-top:1em;
+  }
+
+  .btn-primary{
+    background-color: #298C6C;
+    border-color:#1A5945;
+  }
+  .btn-primary:hover{
+    background-color:#1A5945;
+  }
+
+  .scoreBox{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content:flex-start;
+    gap:1em;
+    margin-top:1rem;
+    margin-bottom:1rem;
+    }
+  .scoreCard{
+    max-width:45%;
+    min-width:18rem;
+    margin-top:0px;
+    margin-bottom:0px;}
+
+@media screen and (max-width: 36rem) {
+  .scoreCard {
+    max-width:100%;
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+  .scoreCard-solo{
+    max-width: 100% !important;
+  }
+}
+
+.scoreCard-solo{
+  max-width:100% !important;
+}
+
+action-network-outer{
+  display:block;
+}
+
+.action-letter{
+  display:block;
+  background-color:cornsilk;
+  border:1px gray solid;
+  border-radius:3px;padding:1em;
+  filter: drop-shadow(-1px 1px lightgray);position:relative;
+}
+
+#back-to-top{
+  position: fixed;
+  bottom:1rem;
+  right:1rem;
+  border-radius: 0.25em;
+  border: 1px gray solid;
+  background-color: white;
+}
+
+@media screen and (min-width: 65rem) {
+#back-to-top{
+  right: 20%;
+}
+}
+
+a.nav-link{
+  color: #298C6C;
+}
+a.page-link{
+  color: #298C6C;
+}
+
+.thumb-holder{
+  margin-bottom:0.5rem;
+}
+
+.thumb-holder:has(+ .category){
+margin-bottom:-0.5rem;
+}
+
+.thumb-holder + .category{
+  margin-left: 0.6rem;
+  filter: drop-shadow(0px 0px 2px white);
+}

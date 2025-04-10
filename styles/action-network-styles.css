@@ -1,0 +1,40 @@
+/* Remove the Action Network Logo */
+.can_embed #logo_wrap {
+	display: none !important;
+}
+
+/* Button Background Color */
+.can_embed .can_button,
+.can_embed #can_embed_form input[type="submit"],
+.can_embed #can_embed_form .button,
+.can_embed #donate_auto_modal input[type="submit"],
+.can_embed #donate_auto_modal .button {
+	background-color: #298C6C !important;
+}
+
+/* Button Background Color on Hover */
+.can_embed .can_button:hover,
+.can_embed #can_embed_form input[type="submit"]:hover,
+.can_embed #can_embed_form .button:hover,
+.can_embed #donate_auto_modal input[type="submit"]:hover,
+.can_embed #donate_auto_modal .button:hover {
+	background-color: #DA806A !important;
+}
+
+.action_owner{
+    display:none;
+  }
+
+  /*exception for color of button on green panels */
+.panel-green input[type="submit"]{
+    background-color:#DA806A !important;
+  }
+  .panel-green .can_embed #can_embed_form input[type="submit"]{
+    background-color:#DA806A !important;
+  }
+  .panel-green input[type="submit"]:hover{
+    background-color:#FAE4DE !important;
+  }
+  .can_embed #can_embed_form input[type="submit"]:hover{
+    background-color:#FAE4DE !important;
+  }

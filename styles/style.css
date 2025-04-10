@@ -92,10 +92,6 @@ nav.navbar{
     text-decoration: underline;
 }
 
-figure{
-    margin-top:10px;
-}
-
 #asheville-photo{
     max-width:100%;
     max-height:480px;
@@ -189,10 +185,12 @@ color:gray;
   .post-bottom-nav-item{
     min-width: 9em;
   }
-
   .figure{
+    margin-top:10px;
     border-top: rgb(224, 224, 224) solid 1px;
     border-bottom: rgb(224, 224, 224) solid 1px;
+    margin-left:0px;
+    margin-right:0px;
   }
   .figure-caption{
     padding-top:1em;

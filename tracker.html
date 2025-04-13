@@ -11,7 +11,7 @@
 
 <link rel="alternate" type="application/rss+xml" title="News & Commentary" href="https://ashevilleforall.org/rss.xml"><link rel="alternate" type="application/rss+xml" title="Upcoming Events" href="https://ashevilleforall.org/events.xml"><link rel="alternate" type="application/rss+xml" title="Campaigns & Actions" href="https://ashevilleforall.org/campaigns.xml">
 
-<title>Asheville City Council Tracker</title>
+<title>Asheville City Council Tracker (beta)</title>
 
 <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
@@ -19,12 +19,12 @@
 <link rel="manifest" href="favicons/site.webmanifest">
 
 
-<meta property="og:title" content="Asheville City Council Tracker" /><meta property="og:url" content="https://ashevilleforall.org/tracker.html" />
+<meta property="og:title" content="Asheville City Council Tracker (beta)" /><meta property="og:url" content="https://ashevilleforall.org/tracker.html" />
 
 </head>
 <body>
 
-<header class="container">
+<header class="container container-40">
 
 <a href="index.html#"><img width="976" height="377" class="img-fluid mx-auto" title="Asheville For All" src="img/wide logo.png" alt="Logo showing a stylized city skyline with text that reads: Asheville For All"></img></a>
 
@@ -34,7 +34,7 @@
 
 <nav id="navbar" class="navbar navbar-expand-sm navbar-light" style="margin-left:auto;margin-right:auto;">
 
-      <div class="container-fluid container" style="margin-left:auto;margin-right:auto;">
+      <div class="container-fluid container container-40" style="margin-left:auto;margin-right:auto;">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -51,16 +51,28 @@
       </div>
     </nav>
 
-<main class="container">
-<h1>Asheville City Council Tracker</h1>
-<div id="loading-outer">
-<p>Loading . . .</p>
+<main>
+<style>
+
+    #council-list-outer, #vote-list-outer{
+        margin-top:1rem;
+        margin-bottom:1rem;
+        padding:1rem;
+        border: 1px solid gray;
+        border-radius:.25rem;
+    }
+
+</style>
+<div class="container container-60" id="main-outer">
+<h1>Asheville City Council Tracker (beta)</h1>
+<div class="container container-60" id="council-list-outer">
+<h2>Asheville City Council</h2>
+<p><i>Council roster</i></p>
 </div>
-<div class="container" id="council-list-outer">
-<p>Here's where the council list will go.</p>
+<div class="container container-60" id="vote-list-outer">
+<h2>Recorded Housing Policy Votes</h2>
+<p><i>List of votes</i></p>
 </div>
-<div class="container" id="vote-list-outer">
-<p>Here's where the list of votes will go.</p>
 </div>
 <script crossorigin="anonymous" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
 <script src="scripts/scorecards.js"></script>

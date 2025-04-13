@@ -47,8 +47,12 @@ header{
   color:gray;
 }
 
-.container{
+.container-40{
     max-width:40rem;
+}
+
+.container-60{
+  max-width:60rem;
 }
 
 .footer .container{

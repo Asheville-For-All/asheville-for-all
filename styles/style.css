@@ -128,21 +128,13 @@ nav.navbar{
   #action-banner{
     color:white;
     background-color:#298C6C;
-    padding:1rem;
-    margin-bottom:5em;
+    padding:1rem 2rem 0.5rem 1rem;
+    margin-bottom:5rem;
     margin-top:0px;
+    text-align:center;
   }
   #action-banner a{
-    display:block;
-    color:#DA806A;
-    background-color:white;
-    text-align:center;
-    padding:1rem;
-    border-radius:0.25rem;
-    margin:1rem;
-  }
-  #action-banner a:visited{
-    color:#DA806A;
+    color:white;
   }
 
   header a{

@@ -1,3 +1,9 @@
+"use strict";
+
+const loadingStartTime = Date.now();
+const loadingTotalCount = scoreCardCollection.length + AshevilleCouncilRoster.length;
+var loadingCount = 0;
+
 $(function() {
 
     //*******FUNCTION EXECUTION *************//
@@ -12,13 +18,16 @@ $(function() {
 
     populateVoteItemsContainer();
 
+    readyToShow();
+
+
 });
 
 // *********GLOBAL VARIABLES **********************//
 
 //multipliers, scoreCardCollection, AshevilleCouncilRoster are implicitly imported
 
-gradeColors = [
+const gradeColors = [
     [255, 0, 0],
     [255, 50, 0],
     [255, 102, 0],
@@ -49,12 +58,53 @@ function isKeyAndArr(objct, key){
     }
 }
 
+function readyToShow(){
+
+    if (Date.now() - loadingStartTime > 1000){
+        $("#loading-info").addClass("d-none");
+
+        $(".show-after-load").removeClass("d-none");
+    }
+    else{
+        let elapsed = Date.now() - loadingStartTime;
+
+        let progressPercent1 = Math.round(elapsed / 10);
+
+        $("#loading-bar-one").width(progressPercent1.toString() + "%");
+
+        setTimeout(function(){readyToShow();}, 1000/30);
+    }
+
+
+
+}
+
+function manageLoading(isDone = false){
+
+    if(loadingTotalCount > loadingCount){
+        loadingCount += 1;
+    }
+
+    let elapsed = Date.now() - loadingStartTime;
+
+    let progressPercent1 = Math.round(elapsed / 10);
+
+    $("#loading-bar-one").width(progressPercent1.toString() + "%");
+
+    let progressPercent2 = Math.round( 100 * (loadingCount / loadingTotalCount));
+
+    $("#loading-bar-two").width([progressPercent2.toString() + "%"]);
+}
+
 function setUpPlaceHolders(){
 
-    $("#vote-list-outer").append("<p>Loading . . . </p>");
+    let loadingString = `<div class="mt-3"><p><span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Loading</p><div class="progress mb-3" role="progressbar">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" id="loading-bar-one" style="width: 0%"></div>
+</div><div class="progress" role="progressbar">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" id="loading-bar-two" style="width: 0%"></div>
+</div></div>`
 
-
-    $("#council-list-outer").append("<p>Loading . . . </p>")
+    $("#loading-info").append(loadingString);
 }
 
 function setUpCouncilors(){
@@ -63,6 +113,8 @@ function setUpCouncilors(){
         councilor.points = 0;
         councilor.totalEligiblePoints = 0;
         councilor.totalVoteInstancesInTerm = 0;
+
+        manageLoading();
     });
 }
 
@@ -79,8 +131,8 @@ function assignScores(){
         
     });
 
-    maxGrade = 0.0;
-    minGrade = 1.0;
+    let maxGrade = 0.0;
+    let minGrade = 1.0;
 
     $.each(AshevilleCouncilRoster, function(i, v){
 
@@ -97,7 +149,7 @@ function assignScores(){
     $.each(AshevilleCouncilRoster, function(i, v){
         v.scaledGrade = scaleBetween(v.grade, 0.0, 1.0, minGrade, maxGrade);
 
-        roundedGradeInt = Math.round(v.scaledGrade * 10);
+        let roundedGradeInt = Math.round(v.scaledGrade * 10);
         v.color = gradeColors[roundedGradeInt];
     });
 
@@ -107,7 +159,7 @@ function assignScores(){
 
 function assignScoresFromSingleScorecard(scorecard){
 
-    pointsAtStake = 1;
+    let pointsAtStake = 1;
 
     if("scoreFlags" in scorecard){
         $.each(scorecard.scoreFlags, function(i, v){
@@ -122,7 +174,7 @@ function assignScoresFromSingleScorecard(scorecard){
 
     $.each(scorecard["for"], function(i, v){
 
-        c = retrieveCouncilorFromName(v)
+        var c = retrieveCouncilorFromName(v)
 
         if (c != undefined){
             c.points += pointsAtStake;
@@ -135,7 +187,7 @@ function assignScoresFromSingleScorecard(scorecard){
 
         $.each(scorecard["against"], function(i, v){
 
-            c = retrieveCouncilorFromName(v)
+            var c = retrieveCouncilorFromName(v)
 
             if (c != undefined){
 
@@ -152,7 +204,7 @@ function assignScoresFromSingleScorecard(scorecard){
 
             if (c != undefined){
 
-            c = retrieveCouncilorFromName(v)
+            var c = retrieveCouncilorFromName(v)
 
             c.points += 0;
             c.totalEligiblePoints += 0;
@@ -169,25 +221,25 @@ function populateCouncilContainer(){
 
     $("#council-list-outer").html("");
 
-    preCardText = `<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-2">`
-    postCardText = `</div>`
+    let preCardText = `<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-2">`
+    let postCardText = `</div>`
 
-    newHTML = preCardText
+    let newHTML = preCardText
 
     $.each(AshevilleCouncilRoster, function(i, v){
 
         if("past" in v == false || v.past == false){
 
-            colorStr = "rgb(" + v.color[0] + ", " + v.color[1] + ", " + v.color[2] + ")"
+            let colorStr = "rgb(" + v.color[0] + ", " + v.color[1] + ", " + v.color[2] + ")"
 
-            gradientStop1 = Math.min(Math.round(v.grade * 360), 355)
-            gradientStop2 = Math.min(gradientStop1 + 5, 359)
+            let gradientStop1 = Math.min(Math.round(v.grade * 360), 355)
+            let gradientStop2 = Math.min(gradientStop1 + 5, 359)
 
-            conicGradientStr = `${colorStr} 0deg, ${colorStr} ${gradientStop1}deg, snow ${gradientStop2}deg, snow 360deg`
+            let conicGradientStr = `${colorStr} 0deg, ${colorStr} ${gradientStop1}deg, snow ${gradientStop2}deg, snow 360deg`
 
-            profilePicAndBorder = `<div class="profile-pic-outer" style="background-image: conic-gradient(${conicGradientStr});"><div class="profile-pic-inner" style="background-image:url('${v.pic}')"></div></div>`
+            let profilePicAndBorder = `<div class="profile-pic-outer" style="background-image: conic-gradient(${conicGradientStr});"><div class="profile-pic-inner" style="background-image:url('${v.pic}')"></div></div>`
 
-            cardContent = `<div class="card-body"><h3 class="card-title">${v.name}</h3>${profilePicAndBorder}`
+            let cardContent = `<div class="card-body"><h3 class="card-title">${v.name}</h3>${profilePicAndBorder}`
 
             newHTML += `<div class="col"><div class="card h-100">${cardContent}</div></div></div>`;
         }
@@ -202,7 +254,7 @@ function populateCouncilContainer(){
 
 function buildIconString(scorecard){
 
-    iconStr = "<p class='vote-icons'>"
+    let iconStr = "<p class='vote-icons'>"
 
     if(isKeyAndArr(scorecard, "mediaCoverage")){
         iconStr += `<img class="vote-icon-media" src="img/newspaper.svg"/>`;
@@ -220,7 +272,7 @@ function buildIconString(scorecard){
 
 function buildVoteVizBox(scorecard){
 
-    forStr = "<div class='vote-viz-label'>FOR:&nbsp;</div>"
+    let forStr = "<div class='vote-viz-label'>FOR:&nbsp;</div>"
 
     if ("for" in scorecard){
         
@@ -230,7 +282,9 @@ function buildVoteVizBox(scorecard){
         });
     }
 
-    againstStr = `<div class='vote-viz-label'>AGAINST:&nbsp;</div>`
+    let forStrOuter = `<div class="vote-viz vote-viz-for vote-viz-green">${forStr}</div>`
+
+    let againstStr = `<div class='vote-viz-label'>AGAINST:&nbsp;</div>`
 
     if ("against" in scorecard){
         $.each(scorecard.against, function(i, v){
@@ -240,7 +294,13 @@ function buildVoteVizBox(scorecard){
 
     }
 
-    newStr = `<div class="vote-viz vote-viz-for">${forStr}</div><div class="vote-viz vote-viz-against">${againstStr}</div>` //TODO finish this
+    let againstStrOuter = `<div class="vote-viz vote-viz-against vote-viz-red">${againstStr}</div>`
+
+    let newStr = forStrOuter
+
+    if("against" in scorecard){
+        newStr += againstStrOuter
+    }
 
     return newStr
 }
@@ -249,21 +309,22 @@ function populateVoteItemsContainer(){
 
     $("#vote-list-outer").html("");
 
-    preCardText = `<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-2">`
-    postCardText = `</div>`
+    let preCardText = `<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-2">`
+    let postCardText = `</div>`
 
-    newHTML = preCardText
+    let newHTML = preCardText
 
     $.each(scoreCardCollection, function(i, v){
 
-        badgeString = `<div class='badge bg-primary type'>${v.type}</div>`
+        let badgeString = `<div class='badge bg-primary type'>${v.type}</div>`
 
-        d = Date.parse(v.date).toString("MMMM dS, yyyy")
+        let d = Date.parse(v.date).toString("MMMM dS, yyyy")
 
-        iconString = buildIconString(v);
+        let iconString = buildIconString(v);
 
         newHTML += `<div class="col"><div class="card h-100"><div class="card-body">${badgeString}<h3 class="card-title">${v.name}</h3><p class="vote-date">${d}</p><p class="vote-outcome">Outcome: ${v.outcome}</p> ${buildVoteVizBox(v)}</div><div class="card-footer">${iconString}</div></div></div>`;
 
+        manageLoading();
 
     });
 

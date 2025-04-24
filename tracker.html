@@ -52,10 +52,14 @@
     </nav>
 
 <main>
-<p><link href="styles/tracker.css" rel="stylesheet"></p>
+<p><link href="styles/tracker.css" rel="stylesheet" markdown="span"></p>
 <div class="container container-60 mb-4" id="main-outer">
 <h1>Asheville City Council Tracker (beta)</h1>
-<div class="alert alert-warning mt-4 mb-4" id="disclaimer">
+<div id="loading-info">
+
+</div>
+<div class="alert alert-warning mt-4 mb-4 d-none show-after-load" id="disclaimer">
+<h2>Disclaimer</h2>
 <ul>
 <li>
 <p>This page shows votes related to municipal land use policy and housing policy from the last three years. Some past votes that were unanimous and thus do not have an effect on the rankings shown here may have been excluded. Asheville For All makes no claims for the comprehensiveness of the votes listed on this page.</p>
@@ -65,19 +69,19 @@
 </li>
 </ul>
 </div>
-<h2>Asheville City Council</h2>
-<div id="council-list-outer">
+<h2 class="show-after-load d-none">Asheville City Council</h2>
+<div class="d-none show-after-load" id="council-list-outer">
 
 </div>
-<hr/>
-<h2>Recorded Housing Policy Votes</h2>
-<div class="mt-4" id="vote-list-outer">
+<hr class="d-none show-after-load"/>
+<h2 class="d-none show-after-load">Recorded Housing Policy Votes</h2>
+<div class="mt-4 d-none show-after-load" id="vote-list-outer">
 
 </div>
 </div>
 <script src="scripts/date.js"></script>
 <script crossorigin="anonymous" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
-<script src="scripts/scorecards.js"></script>
+<script src="scripts/tracker-data.js"></script>
 <script src="scripts/tracker.js"></script>
 </main>
 <footer class="footer small text-center">

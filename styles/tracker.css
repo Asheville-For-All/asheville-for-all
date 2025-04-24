@@ -45,6 +45,10 @@ h2, h3{
     flex-wrap:wrap;
     vertical-align: middle;
     align-items: center;
+    margin:1em 2px;
+    border-radius:5px;
+    padding: 1em;
+    position: relative;
 }
 .mini-pic{
 border:1px solid gray;
@@ -56,9 +60,26 @@ background-color: green;
 background-size: cover;
 background-position: 50% 50%;
 }
-.mini-pic:nth-child(2){
-    margin-left:0px;
-}
 .vote-viz-label{
     font-size:small;
+    font-size:small;
+    position:absolute;
+    top:-0.9em;
+    background-color:white;
+    padding: 0 0.5em;
+    margin-left: 1em;
+}
+
+.vote-viz-green{
+    border: green solid 0.5px;
+  }
+  .vote-viz-red{
+    border: red solid 0.5px;
+  }
+
+#loading-bar-one{
+background-color: #DA806A;
+}
+#loading-bar-two{
+    background-color:#298C6C;
 }

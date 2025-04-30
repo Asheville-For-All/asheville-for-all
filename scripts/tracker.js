@@ -1,4 +1,4 @@
-"use strict";
+import { multipliers, AshevilleCouncilRoster, scoreCardCollection } from "./tracker-data.js";
 
 const loadingStartTime = Date.now();
 const loadingTotalCount = scoreCardCollection.length + AshevilleCouncilRoster.length;

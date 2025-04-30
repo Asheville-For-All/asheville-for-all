@@ -221,7 +221,7 @@ function populateCouncilContainer(){
 
     $("#council-list-outer").html("");
 
-    let preCardText = `<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-2">`
+    let preCardText = `<div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-2">`
     let postCardText = `</div>`
 
     let newHTML = preCardText
@@ -275,6 +275,8 @@ function buildVoteVizBox(scorecard){
     let forStr = "<div class='vote-viz-label'>FOR:&nbsp;</div>"
 
     if ("for" in scorecard){
+
+        scorecard.for.sort( () => Math.random()-0.5 );
         
         $.each(scorecard.for, function(i, v){
 
@@ -287,6 +289,9 @@ function buildVoteVizBox(scorecard){
     let againstStr = `<div class='vote-viz-label'>AGAINST:&nbsp;</div>`
 
     if ("against" in scorecard){
+
+        scorecard.against.sort( () => Math.random()-0.5 );
+
         $.each(scorecard.against, function(i, v){
 
             againstStr += `<div class="mini-pic" style="background-image: url('${retrieveCouncilorFromName(v).pic}')"></div>`

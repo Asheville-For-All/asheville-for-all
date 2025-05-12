@@ -23,143 +23,76 @@
 </head>
 <body>
 
-<header class="container container-40">
+<tracker-outermost>
 
-<a href="index.html#"><img width="976" height="377" class="img-fluid mx-auto" title="Asheville For All" src="img/wide logo.png" alt="Logo showing a stylized city skyline with text that reads: Asheville For All"></img></a>
+  <tracker-frame id="tracker-frame-1">
 
-<p class="fs-4 text-center subtitle">For housing abundance and diverse, livable communities in Asheville</p>
+    <title-outer>
 
-</header>
+      <h1>Vote Tracker</h1>
 
-<nav id="navbar" class="navbar navbar-expand-sm navbar-light" style="margin-left:auto;margin-right:auto;">
+    </title-outer>
 
-      <div class="container-fluid container container-40" style="margin-left:auto;margin-right:auto;">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+    <title-buttons-outer>
+
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-outline-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="title-bar-svg"><path d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg>
         </button>
-
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-
-          <ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="index.html" >Home</a></li>
-        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Learn More</a><ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a class="dropdown-item" href="resources.html" >About Housing</a></li><li><a class="dropdown-item" href="about.html" >About Asheville For All</a></li></ul></li><li class="nav-item"><a class="nav-link" href="posts.html" >Blog</a></li>
-        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Take Action!</a><ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a class="dropdown-item" href="campaigns.html" >Campaigns</a></li><li><a class="dropdown-item" href="join.html" >Join Us</a></li><li><a class="dropdown-item" href="events.html" >Events</a></li></ul></li>
-        </ul>
-        </div>
+        <button type="button" class="btn btn-outline-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="title-bar-svg"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+        </button>
+        <button type="button" class="btn btn-outline-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" class="title-bar-svg" viewBox="0 0 512 512"><path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"/></svg>
+        </button>
       </div>
-    </nav>
 
-<main>
-<div class="container container-60 mb-4" id="main-outer">
-<h1>Asheville City Council Tracker (beta)</h1>
-<div id="loading-info">
+      </buttons-outer>
 
-</div>
-<div class="alert alert-warning mt-4 mb-4 d-none show-after-load" id="disclaimer">
-<h2>Disclaimer</h2>
-<ul>
-<li>
-<p>This page shows votes related to municipal land use policy and housing policy from the last three years. Some past votes that were unanimous and thus do not have an effect on the rankings shown here may have been excluded. Asheville For All makes no claims for the comprehensiveness of the votes listed on this page.</p>
-</li>
-<li>
-<p>We take care to note that elected officials may have all kinds of reasons for voting against what in our estimation is a &ldquo;pro-housing&rdquo; motion. How valid such decisions are cannot always be easily captured in a resource such as this. Where possible, we try to provide links to media coverage of each vote in order that you may obtain context.</p>
-</li>
-</ul>
-</div>
-<h2 class="show-after-load d-none">Asheville City Council</h2>
-<div class="d-none show-after-load" id="council-list-outer">
+  </tracker-frame>
 
-</div>
-<hr class="d-none show-after-load"/>
-<h2 class="d-none show-after-load">Recorded Housing Policy Votes</h2>
-<div class="mt-4 d-none show-after-load" id="vote-list-outer">
+  <tracker-frame id="tracker-frame-2">
 
-</div>
-</div>
-</main>
-<footer class="footer small text-center">
+    <div id="loading-info">
 
-<section class="container">
+    </div>
 
-<p>
+    <div id="disclaimer" class="alert alert-warning mt-4 mb-4 d-none show-after-load" markdown="1">
 
-<a href="https://www.facebook.com/ashevilleforall" target="_blank">Facebook</a> | <a href="https://bsky.app/profile/ashevilleforall.org" target="_blank">Bluesky</a> | <a href="https://www.instagram.com/ashevilleforall/" target="_blank">Instagram</a><br />Email: info <svg xmlns="http://www.w3.org/2000/svg" width="0.7em" height="0.7em" fill="currentColor" viewBox="0 0 512 512">
+      <h2>Disclaimer</h2>
 
-<path d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z" /></svg> ashevilleforall.org
+      <ul>
+        <li>
 
-</p>
+          <p>This page shows votes related to municipal land use policy and housing policy from the last three years. Some past votes that were unanimous and thus do not have an effect on the rankings shown here may have been excluded. Asheville For All makes no claims for the comprehensiveness of the votes listed on this page.</p>
+        </li>
+        <li>
 
-</section>
+          <p>We take care to note that elected officials may have all kinds of reasons for voting against what in our estimation is a “pro-housing” motion. How valid such decisions are cannot always be easily captured in a resource such as this. Where possible, we try to provide links to media coverage of each vote in order that you may obtain context.</p>
+        </li>
+      </ul>
 
-<section class="container mt-5">
+    </div>
 
-<p class="mt-5">
+    <h2 class="d-none show-after-load">Recorded Housing Policy Votes</h2>
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
+    <vote-list-outer class="mt-4 d-none show-after-load">
 
-</p>
+    </vote-list-outer>
 
-</section>
+  </tracker-frame>
 
-<nav class="container mt-5" id="site-map">
+  <tracker-frame id="tracker-frame-3">
 
-<table>
+    <council-list-outer class="d-none show-after-load">
 
-<tr>
-  <th></th>
-  <th>Learn More</th>
-  <th>Take Action</th>
-</tr>
+    </council-list-outer>
 
-<tr>
-  <td>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="stay-connected.html">Stay Connected</a></li>
-    </ul>
-  </td>
-  <td>
-    <ul>
-      <li>
-        <a href="resources.html">About Housing</a>
-      </li>
-      <li>
-        <a href="about.html">About Asheville For All</a>
-      </li>
-      <li>
-        <a href="posts.html">News & Commentary Blog</a>
-      </li>
-    </ul>
-  </td>
-  <td>
-    <ul>
-      <li>
-        <a href="campaigns.html">Campaigns</a>
-      </li>
-      <li>
-        <a href="join.html">Join Us</a>
-      </li>
-      <li>
-        <a href="events.html">Events</a>
-      </li>
-    </ul>
-  </td>
-</tr>
+  </tracker-frame>
 
-</table>
+</tracker-outermost>
 
-</nav>
-
-<section class="mt-5">
-
-<p>Asheville For All is a chapter of YIMBY Action (EIN 81-514-0915), a 501(c)(4) nonprofit organization.</p>
-
-</section>
-
-</footer>
-
-<script src="scripts/target-blank.js"></script><script src="scripts/back-to-top.js"></script><script src="scripts/date.js"></script><script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"  integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="   crossorigin="anonymous"></script><script src="scripts/tracker.js" type="module"></script>
+<script src="scripts/target-blank.js"></script><script src="scripts/date.js"></script><script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"  integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="   crossorigin="anonymous"></script><script src="scripts/tracker.js" type="module"></script>
 
 </body>
 </html>

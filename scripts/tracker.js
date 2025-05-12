@@ -219,12 +219,9 @@ function assignScoresFromSingleScorecard(scorecard){
 
 function populateCouncilContainer(){
 
-    $("#council-list-outer").html("");
+    $("council-list-outer").html("");
 
-    let preCardText = `<div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-2">`
-    let postCardText = `</div>`
-
-    let newHTML = preCardText
+    let newHTML = ""
 
     $.each(AshevilleCouncilRoster, function(i, v){
 
@@ -239,16 +236,12 @@ function populateCouncilContainer(){
 
             let profilePicAndBorder = `<div class="profile-pic-outer" style="background-image: conic-gradient(${conicGradientStr});"><div class="profile-pic-inner" style="background-image:url('${v.pic}')"></div></div>`
 
-            let cardContent = `<div class="card-body"><h3 class="card-title">${v.name}</h3>${profilePicAndBorder}`
-
-            newHTML += `<div class="col"><div class="card h-100">${cardContent}</div></div></div>`;
+            newHTML += profilePicAndBorder;
         }
 
     });
 
-    newHTML += postCardText
-
-    $("#council-list-outer").append(newHTML);
+    $("council-list-outer").append(newHTML);
 
 }
 
@@ -312,7 +305,7 @@ function buildVoteVizBox(scorecard){
 
 function populateVoteItemsContainer(){
 
-    $("#vote-list-outer").html("");
+    $("vote-list-outer").html("");
 
     let preCardText = `<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-2">`
     let postCardText = `</div>`
@@ -334,6 +327,6 @@ function populateVoteItemsContainer(){
     });
 
     newHTML = newHTML + postCardText
-    $("#vote-list-outer").html(newHTML);
+    $("vote-list-outer").html(newHTML);
 
 }

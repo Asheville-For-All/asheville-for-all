@@ -96,33 +96,8 @@ nav.navbar{
     text-decoration: underline;
 }
 
-#asheville-photo{
-    max-width:100%;
-    max-height:480px;
-    height:auto;
-    border-top:20px;
-    border-bottom:20px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .dropdown-item.active{
     background-color:#DA806A;
-}
-
-/*exception for color of button on green panels */
-.panel-green input[type="submit"]{
-  background-color:#DA806A !important;
-}
-.panel-green .can_embed #can_embed_form input[type="submit"]{
-  background-color:#DA806A !important;
-}
-.panel-green input[type="submit"]:hover{
-  background-color:#FAE4DE !important;
-}
-.can_embed #can_embed_form input[type="submit"]:hover{
-  background-color:#FAE4DE !important;
 }
 
   #action-banner{

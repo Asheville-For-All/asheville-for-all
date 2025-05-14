@@ -364,6 +364,9 @@ function populateVoteItemsContainer(){
     });
 
     newHTML = newHTML + postCardText
+
+    newHTML = newHTML + "<div class='container-40 container mt-4'><p>Visit the <i>settings</i> menu to adjust the number of years that are displayed.</p></div>"
+
     $("vote-list-outer").html(newHTML);
 
 }
@@ -373,8 +376,12 @@ function addBootstrapScripts(){
     const myModalEl = document.getElementById('settings-modal');
 myModalEl.addEventListener('hidden.bs.modal', event => {
 
-    settings.numYears = $("input[name='btnradio']:checked").val();
+    let newNumYears = $("input[name='btnradio']:checked").val();
 
-    reBoot();
+    if (newNumYears != settings.numYears){
+        settings.numYears = newNumYears;
+        reBoot();
+    }
+
 })
 }

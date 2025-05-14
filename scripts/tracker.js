@@ -1,31 +1,17 @@
 import { multipliers, AshevilleCouncilRoster, scoreCardCollection } from "./tracker-data.js";
 
-const loadingStartTime = Date.now();
+//**** GLOBALS *********/
+
+var loadingStartTime = Date.now();
+
 const loadingTotalCount = scoreCardCollection.length + AshevilleCouncilRoster.length;
+
 var loadingCount = 0;
 
-$(function() {
+const defaultNumYears = 3;
 
-    //*******FUNCTION EXECUTION *************//
-
-    setUpPlaceHolders();
-
-    setUpCouncilors();
-
-    assignScores();
-
-    populateCouncilContainer();
-
-    populateVoteItemsContainer();
-
-    readyToShow();
-
-
-});
-
-// *********GLOBAL VARIABLES **********************//
-
-//multipliers, scoreCardCollection, AshevilleCouncilRoster are implicitly imported
+var settings = {};
+settings.numYears = defaultNumYears;
 
 const gradeColors = [
     [255, 0, 0],
@@ -40,6 +26,17 @@ const gradeColors = [
     [50, 255, 0],
     [0, 255, 0]
 ]
+
+// ******* Initiating Function ************//
+
+$(function() {
+
+    addBootstrapScripts();
+
+    reBoot();
+
+});
+
 
 // *********FUNCTION DEFINITIONS****************** //
 
@@ -58,6 +55,40 @@ function isKeyAndArr(objct, key){
     }
 }
 
+function isDateRecent(cutoffInYears, dateString){
+  let diff = new Date() - new Date(dateString);
+  let diffInYears = diff / (365.25 * 24 * 60 * 60 * 1000);
+  if (diffInYears > cutoffInYears){
+    return false;
+  }
+  else{
+    return true;
+  }
+}
+
+function reBoot(){
+
+    loadingStartTime = Date.now();
+    loadingCount = 0;
+
+    $('council-list-outer').html("");
+    $('vote-list-outer').html("");
+    $(".show-after-load").addClass("d-none");
+
+
+    setUpPlaceHolders();
+
+    setUpCouncilors();
+
+    assignScores();
+
+    populateCouncilContainer();
+
+    populateVoteItemsContainer();
+
+    readyToShow();    
+}
+
 function readyToShow(){
 
     if (Date.now() - loadingStartTime > 1000){
@@ -74,8 +105,6 @@ function readyToShow(){
 
         setTimeout(function(){readyToShow();}, 1000/30);
     }
-
-
 
 }
 
@@ -98,13 +127,15 @@ function manageLoading(isDone = false){
 
 function setUpPlaceHolders(){
 
+    $("#loading-info").removeClass("d-none");
+
     let loadingString = `<div class="mt-3"><p><span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Loading</p><div class="progress mb-3" role="progressbar">
   <div class="progress-bar progress-bar-striped progress-bar-animated" id="loading-bar-one" style="width: 0%"></div>
 </div><div class="progress" role="progressbar">
   <div class="progress-bar progress-bar-striped progress-bar-animated" id="loading-bar-two" style="width: 0%"></div>
 </div></div>`
 
-    $("#loading-info").append(loadingString);
+    $("#loading-info").html(loadingString);
 }
 
 function setUpCouncilors(){
@@ -127,7 +158,10 @@ function assignScores(){
 
     $.each(scoreCardCollection, function(i, scorecard){
 
-        assignScoresFromSingleScorecard(scorecard);
+        if (isDateRecent(settings.numYears, scorecard.date)){
+
+         assignScoresFromSingleScorecard(scorecard);
+        }
         
     });
 
@@ -314,6 +348,8 @@ function populateVoteItemsContainer(){
 
     $.each(scoreCardCollection, function(i, v){
 
+        if (isDateRecent(settings.numYears, v.date)){
+
         let badgeString = `<div class='badge bg-primary type'>${v.type}</div>`
 
         let d = Date.parse(v.date).toString("MMMM dS, yyyy")
@@ -321,6 +357,7 @@ function populateVoteItemsContainer(){
         let iconString = buildIconString(v);
 
         newHTML += `<div class="col"><div class="card h-100"><div class="card-body">${badgeString}<h3 class="card-title">${v.name}</h3><p class="vote-date">${d}</p><p class="vote-outcome">Outcome: ${v.outcome}</p> ${buildVoteVizBox(v)}</div><div class="card-footer">${iconString}</div></div></div>`;
+        }
 
         manageLoading();
 
@@ -329,4 +366,15 @@ function populateVoteItemsContainer(){
     newHTML = newHTML + postCardText
     $("vote-list-outer").html(newHTML);
 
+}
+
+function addBootstrapScripts(){
+
+    const myModalEl = document.getElementById('settings-modal');
+myModalEl.addEventListener('hidden.bs.modal', event => {
+
+    settings.numYears = $("input[name='btnradio']:checked").val();
+
+    reBoot();
+})
 }

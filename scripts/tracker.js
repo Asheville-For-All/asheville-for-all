@@ -268,7 +268,7 @@ function populateCouncilContainer(){
 
             let conicGradientStr = `${colorStr} 0deg, ${colorStr} ${gradientStop1}deg, snow ${gradientStop2}deg, snow 360deg`
 
-            let profilePicAndBorder = `<div class="profile-pic-outer" style="background-image: conic-gradient(${conicGradientStr});"><div class="profile-pic-inner" style="background-image:url('${v.pic}')"></div></div>`
+            let profilePicAndBorder = `<div class="profile-pic-outer" title= "${v.name}" style="background-image: conic-gradient(${conicGradientStr});"><div class="profile-pic-inner" style="background-image:url('${v.pic}')"></div></div>`
 
             newHTML += profilePicAndBorder;
         }
@@ -341,47 +341,85 @@ function populateVoteItemsContainer(){
 
     $("vote-list-outer").html("");
 
-    let preCardText = `<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-2">`
-    let postCardText = `</div>`
+    let cardHolder = $('<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-2"></div>');
 
-    let newHTML = preCardText
+    $("vote-list-outer").append(cardHolder);
 
     $.each(scoreCardCollection, function(i, v){
 
         if (isDateRecent(settings.numYears, v.date)){
 
-        let badgeString = `<div class='badge bg-primary type'>${v.type}</div>`
+            let newCol = $('<div class="col"></div>');
 
-        let d = Date.parse(v.date).toString("MMMM dS, yyyy")
+            cardHolder.append(newCol);
 
-        let iconString = buildIconString(v);
+            let badgeString = `<div class='badge bg-primary type'>${v.type}</div>`
 
-        newHTML += `<div class="col"><div class="card h-100"><div class="card-body">${badgeString}<h3 class="card-title">${v.name}</h3><p class="vote-date">${d}</p><p class="vote-outcome">Outcome: ${v.outcome}</p> ${buildVoteVizBox(v)}</div><div class="card-footer">${iconString}</div></div></div>`;
+            let d = Date.parse(v.date).toString("MMMM dS, yyyy")
+
+            let iconString = buildIconString(v);
+
+            let newCardHTML = `<div class="card h-100"><div class="card-body">${badgeString}<h3 class="card-title">${v.name}</h3><p class="vote-date">${d}</p><p class="vote-outcome">Outcome: ${v.outcome}</p> ${buildVoteVizBox(v)}</div><div class="card-footer">${iconString}</div></div>`;
+
+            let newCard = $(newCardHTML);
+
+            newCard.data("scorecard", v);
+
+            newCol.append(newCard);
         }
 
         manageLoading();
 
     });
 
-    newHTML = newHTML + postCardText
-
-    newHTML = newHTML + "<div class='container-40 container mt-4'><p>Visit the <i>settings</i> menu to adjust the number of years that are displayed.</p></div>"
-
-    $("vote-list-outer").html(newHTML);
+    $("vote-list-outer").append("<div class='container-40 container mt-4'><p>Visit the <i>settings</i> menu to adjust the number of years that are displayed.</p></div>");
 
 }
 
-function addBootstrapScripts(){
+function addBootstrapScripts() {
 
     const myModalEl = document.getElementById('settings-modal');
-myModalEl.addEventListener('hidden.bs.modal', event => {
+    myModalEl.addEventListener('hidden.bs.modal', event => {
 
-    let newNumYears = $("input[name='btnradio']:checked").val();
+        let newNumYears = $("input[name='btnradio']:checked").val();
 
-    if (newNumYears != settings.numYears){
-        settings.numYears = newNumYears;
-        reBoot();
-    }
+        if (newNumYears != settings.numYears) {
+            settings.numYears = newNumYears;
+            reBoot();
+        }
 
-})
+    })
+
+    $("#tracker-frame-2").on("click", ".card", function(){
+
+        let bsOffcanvas = new bootstrap.Offcanvas('#voteSidePanel');
+
+        let t = $(this).find(".card-title").html();
+        let d = $(this).find(".vote-date").html();
+
+        $("#voteSidePanel").find(".offcanvas-title").html(t);
+
+        let body = `<div class="vote-date">${d}</div>`
+
+        $("#voteSidePanel").find(".offcanvas-body").html(body);
+
+        bsOffcanvas.show();
+    });
+
+    $('#tracker-frame-3').on("click", ".profile-pic-outer", function(){
+
+        let bsOffcanvas = new bootstrap.Offcanvas('#councilBottomPanel');
+
+        let t = $(this).attr('title');
+
+        $('#councilBottomPanel').find(".offcanvas-title").html(t);
+
+        let profileClone = $(this).clone();
+
+        $('#councilBottomPanel').find("#bs-oc-left-col").html(profileClone);
+        $('#councilBottomPanel').find("#bs-oc-right-col").html("<p>This column will show some info.</p>");
+
+        bsOffcanvas.show();
+
+    });
 }

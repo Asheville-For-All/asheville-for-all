@@ -49,6 +49,7 @@ tracker-frame{
   }
   #tracker-frame-2{
     overflow: scroll;
+    background-color: hsl(161, 55%, 96%);
   }
   #tracker-frame-3{
     max-height:12rem;

@@ -400,9 +400,18 @@ function addBootstrapScripts() {
 
         $("#voteSidePanel").find(".offcanvas-title").html(t);
 
-        let body = `${createLinkLists(data)}`
+        let body = $(`<div></div>`);
 
         $("#voteSidePanel").find(".offcanvas-body").html(body);
+
+        let voteVizCloneFor = $(this).find(".vote-viz-for").clone();
+        let voteVizCloneAgainst = $(this).find(".vote-viz-against").clone();
+
+        body.append($(this).find(".vote-outcome").clone());
+
+        body.append(voteVizCloneFor);
+        body.append(voteVizCloneAgainst);
+        body.append(`${createLinkLists(data)}`);
 
         bsOffcanvas.show();
     });
@@ -438,7 +447,7 @@ function addBootstrapScripts() {
 
 function createLinkLists(scorecard){
 
-    let s = "<div class='container container-40 vote-link-list-container'>";
+    let s = "<div class='container container-40 vote-link-list-container mt-4'>";
 
     let govImg = "img/dome-building.svg";
     let afaImg = "img/afa-small.svg";

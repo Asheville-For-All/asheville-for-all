@@ -390,57 +390,12 @@ function addBootstrapScripts() {
 
     $("#tracker-frame-2").on("click", ".card", function(){
 
-        let bsOffcanvas = new bootstrap.Offcanvas('#voteSidePanel');
-
-        let data = $(this).data("scorecard");
-        let d = $(this).find(".vote-date").html();
-
-        let t = `${data.name}<div class="vote-date">${d}</div>`
-
-
-        $("#voteSidePanel").find(".offcanvas-title").html(t);
-
-        let body = $(`<div></div>`);
-
-        $("#voteSidePanel").find(".offcanvas-body").html(body);
-
-        let voteVizCloneFor = $(this).find(".vote-viz-for").clone();
-        let voteVizCloneAgainst = $(this).find(".vote-viz-against").clone();
-
-        body.append($(this).find(".vote-outcome").clone());
-
-        body.append(voteVizCloneFor);
-        body.append(voteVizCloneAgainst);
-        body.append(`${createLinkLists(data)}`);
-
-        bsOffcanvas.show();
+       loadSidePanel(this);
     });
 
     $('#tracker-frame-3').on("click", ".profile-pic-outer", function(){
 
-        let bsOffcanvas = new bootstrap.Offcanvas('#councilBottomPanel');
-
-        let t = $(this).attr('title');
-
-        $('#councilBottomPanel').find(".offcanvas-title").html(t);
-
-        let profileClone = $(this).clone();
-
-        $('#councilBottomPanel').find("#bs-oc-left-col").html(profileClone);
-
-        let data = $(this).data('councilor');
-
-        let termText = ""
-
-        $.each(data.terms, function(i, v){
-            termText += `<br/>${v.start.slice(0, 4)} - ${v.end.slice(0, 4)}`
-        });
-
-        let rightColumnText = `<p>${data.name}${termText}</p>`;
-
-        $('#councilBottomPanel').find("#bs-oc-right-col").html(rightColumnText);
-
-        bsOffcanvas.show();
+        loadCouncilPanel(this);
 
     });
 }
@@ -499,5 +454,61 @@ function createLinkLists(scorecard){
     }
 
     return s += "</div>";
+
+}
+
+function loadSidePanel(cardThatTriggered) {
+
+    let bsOffcanvas = new bootstrap.Offcanvas('#voteSidePanel');
+
+    let data = $(cardThatTriggered).data("scorecard");
+    let d = $(cardThatTriggered).find(".vote-date").html();
+
+    let t = `${data.name}<div class="vote-date">${d}</div>`
+
+
+    $("#voteSidePanel").find(".offcanvas-title").html(t);
+
+    let body = $(`<div></div>`);
+
+    $("#voteSidePanel").find(".offcanvas-body").html(body);
+
+    let voteVizCloneFor = $(cardThatTriggered).find(".vote-viz-for").clone();
+    let voteVizCloneAgainst = $(cardThatTriggered).find(".vote-viz-against").clone();
+
+    body.append($(cardThatTriggered).find(".vote-outcome").clone());
+
+    body.append(voteVizCloneFor);
+    body.append(voteVizCloneAgainst);
+    body.append(`${createLinkLists(data)}`);
+
+    bsOffcanvas.show();
+}
+
+function loadCouncilPanel(profileThatTriggered) {
+
+    let bsOffcanvas = new bootstrap.Offcanvas('#councilBottomPanel');
+
+    let t = $(profileThatTriggered).attr('title');
+
+    $('#councilBottomPanel').find(".offcanvas-title").html(t);
+
+    let profileClone = $(profileThatTriggered).clone();
+
+    $('#councilBottomPanel').find("#bs-oc-left-col").html(profileClone);
+
+    let data = $(profileThatTriggered).data('councilor');
+
+    let termText = ""
+
+    $.each(data.terms, function (i, v) {
+        termText += `<br/>${v.start.slice(0, 4)} - ${v.end.slice(0, 4)}`
+    });
+
+    let rightColumnText = `<p>${data.name}${termText}</p>`;
+
+    $('#councilBottomPanel').find("#bs-oc-right-col").html(rightColumnText);
+
+    bsOffcanvas.show();
 
 }

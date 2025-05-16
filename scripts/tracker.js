@@ -255,8 +255,6 @@ function populateCouncilContainer(){
 
     $("council-list-outer").html("");
 
-    let newHTML = ""
-
     $.each(AshevilleCouncilRoster, function(i, v){
 
         if("past" in v == false || v.past == false){
@@ -268,14 +266,14 @@ function populateCouncilContainer(){
 
             let conicGradientStr = `${colorStr} 0deg, ${colorStr} ${gradientStop1}deg, snow ${gradientStop2}deg, snow 360deg`
 
-            let profilePicAndBorder = `<div class="profile-pic-outer" title= "${v.name}" style="background-image: conic-gradient(${conicGradientStr});"><div class="profile-pic-inner" style="background-image:url('${v.pic}')"></div></div>`
+            let newElem = $(`<div class="profile-pic-outer" title= "${v.name}" style="background-image: conic-gradient(${conicGradientStr});"><div class="profile-pic-inner" style="background-image:url('${v.pic}')"></div></div>`);
 
-            newHTML += profilePicAndBorder;
+            $("council-list-outer").append(newElem);
+
+            newElem.data("councilor", v);
         }
 
     });
-
-    $("council-list-outer").append(newHTML);
 
 }
 
@@ -342,7 +340,9 @@ function populateVoteItemsContainer(){
     $("vote-list-outer").html("");
 
     let cardHolder = $('<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-2"></div>');
+    let cardHolder = $('<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-2"></div>');
 
+    $("vote-list-outer").append(cardHolder);
     $("vote-list-outer").append(cardHolder);
 
     $.each(scoreCardCollection, function(i, v){
@@ -353,12 +353,26 @@ function populateVoteItemsContainer(){
 
             cardHolder.append(newCol);
 
+            let newCol = $('<div class="col"></div>');
+
+            cardHolder.append(newCol);
+
+            let badgeString = `<div class='badge bg-primary type'>${v.type}</div>`
             let badgeString = `<div class='badge bg-primary type'>${v.type}</div>`
 
             let d = Date.parse(v.date).toString("MMMM dS, yyyy")
+            let d = Date.parse(v.date).toString("MMMM dS, yyyy")
 
             let iconString = buildIconString(v);
+            let iconString = buildIconString(v);
 
+            let newCardHTML = `<div class="card h-100"><div class="card-body">${badgeString}<h3 class="card-title">${v.name}</h3><p class="vote-date">${d}</p><p class="vote-outcome">Outcome: ${v.outcome}</p> ${buildVoteVizBox(v)}</div><div class="card-footer">${iconString}</div></div>`;
+
+            let newCard = $(newCardHTML);
+
+            newCard.data("scorecard", v);
+
+            newCol.append(newCard);
             let newCardHTML = `<div class="card h-100"><div class="card-body">${badgeString}<h3 class="card-title">${v.name}</h3><p class="vote-date">${d}</p><p class="vote-outcome">Outcome: ${v.outcome}</p> ${buildVoteVizBox(v)}</div><div class="card-footer">${iconString}</div></div>`;
 
             let newCard = $(newCardHTML);
@@ -373,12 +387,15 @@ function populateVoteItemsContainer(){
     });
 
     $("vote-list-outer").append("<div class='container-40 container mt-4'><p>Visit the <i>settings</i> menu to adjust the number of years that are displayed.</p></div>");
+    $("vote-list-outer").append("<div class='container-40 container mt-4'><p>Visit the <i>settings</i> menu to adjust the number of years that are displayed.</p></div>");
 
 }
 
 function addBootstrapScripts() {
+function addBootstrapScripts() {
 
     const myModalEl = document.getElementById('settings-modal');
+    myModalEl.addEventListener('hidden.bs.modal', event => {
     myModalEl.addEventListener('hidden.bs.modal', event => {
 
         let newNumYears = $("input[name='btnradio']:checked").val();
@@ -394,12 +411,15 @@ function addBootstrapScripts() {
 
         let bsOffcanvas = new bootstrap.Offcanvas('#voteSidePanel');
 
-        let t = $(this).find(".card-title").html();
+        let data = $(this).data("scorecard");
         let d = $(this).find(".vote-date").html();
+
+        let t = `${data.name}<div class="vote-date">${d}</div>`
+
 
         $("#voteSidePanel").find(".offcanvas-title").html(t);
 
-        let body = `<div class="vote-date">${d}</div>`
+        let body = `${createLinkLists(data)}`
 
         $("#voteSidePanel").find(".offcanvas-body").html(body);
 
@@ -417,9 +437,77 @@ function addBootstrapScripts() {
         let profileClone = $(this).clone();
 
         $('#councilBottomPanel').find("#bs-oc-left-col").html(profileClone);
-        $('#councilBottomPanel').find("#bs-oc-right-col").html("<p>This column will show some info.</p>");
+
+        let data = $(this).data('councilor');
+
+        let termText = ""
+
+        $.each(data.terms, function(i, v){
+            termText += `<br/>${v.start.slice(0, 4)} - ${v.end.slice(0, 4)}`
+        });
+
+        let rightColumnText = `<p>${data.name}${termText}</p>`;
+
+        $('#councilBottomPanel').find("#bs-oc-right-col").html(rightColumnText);
 
         bsOffcanvas.show();
 
     });
+}
+
+function createLinkLists(scorecard){
+
+    let s = "<div class='container container-40 vote-link-list-container'>";
+
+    let govImg = "img/dome-building.svg";
+    let afaImg = "img/afa-small.svg";
+    let mediaImg = "img/newspaper.svg";
+
+    if("afaLinks" in scorecard){
+
+        s += `<h3><img class="img-fluid voteLinkListImg" src="${afaImg}"/>&nbsp;Asheville For All Links</h3>`;
+        
+        s+= "<ul>";
+
+        $.each(scorecard.afaLinks, function(i, v){
+
+            s+= `<li><a href="${v.url}" target="_blank">${v.name}</a></li>`;
+
+        });
+
+        s+= "</ul>";
+
+    }
+
+    if("govLinks" in scorecard){
+
+        s += `<h3><img class="img-fluid voteLinkListImg" src="${govImg}"/>&nbsp;Government Links</h3>`;;
+        
+        s+="<ul>";
+
+        $.each(scorecard.govLinks, function(i, v){
+
+            s+= `<li><a href="${v.url}" target="_blank">${v.type}</a></li>`;
+        });
+
+        s+= "</ul>";
+
+    }
+    if("mediaCoverage" in scorecard){
+
+        s += `<h3><img class="img-fluid voteLinkListImg" src="${mediaImg}"/>&nbsp;Media Links</h3>`;
+
+        s+= "<ul>";
+
+        $.each(scorecard.mediaCoverage, function(i, v){
+
+            s += `<li><a href="${v.url}" target="_blank">${v.publication}: ${v.headline}</a></li>`;
+        });
+
+        s+= '</ul>';
+
+    }
+
+    return s += "</div>";
+
 }

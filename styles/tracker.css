@@ -148,3 +148,8 @@ background-color: #DA806A;
 #tracker-frame-1 .btn{
     border:0px;
 }
+
+.voteLinkListImg{
+    width:1.5rem;
+    vertical-align: -0.125em;
+}

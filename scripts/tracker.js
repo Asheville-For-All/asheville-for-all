@@ -466,12 +466,7 @@ function loadSidePanel(cardThatTriggered) {
 
     let t = `${data.name}<div class="vote-date">${d}</div>`
 
-
-    $("#voteSidePanel").find(".offcanvas-title").html(t);
-
     let body = $(`<div></div>`);
-
-    $("#voteSidePanel").find(".offcanvas-body").html(body);
 
     let voteVizCloneFor = $(cardThatTriggered).find(".vote-viz-for").clone();
     let voteVizCloneAgainst = $(cardThatTriggered).find(".vote-viz-against").clone();
@@ -481,6 +476,9 @@ function loadSidePanel(cardThatTriggered) {
     body.append(voteVizCloneFor);
     body.append(voteVizCloneAgainst);
     body.append(`${createLinkLists(data)}`);
+
+    $("#voteSidePanel").find(".offcanvas-title").html(t);
+    $("#voteSidePanel").find(".offcanvas-body").html(body);
 
     bsOffcanvas.show();
 }
@@ -495,8 +493,6 @@ function loadCouncilPanel(profileThatTriggered) {
 
     let profileClone = $(profileThatTriggered).clone();
 
-    $('#councilBottomPanel').find("#bs-oc-left-col").html(profileClone);
-
     let data = $(profileThatTriggered).data('councilor');
 
     let termText = ""
@@ -507,6 +503,7 @@ function loadCouncilPanel(profileThatTriggered) {
 
     let rightColumnText = `<p>${data.name}${termText}</p>`;
 
+    $('#councilBottomPanel').find("#bs-oc-left-col").html(profileClone);
     $('#councilBottomPanel').find("#bs-oc-right-col").html(rightColumnText);
 
     bsOffcanvas.show();

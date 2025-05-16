@@ -340,9 +340,7 @@ function populateVoteItemsContainer(){
     $("vote-list-outer").html("");
 
     let cardHolder = $('<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-2"></div>');
-    let cardHolder = $('<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-2"></div>');
 
-    $("vote-list-outer").append(cardHolder);
     $("vote-list-outer").append(cardHolder);
 
     $.each(scoreCardCollection, function(i, v){
@@ -353,26 +351,12 @@ function populateVoteItemsContainer(){
 
             cardHolder.append(newCol);
 
-            let newCol = $('<div class="col"></div>');
-
-            cardHolder.append(newCol);
-
-            let badgeString = `<div class='badge bg-primary type'>${v.type}</div>`
             let badgeString = `<div class='badge bg-primary type'>${v.type}</div>`
 
             let d = Date.parse(v.date).toString("MMMM dS, yyyy")
-            let d = Date.parse(v.date).toString("MMMM dS, yyyy")
 
             let iconString = buildIconString(v);
-            let iconString = buildIconString(v);
 
-            let newCardHTML = `<div class="card h-100"><div class="card-body">${badgeString}<h3 class="card-title">${v.name}</h3><p class="vote-date">${d}</p><p class="vote-outcome">Outcome: ${v.outcome}</p> ${buildVoteVizBox(v)}</div><div class="card-footer">${iconString}</div></div>`;
-
-            let newCard = $(newCardHTML);
-
-            newCard.data("scorecard", v);
-
-            newCol.append(newCard);
             let newCardHTML = `<div class="card h-100"><div class="card-body">${badgeString}<h3 class="card-title">${v.name}</h3><p class="vote-date">${d}</p><p class="vote-outcome">Outcome: ${v.outcome}</p> ${buildVoteVizBox(v)}</div><div class="card-footer">${iconString}</div></div>`;
 
             let newCard = $(newCardHTML);
@@ -387,15 +371,12 @@ function populateVoteItemsContainer(){
     });
 
     $("vote-list-outer").append("<div class='container-40 container mt-4'><p>Visit the <i>settings</i> menu to adjust the number of years that are displayed.</p></div>");
-    $("vote-list-outer").append("<div class='container-40 container mt-4'><p>Visit the <i>settings</i> menu to adjust the number of years that are displayed.</p></div>");
 
 }
 
 function addBootstrapScripts() {
-function addBootstrapScripts() {
 
     const myModalEl = document.getElementById('settings-modal');
-    myModalEl.addEventListener('hidden.bs.modal', event => {
     myModalEl.addEventListener('hidden.bs.modal', event => {
 
         let newNumYears = $("input[name='btnradio']:checked").val();

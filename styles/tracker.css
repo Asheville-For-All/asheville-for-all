@@ -61,6 +61,10 @@ tracker-frame{
     box-sizing: content-box;
   }
 
+#tracker-frame-2 .card, #tracker-frame-3 .profile-pic-outer{
+    cursor: pointer;
+}
+
 .card-footer{
     background-color:transparent;
     border-top: 0px;

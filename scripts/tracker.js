@@ -247,7 +247,32 @@ function assignScoresFromSingleScorecard(scorecard){
         });
     }
 
-    //TODO continue iterating with abstain,recuse  etc...
+    if ("recused" in scorecard){
+        $.each(scorecard["recused"], function(i, v){
+
+            if (c != undefined){
+
+            var c = retrieveCouncilorFromName(v)
+
+            c.points += 0;
+            c.totalEligiblePoints += 0;
+            c.totalVoteInstancesInTerm += 1;
+            }
+        });
+    }
+    if ("abstain" in scorecard){
+        $.each(scorecard["abstain"], function(i, v){
+
+            var c = retrieveCouncilorFromName(v)
+
+            if (c != undefined){
+
+                c.points += 0;
+                c.totalEligiblePoints += pointsAtStake;
+                c.totalVoteInstancesInTerm += 1;
+            }
+        });
+    }
 
 }
 

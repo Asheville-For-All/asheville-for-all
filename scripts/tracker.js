@@ -144,6 +144,7 @@ function setUpCouncilors(){
         councilor.points = 0;
         councilor.totalEligiblePoints = 0;
         councilor.totalVoteInstancesInTerm = 0;
+        councilor.totalVotesRecorded = 0;
 
         manageLoading();
     });
@@ -214,6 +215,7 @@ function assignScoresFromSingleScorecard(scorecard){
             c.points += pointsAtStake;
             c.totalEligiblePoints += pointsAtStake;
             c.totalVoteInstancesInTerm += 1;
+            c.totalVotesRecorded += 1;
         }
     });
 
@@ -228,6 +230,7 @@ function assignScoresFromSingleScorecard(scorecard){
                 c.points += 0;
                 c.totalEligiblePoints += pointsAtStake;
                 c.totalVoteInstancesInTerm += 1;
+                c.totalVotesRecorded += 1;
             }
         });
     }
@@ -270,6 +273,7 @@ function assignScoresFromSingleScorecard(scorecard){
                 c.points += 0;
                 c.totalEligiblePoints += pointsAtStake;
                 c.totalVoteInstancesInTerm += 1;
+                c.totalVotesRecorded += 1;
             }
         });
     }
@@ -598,7 +602,7 @@ function loadCouncilPanel(profileThatTriggered) {
         termText += `<br/>${v.start.slice(0, 4)} - ${v.end.slice(0, 4)}`
     });
 
-    let rightColumnText = `<p>${data.name}${termText}</p>`;
+    let rightColumnText = `<p>${data.name}${termText}</p><p>Total housing-related votes recorded in the selected duration: ${data.totalVotesRecorded}`;
 
     $('#councilBottomPanel').find("#bs-oc-left-col").html(profileClone);
     $('#councilBottomPanel').find("#bs-oc-right-col").html(rightColumnText);

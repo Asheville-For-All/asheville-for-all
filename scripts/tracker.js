@@ -477,10 +477,58 @@ function loadSidePanel(cardThatTriggered) {
     body.append(voteVizCloneAgainst);
     body.append(`${createLinkLists(data)}`);
 
+    let lateralNavsOuter = $("<div class='side-panel-lateral-navs mt-4'></div>");
+
+    let previousCard = $(cardThatTriggered).parent().prev().children();
+    let nextCard = $(cardThatTriggered).parent().next().children();
+
+    if(previousCard.length){
+
+            let d = Date.parse(previousCard.data("scorecard").date).toString("MMMM dS, yyyy");
+
+            let jq_a = $(`<a href="javascript:void(0)">← ${previousCard.data("scorecard").name} / <em>${d}</em></a>`);
+            let outerD = $(`<div class="mb-2"></div>`);
+
+            lateralNavsOuter.append(outerD);
+            outerD.append(jq_a);
+
+            addListenerToLateralLink(jq_a, previousCard[0]);
+    }
+    if(nextCard.length){
+
+            let d = Date.parse(nextCard.data("scorecard").date).toString("MMMM dS, yyyy");
+
+            let jq_a = $(`<a href="javascript:void(0)">${nextCard.data("scorecard").name} / <em>${d}</em> →</a>`);
+            let outerD = $(`<div class="mb-2"></div>`);
+
+            lateralNavsOuter.append(outerD);
+            outerD.append(jq_a);
+
+            addListenerToLateralLink(jq_a, nextCard[0]);
+    }
+    body.append(lateralNavsOuter);
+
     $("#voteSidePanel").find(".offcanvas-title").html(t);
     $("#voteSidePanel").find(".offcanvas-body").html(body);
 
     bsOffcanvas.show();
+}
+
+function lateralVoteLinkClicked(e){
+
+    $("#voteSidePanel").find(".offcanvas-title").html("");
+    $("#voteSidePanel").find(".offcanvas-body").html("");
+
+    let bsOffcanvas = bootstrap.Offcanvas.getOrCreateInstance('#voteSidePanel');
+
+    $('.modal-backdrop').remove();
+
+    loadSidePanel(e.data.destinationCard);
+}
+
+function addListenerToLateralLink(jq_ATag, destinationCard){
+
+    jq_ATag.on("click", {destinationCard: destinationCard}, lateralVoteLinkClicked);
 }
 
 function loadCouncilPanel(profileThatTriggered) {

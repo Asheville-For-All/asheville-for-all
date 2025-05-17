@@ -276,13 +276,33 @@ function assignScoresFromSingleScorecard(scorecard){
 
 }
 
+function checkIfCurrentCouncilor(councilorData){
+
+    var current = false;
+    let now = new Date();
+
+    $.each(councilorData.terms, function(i, v){
+
+        let start = new Date(v.start);
+        let end = new Date(v.end);
+
+        if (now > start && now < end){
+            current = true;
+            return true;
+        }
+    });
+
+    return current;
+
+}
+
 function populateCouncilContainer(){
 
     $("council-list-outer").html("");
 
     $.each(AshevilleCouncilRoster, function(i, v){
 
-        if("past" in v == false || v.past == false){
+        if(checkIfCurrentCouncilor(v)){
 
             let colorStr = "rgb(" + v.color[0] + ", " + v.color[1] + ", " + v.color[2] + ")"
 

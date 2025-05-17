@@ -484,6 +484,10 @@ function createLinkLists(scorecard){
 
 function loadSidePanel(cardThatTriggered) {
 
+    $("#voteSidePanel").find(".offcanvas-title").html(`<div class="spinner-border spinner-border-sm" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>`);
+
     let bsOffcanvas = new bootstrap.Offcanvas('#voteSidePanel');
 
     let data = $(cardThatTriggered).data("scorecard");

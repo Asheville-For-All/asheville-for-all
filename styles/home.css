@@ -26,7 +26,6 @@
     fill:white;
 }
 
-
 /*exception for color of button on green panels */
 .panel-green input[type="submit"]{
   background-color:#DA806A !important;
@@ -39,4 +38,13 @@
 }
 .can_embed #can_embed_form input[type="submit"]:hover{
   background-color:#FAE4DE !important;
+}
+
+.get-involved-outer h3{
+  color:white;
+  font-size:24px;
+}
+.get-involved-outer .btn{
+  background-color:white;
+  margin-bottom:1rem;
 }

@@ -194,6 +194,13 @@ function assignScores(){
 
 function assignScoresFromSingleScorecard(scorecard){
 
+    if("pro_housing_scale__motion" in scorecard == false){
+        scorecard.pro_housing_scale__motion = 1;
+    }
+    if("pro_housing_scale__proposal" in scorecard == false){
+        scorecard.pro_housing_scale__proposal = 1;
+    }
+
     let pointsAtStake = 1;
 
     if("scoreFlags" in scorecard){
@@ -209,10 +216,14 @@ function assignScoresFromSingleScorecard(scorecard){
 
     $.each(scorecard["for"], function(i, v){
 
-        var c = retrieveCouncilorFromName(v)
+        var c = retrieveCouncilorFromName(v);
 
         if (c != undefined){
-            c.points += pointsAtStake;
+
+            if (scorecard.pro_housing_scale__motion == 1){
+                c.points += pointsAtStake;
+            }
+
             c.totalEligiblePoints += pointsAtStake;
             c.totalVoteInstancesInTerm += 1;
             c.totalVotesRecorded += 1;
@@ -226,6 +237,10 @@ function assignScoresFromSingleScorecard(scorecard){
             var c = retrieveCouncilorFromName(v)
 
             if (c != undefined){
+
+                if (scorecard.pro_housing_scale__motion == -1){
+                c.points += pointsAtStake;
+                }
 
                 c.points += 0;
                 c.totalEligiblePoints += pointsAtStake;
@@ -360,6 +375,10 @@ function buildVoteVizBox(scorecard){
 
     let forStrOuter = `<div class="vote-viz vote-viz-for vote-viz-green">${forStr}</div>`
 
+    if (scorecard.pro_housing_scale__motion == -1){
+        forStrOuter = `<div class="vote-viz vote-viz-for vote-viz-red">${forStr}</div>`
+    }
+
     let againstStr = `<div class='vote-viz-label'>AGAINST:&nbsp;</div>`
 
     if ("against" in scorecard){
@@ -374,6 +393,10 @@ function buildVoteVizBox(scorecard){
     }
 
     let againstStrOuter = `<div class="vote-viz vote-viz-against vote-viz-red">${againstStr}</div>`
+
+    if (scorecard.pro_housing_scale__motion == -1){
+        againstStrOuter = `<div class="vote-viz vote-viz-against vote-viz-green">${againstStr}</div>`
+    }
 
     let newStr = forStrOuter
 
@@ -406,7 +429,12 @@ function populateVoteItemsContainer(){
 
             let iconString = buildIconString(v);
 
-            let newCardHTML = `<div class="card h-100"><div class="card-body">${badgeString}<h3 class="card-title">${v.name}</h3><p class="vote-date">${d}</p><p class="vote-outcome">Outcome: ${v.outcome}</p> ${buildVoteVizBox(v)}</div><div class="card-footer">${iconString}</div></div>`;
+            let badProposal = "";
+            if (v.pro_housing_scale__proposal == -1){
+                badProposal = " bad-proposal"
+            }
+
+            let newCardHTML = `<div class="card h-100"><div class="card-body">${badgeString}<h3 class="card-title ${badProposal}">${v.name}</h3><p class="vote-date">${d}</p><p class="vote-outcome">Outcome: ${v.outcome}</p> ${buildVoteVizBox(v)}</div><div class="card-footer">${iconString}</div></div>`;
 
             let newCard = $(newCardHTML);
 
@@ -563,6 +591,12 @@ function loadSidePanel(cardThatTriggered) {
 
     $("#voteSidePanel").find(".offcanvas-title").html(t);
     $("#voteSidePanel").find(".offcanvas-body").html(body);
+
+    if(data.pro_housing_scale__proposal == -1){
+        $("#voteSidePanel").find(".offcanvas-title").addClass("bad-proposal");
+    }else{
+        $("#voteSidePanel").find(".offcanvas-title").removeClass("bad-proposal");
+    }
 
     bsOffcanvas.show();
 }

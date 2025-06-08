@@ -75,6 +75,7 @@ function reBoot(){
     $('vote-list-outer').html("");
     $(".show-after-load").addClass("d-none");
 
+    endHighlights();
 
     setUpPlaceHolders();
 

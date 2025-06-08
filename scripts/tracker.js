@@ -639,7 +639,7 @@ function loadCouncilPanel(profileThatTriggered) {
 
     let rightColumnText = `<p>${data.name}${termText}</p><p>Total housing-related votes recorded in the selected duration: ${data.totalVotesRecorded}`;
 
-    let highlightModeButton = $('<button data-bs-toggle="offcanvas" href="#councilBottomPanel">Enter Highlight Mode</button>');
+    let highlightModeButton = $('<button data-bs-toggle="offcanvas" href="#councilBottomPanel" class="btn btn-outline-secondary">Enter Highlight Mode</button>');
 
     $('#councilBottomPanel').find("#bs-oc-left-col").html(profileClone);
     $('#councilBottomPanel').find("#bs-oc-left-col").append(highlightModeButton);
@@ -695,6 +695,17 @@ function switchOnHighlights(jqObjProfilePicOuter){
                     }
                 }
             });
+
+        }
+
+        if("abstain" in cardData){
+
+            $.each(cardData.against, function(i, v){
+                if (councilorName == v){
+
+                    currentCard.addClass("highlight-orange");
+                    }
+            });            
 
         }
     });

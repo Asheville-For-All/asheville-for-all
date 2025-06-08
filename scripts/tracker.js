@@ -638,9 +638,88 @@ function loadCouncilPanel(profileThatTriggered) {
 
     let rightColumnText = `<p>${data.name}${termText}</p><p>Total housing-related votes recorded in the selected duration: ${data.totalVotesRecorded}`;
 
+    let highlightModeButton = $('<button data-bs-toggle="offcanvas" href="#councilBottomPanel">Enter Highlight Mode</button>');
+
     $('#councilBottomPanel').find("#bs-oc-left-col").html(profileClone);
+    $('#councilBottomPanel').find("#bs-oc-left-col").append(highlightModeButton);
     $('#councilBottomPanel').find("#bs-oc-right-col").html(rightColumnText);
+
+    highlightModeButton.on("click", function(){
+        let o = $(profileThatTriggered);
+        switchOnHighlights(o)
+    });
 
     bsOffcanvas.show();
 
+}
+
+function switchOnHighlights(jqObjProfilePicOuter){
+
+    let councilorName = jqObjProfilePicOuter.data("councilor").name;
+
+    let jqCardList = $("#tracker-frame-2").find('.card');
+
+    jqCardList.each(function(i){
+
+        let currentCard = $(this);
+
+        let cardData = $(this).data("scorecard");
+
+        if ("for" in cardData){
+
+            $.each(cardData.for, function(i, v){
+                if (councilorName == v){
+
+                    if("pro_housing_scale__motion" in cardData && cardData.pro_housing_scale__motion == -1){
+                    currentCard.addClass("highlight-red");
+                    }
+                    else{
+                        currentCard.addClass("highlight-green");
+                    }
+                }
+            });
+
+        }
+
+        if ("against" in cardData){
+
+            $.each(cardData.against, function(i, v){
+                if (councilorName == v){
+
+                    if("pro_housing_scale__motion" in cardData && cardData.pro_housing_scale__motion == -1){
+                    currentCard.addClass("highlight-green");
+                    }
+                    else{
+                        currentCard.addClass("highlight-red");
+                    }
+                }
+            });
+
+        }
+    });
+
+    let clonePic = jqObjProfilePicOuter.clone();
+
+    $('#highlight-mode').prepend(clonePic);
+
+    $('#highlight-mode').removeClass("d-none");
+
+    $('#tracker-frame-3').addClass("d-none");
+
+    $('#highlight-mode').find('button').on("click", endHighlights);
+
+}
+
+function endHighlights(){
+    //remove class on all scorecards
+    let jqCardList = $("#tracker-frame-2").find('.card');
+    jqCardList.removeClass('highlight-green');
+    jqCardList.removeClass('highlight-red');
+
+    //hide highlight-mode box and remove profile pic from it
+    $('#highlight-mode').find('.profile-pic-outer').remove();
+    $('#highlight-mode').addClass("d-none");
+
+    //show council panel again.
+    $('#tracker-frame-3').removeClass("d-none");
 }

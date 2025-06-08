@@ -161,3 +161,39 @@ background-color: #DA806A;
 .side-panel-lateral-navs{
     font-size:small;
 }
+
+.highlight-red{
+    animation-name: highlight-red;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+.highlight-green{
+    animation-name: highlight-green;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes highlight-red{
+    from {box-shadow: none;}
+    to {box-shadow: 0px 0px 2px 2px pink,
+        inset 0px 0px 5px 5px pink;}
+}
+
+@keyframes highlight-green{
+    from {box-shadow: none;}
+    to {box-shadow: 0px 0px 2px 2px lightgreen,
+        inset 0px 0px 5px 5px lightgreen;}
+}
+
+#highlight-mode{
+    position:fixed;
+    bottom:1rem;
+    right:1rem;
+    border-radius:0.5rem;
+    box-shadow:0px 0px 2px black;
+    padding:1rem;
+    border:1px solid gray;
+    background-color:white;
+}

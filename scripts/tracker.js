@@ -1,4 +1,5 @@
 import { multipliers, AshevilleCouncilRoster, scoreCardCollection } from "./tracker-data.js";
+import { hideHorizontalScrollers, setHorizontalScrollers, setHorizScrollEventHandlers } from "./tracker_horizontal_scrollers.js";
 
 //**** GLOBALS *********/
 
@@ -32,6 +33,8 @@ const gradeColors = [
 $(function() {
 
     addBootstrapScripts();
+
+    setHorizScrollEventHandlers();
 
     reBoot();
 
@@ -75,6 +78,8 @@ function reBoot(){
     $('vote-list-outer').html("");
     $(".show-after-load").addClass("d-none");
 
+    hideHorizontalScrollers();
+
     endHighlights();
 
     setUpPlaceHolders();
@@ -96,6 +101,8 @@ function readyToShow(){
         $("#loading-info").addClass("d-none");
 
         $(".show-after-load").removeClass("d-none");
+
+        setHorizontalScrollers();
     }
     else{
         let elapsed = Date.now() - loadingStartTime;
@@ -718,6 +725,8 @@ function switchOnHighlights(jqObjProfilePicOuter){
 
     $('#tracker-frame-3').addClass("d-none");
 
+    hideHorizontalScrollers();
+
     $('#highlight-mode').find('button').on("click", endHighlights);
 
 }
@@ -734,4 +743,5 @@ function endHighlights(){
 
     //show council panel again.
     $('#tracker-frame-3').removeClass("d-none");
+    setHorizontalScrollers();
 }

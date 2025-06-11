@@ -53,6 +53,29 @@ tracker-frame{
     border-top:1px solid gray;
     overflow-y: hidden;
     overflow-x: scroll;
+    position:relative;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  #tracker-frame-3::-webkit-scrollbar {
+  display: none;
+}
+  .horiz-scroll-arrow{
+    position:absolute;
+    bottom:1.75rem;
+
+  }
+  .horiz-scroll-arrow svg{
+    box-shadow: 0 0 2px 2px white;
+    background-color:white;
+  }
+
+  #horizontal-scroll-arrow-right{
+    right:0.5rem;
+  }
+    #horizontal-scroll-arrow-left{
+    left:0.5rem;
   }
 
 #tracker-frame-2 .card, #tracker-frame-3 .profile-pic-outer{

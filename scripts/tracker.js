@@ -1,7 +1,10 @@
 import { multipliers, AshevilleCouncilRoster, scoreCardCollection } from "./tracker-data.js";
+
 import { hideHorizontalScrollers, setHorizontalScrollers, setHorizScrollEventHandlers } from "./tracker_horizontal_scrollers.js";
 
-//**** GLOBALS *********/
+import * as Helper from "./tracker_helpers.js";
+
+//**** VARIABLES *********/
 
 var loadingStartTime = Date.now();
 
@@ -42,32 +45,6 @@ $(function() {
 
 
 // *********FUNCTION DEFINITIONS****************** //
-
-/**
- * Given an object and a key, this function will check if the key is valid, if the key points to an array, and if that array has at least one value in it.
- * @param {object} objct - the parent object, which you already know exists.
- * @param {string} key - the attribute of the parent object, which may or may not exist but is expected to point to an array if it exists.
- */
-function isKeyAndArr(objct, key){
-
-    if(key in objct && Array.isArray(objct[key]) && objct[key].length > 0){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
-
-function isDateRecent(cutoffInYears, dateString){
-  let diff = new Date() - new Date(dateString);
-  let diffInYears = diff / (365.25 * 24 * 60 * 60 * 1000);
-  if (diffInYears > cutoffInYears){
-    return false;
-  }
-  else{
-    return true;
-  }
-}
 
 function reBoot(){
 
@@ -167,7 +144,7 @@ function assignScores(){
 
     $.each(scoreCardCollection, function(i, scorecard){
 
-        if (isDateRecent(settings.numYears, scorecard.date)){
+        if (Helper.isDateRecent(settings.numYears, scorecard.date)){
 
          assignScoresFromSingleScorecard(scorecard);
         }
@@ -185,12 +162,8 @@ function assignScores(){
 
     });
 
-    function scaleBetween(unscaledNum, minAllowed, maxAllowed, min, max) {
-        return (maxAllowed - minAllowed) * (unscaledNum - min) / (max - min) + minAllowed;
-      }
-
     $.each(AshevilleCouncilRoster, function(i, v){
-        v.scaledGrade = scaleBetween(v.grade, 0.0, 1.0, minGrade, maxGrade);
+        v.scaledGrade = Helper.scaleBetween(v.grade, 0.0, 1.0, minGrade, maxGrade);
 
         let roundedGradeInt = Math.round(v.scaledGrade * 10);
         v.color = gradeColors[roundedGradeInt];
@@ -353,13 +326,13 @@ function buildIconString(scorecard){
 
     let iconStr = "<p class='vote-icons'>"
 
-    if(isKeyAndArr(scorecard, "mediaCoverage")){
+    if(Helper.isKeyAndArr(scorecard, "mediaCoverage")){
         iconStr += `<img class="vote-icon-media" src="img/newspaper.svg"/>`;
     }
-    if(isKeyAndArr(scorecard, "afaLinks")){
+    if(Helper.isKeyAndArr(scorecard, "afaLinks")){
         iconStr += `<img class="vote-icon-afalink" src="img/afa-small.svg"/>`;
     }
-    if(isKeyAndArr(scorecard, "govLinks")){
+    if(Helper.isKeyAndArr(scorecard, "govLinks")){
         iconStr += `<img class="vote-icon-govt" src="img/dome-building.svg"/>`;
     }
     iconStr += `</p>`;
@@ -425,7 +398,7 @@ function populateVoteItemsContainer(){
 
     $.each(scoreCardCollection, function(i, v){
 
-        if (isDateRecent(settings.numYears, v.date)){
+        if (Helper.isDateRecent(settings.numYears, v.date)){
 
             let newCol = $('<div class="col"></div>');
 

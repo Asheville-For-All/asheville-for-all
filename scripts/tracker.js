@@ -13,9 +13,11 @@ const loadingTotalCount = scoreCardCollection.length + AshevilleCouncilRoster.le
 var loadingCount = 0;
 
 const defaultNumYears = 3;
+const defaultShowCouncilors = "no";
 
 var settings = {};
 settings.numYears = defaultNumYears;
+settings.showCouncilors = defaultShowCouncilors;
 
 const gradeColors = [
     [255, 0, 0],
@@ -126,10 +128,18 @@ function setUpPlaceHolders(){
 function setUpCouncilors(){
 
     $.each(AshevilleCouncilRoster, function(index, councilor){
+
         councilor.points = 0;
         councilor.totalEligiblePoints = 0;
         councilor.totalVoteInstancesInTerm = 0;
         councilor.totalVotesRecorded = 0;
+
+        if(checkIfCurrentCouncilor(councilor)){
+            councilor.current = true;
+        }
+        if (checkIfRelevantCouncilor(councilor)){
+            councilor.relevant = true;
+        }
 
         manageLoading();
     });
@@ -169,7 +179,7 @@ function assignScores(){
         v.color = gradeColors[roundedGradeInt];
     });
 
-    AshevilleCouncilRoster.sort((a, b) => b.grade - a.grade || b.totalEligiblePoints - a.totalEligiblePoints)
+    AshevilleCouncilRoster.sort((a, b) => b.grade - a.grade || b.totalEligiblePoints - a.totalEligiblePoints);
 
 }
 
@@ -296,29 +306,81 @@ function checkIfCurrentCouncilor(councilorData){
 
 }
 
+function checkIfRelevantCouncilor(councilorData){
+    //Just like the checkIfCurrentCouncilor function, but this one will return true if councilor served at all during the selected duration, even if not presently serving.
+
+    var relevant = false;
+
+    let now = new Date();
+    let durationStartDate = now.add(-parseInt(settings.numYears)).years();
+
+    $.each(councilorData.terms, function(i, v){
+        let start = new Date(v.start);
+        let end = new Date(v.end);
+
+        if (now > start && durationStartDate < end){
+            relevant = true;
+            return true;
+        }
+    });
+
+    return relevant;
+}
+
 function populateCouncilContainer(){
 
     $("council-list-outer").html("");
+
+    let relevantCouncilors = [];
 
     $.each(AshevilleCouncilRoster, function(i, v){
 
         if(checkIfCurrentCouncilor(v)){
 
-            let colorStr = "rgb(" + v.color[0] + ", " + v.color[1] + ", " + v.color[2] + ")"
-
-            let gradientStop1 = Math.min(Math.round(v.grade * 360), 355)
-            let gradientStop2 = Math.min(gradientStop1 + 5, 359)
-
-            let conicGradientStr = `${colorStr} 0deg, ${colorStr} ${gradientStop1}deg, snow ${gradientStop2}deg, snow 360deg`
-
-            let newElem = $(`<div class="profile-pic-outer" title= "${v.name}" style="background-image: conic-gradient(${conicGradientStr});"><div class="profile-pic-inner" style="background-image:url('${v.pic}')"></div></div>`);
-
-            $("council-list-outer").append(newElem);
-
-            newElem.data("councilor", v);
+            addCouncilorProfile(v);
+        }
+        else if (checkIfRelevantCouncilor(v)){
+            relevantCouncilors.push(v);
         }
 
     });
+
+    if (relevantCouncilors.length > 0 && settings.showCouncilors == "yes"){
+
+        let divider = $("<div id='divider'></div>");
+
+        $("council-list-outer").append(divider);
+
+        $.each(relevantCouncilors, function(i, v){
+
+            let profilePic = addCouncilorProfile(v);
+
+            let clockBadge = $("<img src='img/tracker-imgs/clock-rotate-left-solid.svg' class='clock-badge'></img>");
+
+            profilePic.append(clockBadge);
+        });
+    }
+
+}
+
+function addCouncilorProfile(councilorData){
+
+    let v = councilorData;
+
+    let colorStr = "rgb(" + v.color[0] + ", " + v.color[1] + ", " + v.color[2] + ")"
+
+    let gradientStop1 = Math.min(Math.round(v.grade * 360), 355)
+    let gradientStop2 = Math.min(gradientStop1 + 5, 359)
+
+    let conicGradientStr = `${colorStr} 0deg, ${colorStr} ${gradientStop1}deg, snow ${gradientStop2}deg, snow 360deg`
+
+    let newElem = $(`<div class="profile-pic-outer" title= "${v.name}" style="background-image: conic-gradient(${conicGradientStr});"><div class="profile-pic-inner" style="background-image:url('${v.pic}')"></div></div>`);
+
+    $("council-list-outer").append(newElem);
+
+    newElem.data("councilor", v);
+
+    return newElem;
 
 }
 
@@ -437,14 +499,27 @@ function addBootstrapScripts() {
     const myModalEl = document.getElementById('settings-modal');
     myModalEl.addEventListener('hidden.bs.modal', event => {
 
-        let newNumYears = $("input[name='btnradio']:checked").val();
+        let needReboot = false;
+
+        let newNumYears = $("input[name='btnradiotime']:checked").val();
+
+        let newShowCouncilors = $("input[name='btnradioshowallcouncilors']:checked").val();
 
         if (newNumYears != settings.numYears) {
             settings.numYears = newNumYears;
+            needReboot = true;
+        }
+
+        if (newShowCouncilors != settings.showCouncilors) {
+            settings.showCouncilors = newShowCouncilors;
+            needReboot = true;
+        }
+
+        if (needReboot == true){
             reBoot();
         }
 
-    })
+    });
 
     $("#tracker-frame-2").on("click", ".card", function(){
 

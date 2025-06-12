@@ -39,6 +39,15 @@ export function setHorizontalScrollers(){
         $('#horizontal-scroll-arrow-right').removeClass('d-none');
     }
 
+    //Set alignment:
+
+    if (scrollVal == 0 && totalMaxWidth < windowWidth){
+        $('council-list-outer').css('justify-content', 'center');
+    }
+    else{
+        $('council-list-outer').css('justify-content', 'flex-start');
+    }
+
 }
 
 export function setHorizScrollEventHandlers(){

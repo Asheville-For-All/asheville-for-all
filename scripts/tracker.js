@@ -526,8 +526,6 @@ function loadSidePanel(cardThatTriggered) {
     let data = $(cardThatTriggered).data("scorecard");
     let d = $(cardThatTriggered).find(".vote-date").html();
 
-    let t = `${data.name}<div class="vote-date">${d}</div>`
-
     let body = $(`<div></div>`);
 
     let voteVizCloneFor = $(cardThatTriggered).find(".vote-viz-for").clone();
@@ -570,7 +568,18 @@ function loadSidePanel(cardThatTriggered) {
     }
     body.append(lateralNavsOuter);
 
-    $("#voteSidePanel").find(".offcanvas-title").html(t);
+    let jqTitle = $("#voteSidePanel").find(".offcanvas-title");
+    let jqBadge = $("<div class='mb-2'></div>");
+    jqBadge.append($(cardThatTriggered).find('.badge').clone());
+    let jqName = $('<h2>' + data.name + '</h2>');
+    let jqVoteDate = $('<div class="vote-date"></div>');
+    jqVoteDate.append($(cardThatTriggered).find(".vote-date").html());
+
+    jqTitle.html("");
+    jqTitle.append(jqBadge);
+    jqTitle.append(jqName);
+    jqTitle.append(jqVoteDate);
+
     $("#voteSidePanel").find(".offcanvas-body").html(body);
 
     if(data.pro_housing_scale__proposal == -1){

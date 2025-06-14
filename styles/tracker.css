@@ -173,6 +173,10 @@ background-color: #DA806A;
     border:0px;
 }
 
+#voteItemRecordDetailOuter .header-row{
+    margin-top:1rem;
+}
+
 .voteLinkListImg{
     width:1.5rem;
     vertical-align: -0.125em;

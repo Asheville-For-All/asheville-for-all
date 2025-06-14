@@ -590,6 +590,28 @@ function createLinkLists(scorecard){
 
 }
 
+function populateVoteItemRecordDetailOuter(data){
+
+    let map = ["for", "against", "recused", "abstain", "absent"];
+
+    let outer = $("<div id='voteItemRecordDetailOuter' class='container container-40'></div>");
+
+    $.each(map, function(i, v){
+
+        if (v in data && data.for.length > 0){
+            outer.append(`<div class='row header-row'>${v.toUpperCase()}:</div>`);
+
+            $.each(data[v], function(j,w){
+                outer.append(`<div class='row'>${w}</div>`);
+            });
+    }
+
+    });
+
+    return outer;
+
+}
+
 function loadSidePanel(cardThatTriggered) {
 
     $("#voteSidePanel").find(".offcanvas-title").html(`<div class="spinner-border spinner-border-sm" role="status">
@@ -599,17 +621,15 @@ function loadSidePanel(cardThatTriggered) {
     let bsOffcanvas = new bootstrap.Offcanvas('#voteSidePanel');
 
     let data = $(cardThatTriggered).data("scorecard");
-    let d = $(cardThatTriggered).find(".vote-date").html();
 
     let body = $(`<div></div>`);
 
-    let voteVizCloneFor = $(cardThatTriggered).find(".vote-viz-for").clone();
-    let voteVizCloneAgainst = $(cardThatTriggered).find(".vote-viz-against").clone();
-
     body.append($(cardThatTriggered).find(".vote-outcome").clone());
 
-    body.append(voteVizCloneFor);
-    body.append(voteVizCloneAgainst);
+    let voteItemRecordDetailOuter = populateVoteItemRecordDetailOuter(data);
+
+    body.append(voteItemRecordDetailOuter);
+
     body.append(`${createLinkLists(data)}`);
 
     let lateralNavsOuter = $("<div class='side-panel-lateral-navs mt-4'></div>");

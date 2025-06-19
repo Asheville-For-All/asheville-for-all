@@ -2,6 +2,8 @@ import { multipliers, AshevilleCouncilRoster, scoreCardCollection } from "./trac
 
 import { hideHorizontalScrollers, setHorizontalScrollers, setHorizScrollEventHandlers } from "./tracker_horizontal_scrollers.js";
 
+import { ImageLoader } from "./tracker_imageLoader.js";
+
 import * as Helper from "./tracker_helpers.js";
 
 //**** VARIABLES *********/
@@ -37,9 +39,11 @@ const gradeColors = [
 
 $(function() {
 
+    globalThis.imgLoader = new ImageLoader();
+
     addBootstrapScripts();
 
-    setHorizScrollEventHandlers();
+    //setHorizScrollEventHandlers();
 
     reBoot();
 
@@ -76,7 +80,7 @@ function reBoot(){
 
 function readyToShow(){
 
-    if (Date.now() - loadingStartTime > 1000){
+    if (Date.now() - loadingStartTime > 1000 && globalThis.imgLoader.doneCount >= globalThis.imgLoader.images.length){
         $("#loading-info").addClass("d-none");
 
         $(".show-after-load").removeClass("d-none");

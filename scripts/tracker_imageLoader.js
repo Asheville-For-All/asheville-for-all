@@ -34,6 +34,10 @@ export class ImageLoader {
             }
             else{
                 newImage.addEventListener('load', function(){self.imageHasLoaded(self)});
+                newImage.addEventListener('error', function(){
+                    self.imageHasLoaded(self);
+                    console.log("Error loading image: " + newImage.src);
+                });
             }
 
         });

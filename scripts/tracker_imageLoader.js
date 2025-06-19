@@ -45,6 +45,5 @@ export class ImageLoader {
 
     imageHasLoaded(self){
         self.doneCount = self.doneCount + 1;
-        console.log("Logged a completion. Current done count is: " + self.doneCount);
     }
 }

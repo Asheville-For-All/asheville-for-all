@@ -1,0 +1,92 @@
+[
+    {
+        "name": "Maggie Ullman",
+        "pic": "img/tracker-imgs/mu.jpg",
+        "terms": [
+            {
+                "start": "2022-12-31",
+                "end": "2026-12-31"
+            }
+        ]
+    },
+    {
+        "name": "Sage Turner",
+        "pic": "img/tracker-imgs/st.jpg",
+        "terms": [
+            {
+                "start": "2020-12-31",
+                "end": "2028-12-31"
+            }
+        ]
+    },
+    {
+        "name": "S. Antanette Mosley",
+        "pic": "img/tracker-imgs/sam.jpg",
+        "terms": [
+            {
+                "start": "2020-09-01",
+                "end": "2026-12-31"
+            }
+        ]
+    },
+    {
+        "name": "Bo Hess",
+        "pic": "img/tracker-imgs/bh.jpg",
+        "terms": [
+            {
+                "start": "2024-12-31",
+                "end": "2028-12-31"
+            }
+        ]
+    },
+    {
+        "name": "Esther E. Manheimer",
+        "pic": "img/tracker-imgs/eem.jpg",
+        "terms": [
+            {
+                "start": "2009-12-31",
+                "end": "2026-12-31"
+            }
+        ]
+    },
+    {
+        "name": "Kim Roney",
+        "pic": "img/tracker-imgs/kr.jpg",
+        "terms": [
+            {
+                "start": "2020-12-31",
+                "end": "2028-12-31"
+            }
+        ]
+    },
+    {
+        "name": "Sheneika Smith",
+        "pic": "img/tracker-imgs/ss.jpg",
+        "terms": [
+            {
+                "start": "2017-12-31",
+                "end": "2026-12-31"
+            }
+        ]
+    },
+    {
+        "name": "Sandra Kilgore",
+        "pic": "img/tracker-imgs/sk.jpg",
+        "terms": [
+            {
+                "start": "2020-12-31",
+                "end": "2024-12-31"
+            }
+        ]
+    },
+    {
+        "name": "Gwen Wisler",
+        "pic": "img/tracker-imgs/gw.jpeg",
+        "terms": [
+            {
+                "start": "2013-12-31",
+                "end": "2022-12-31"
+            }
+        ]
+    }
+]

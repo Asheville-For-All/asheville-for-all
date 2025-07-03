@@ -1,4 +1,7 @@
-import { multipliers, AshevilleCouncilRoster, scoreCardCollection } from "./tracker-data.js";
+import { scoreCardCollection } from "./tracker-data.js";
+
+import multipliers from '../json/multipliers.json' with { type: 'json' };
+import AshevilleCouncilRoster from '../json/AshevilleCouncilRoster.json' with { type: 'json' };
 
 import { hideHorizontalScrollers, setHorizontalScrollers, setHorizScrollEventHandlers } from "./tracker_horizontal_scrollers.js";
 

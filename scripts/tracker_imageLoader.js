@@ -19,7 +19,7 @@ export class ImageLoader {
             "/img/newspaper.svg",
             "/img/dome-building.svg",
             "/img/afa-small.svg",
-            "/img/asterisk.svg"
+            "/img/tracker-imgs/asterisk.svg"
         ];
 
         var self = this;

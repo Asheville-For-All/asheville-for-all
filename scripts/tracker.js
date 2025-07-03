@@ -38,6 +38,8 @@ const gradeColors = [
     [0, 255, 0]
 ]
 
+const minimumVotesToShow = 3;
+
 // ******* Initiating Function ************//
 
 $(function() {
@@ -140,13 +142,7 @@ function setUpCouncilors(){
         councilor.totalEligiblePoints = 0;
         councilor.totalVoteInstancesInTerm = 0;
         councilor.totalVotesRecorded = 0;
-
-        if(checkIfCurrentCouncilor(councilor)){
-            councilor.current = true;
-        }
-        if (checkIfRelevantCouncilor(councilor)){
-            councilor.relevant = true;
-        }
+        councilor.notEnoughData = false;
 
         manageLoading();
     });
@@ -173,17 +169,29 @@ function assignScores(){
 
     $.each(AshevilleCouncilRoster, function(i, v){
 
-        v.grade = v.points / v.totalEligiblePoints
-        if (v.grade < minGrade){minGrade = v.grade};
-        if (v.grade > maxGrade){maxGrade = v.grade};
+        if (v.totalEligiblePoints < minimumVotesToShow){
+            v.notEnoughData = true;
+            v.grade = -1;
+        }
+        else{
+            v.grade = v.points / v.totalEligiblePoints
+            if (v.grade < minGrade){minGrade = v.grade};
+            if (v.grade > maxGrade){maxGrade = v.grade};
+        }
 
     });
 
     $.each(AshevilleCouncilRoster, function(i, v){
+
+        if (v.notEnoughData){
+            v.scaledGrade = -1;
+        }
+        else{
         v.scaledGrade = Helper.scaleBetween(v.grade, 0.0, 1.0, minGrade, maxGrade);
 
         let roundedGradeInt = Math.round(v.scaledGrade * 10);
         v.color = gradeColors[roundedGradeInt];
+        }
     });
 
     AshevilleCouncilRoster.sort((a, b) => b.grade - a.grade || b.totalEligiblePoints - a.totalEligiblePoints);
@@ -344,7 +352,12 @@ function populateCouncilContainer(){
 
         if(checkIfCurrentCouncilor(v)){
 
-            addCouncilorProfile(v);
+            let profilePic = addCouncilorProfile(v);
+
+            if (v.notEnoughData){
+                let asteriskBadge = $("<img src='img/tracker-imgs/asterisk.svg' class='asterisk-badge'></img>");
+                profilePic.append(asteriskBadge);
+            }
         }
         else if (checkIfRelevantCouncilor(v)){
             relevantCouncilors.push(v);
@@ -365,6 +378,12 @@ function populateCouncilContainer(){
             let clockBadge = $("<img src='img/tracker-imgs/clock-rotate-left-solid.svg' class='clock-badge'></img>");
 
             profilePic.append(clockBadge);
+
+            if(v.notEnoughData){
+                let asteriskBadge = $("<img src='img/tracker-imgs/asterisk.svg' class='asterisk-badge'></img>");
+                profilePic.append(asteriskBadge);
+            }
+
         });
     }
 
@@ -374,20 +393,34 @@ function addCouncilorProfile(councilorData){
 
     let v = councilorData;
 
-    let colorStr = "rgb(" + v.color[0] + ", " + v.color[1] + ", " + v.color[2] + ")"
+    if(v.notEnoughData == false){
 
-    let gradientStop1 = Math.min(Math.round(v.grade * 360), 355)
-    let gradientStop2 = Math.min(gradientStop1 + 5, 359)
+        let colorStr = "rgb(" + v.color[0] + ", " + v.color[1] + ", " + v.color[2] + ")"
 
-    let conicGradientStr = `${colorStr} 0deg, ${colorStr} ${gradientStop1}deg, snow ${gradientStop2}deg, snow 360deg`
+        let gradientStop1 = Math.min(Math.round(v.grade * 360), 355)
+        let gradientStop2 = Math.min(gradientStop1 + 5, 359)
 
-    let newElem = $(`<div class="profile-pic-outer" title= "${v.name}" style="background-image: conic-gradient(${conicGradientStr});"><div class="profile-pic-inner" style="background-image:url('${v.pic}')"></div></div>`);
+        let conicGradientStr = `${colorStr} 0deg, ${colorStr} ${gradientStop1}deg, snow ${gradientStop2}deg, snow 360deg`
 
-    $("council-list-outer").append(newElem);
+        let newElem = $(`<div class="profile-pic-outer" title= "${v.name}" style="background-image: conic-gradient(${conicGradientStr});"><div class="profile-pic-inner" style="background-image:url('${v.pic}')"></div></div>`);
 
-    newElem.data("councilor", v);
+        $("council-list-outer").append(newElem);
 
-    return newElem;
+        newElem.data("councilor", v);
+
+        return newElem;
+
+    }
+    else{
+        let newElem = $(`<div class="profile-pic-outer" title= "${v.name}" style="background-color:gray;"><div class="profile-pic-inner" style="background-image:url('${v.pic}')"></div></div>`);
+
+        $("council-list-outer").append(newElem);
+
+        newElem.data("councilor", v);
+
+        return newElem;
+
+    }
 
 }
 
@@ -728,7 +761,19 @@ function loadCouncilPanel(profileThatTriggered) {
         termText += `<br/>${v.start.slice(0, 4)} - ${v.end.slice(0, 4)}`
     });
 
-    let rightColumnText = `<p>${data.name}${termText}</p><p>Total housing-related votes recorded in the selected duration: ${data.totalVotesRecorded}`;
+      let rightColumnText = "";
+
+    if (data.notEnoughData == false){
+        
+        rightColumnText = `<p>${data.name}${termText}</p><p>Total housing-related votes recorded in the selected duration: ${data.totalVotesRecorded}</p>`;
+
+    }
+    else{
+        
+        rightColumnText = `<p>${data.name}${termText}</p><p>* Not enough data available for this profile for the selected duration.</p>`;
+    }
+
+   
 
     let highlightModeButton = $('<button data-bs-toggle="offcanvas" href="#councilBottomPanel" class="btn btn-outline-secondary">Enter Highlight Mode</button>');
 

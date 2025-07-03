@@ -1,0 +1,49 @@
+@font-face {
+  font-family: Brandon;
+  src: url(../fonts/BrandonGrotesque-Regular.ttf);
+}
+
+@font-face {
+  font-family: Brandon;
+  src: url(../fonts/BrandonGrotesque-RegularItalic.ttf);
+  font-style:italic;
+}
+
+@font-face {
+  font-family: Brandon;
+  src: url(../fonts/BrandonGrotesque-Bold.ttf);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Brandon;
+  src: url(../fonts/BrandonGrotesque-BoldItalic.ttf);
+  font-weight: bold;
+  font-style:italic;
+}
+
+@font-face {
+  font-family: Brandon;
+  src: url(../fonts/BrandonGrotesque-ThinItalic.ttf);
+  font-weight: 100;
+  font-style:italic;
+}
+
+@font-face {
+  font-family: Brandon;
+  src: url(../fonts/BrandonGrotesque-Thin.ttf);
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: Brandon;
+  src: url(../fonts/BrandonGrotesque-BlackItalic.ttf);
+  font-weight: 900;
+  font-style:italic;
+}
+
+@font-face {
+  font-family: Brandon;
+  src: url(../fonts/BrandonGrotesque-Black.ttf);
+  font-weight: 900;
+}

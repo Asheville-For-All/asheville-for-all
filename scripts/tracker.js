@@ -48,7 +48,7 @@ $(function() {
 
     addBootstrapScripts();
 
-    //setHorizScrollEventHandlers();
+    setHorizScrollEventHandlers();
 
     reBoot();
 

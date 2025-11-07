@@ -1,5 +1,17 @@
-a, h1 {
-    color: #298C6C;
+h1,h2, h3, h4{
+    font-family: Brandon, system-ui, -apple-system,
+      'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+a{
+  color: #298C6C;
+}
+h1 {
+  color: #298C6C;
+  font-weight:900;
+}
+h2{
+  font-weight:bold;
 }
 h3{
   color: #DA806A;

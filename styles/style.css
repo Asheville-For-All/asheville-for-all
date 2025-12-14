@@ -266,3 +266,10 @@ margin-bottom:-0.5rem;
 .bad-proposal{
   color:rgb(119, 0, 0);
 }
+
+.youtube-outer{
+  margin-bottom:1rem;
+  margin-top:1rem;
+  margin-left:auto;
+  margin-right:auto;
+}

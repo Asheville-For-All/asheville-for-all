@@ -26,6 +26,10 @@ a:hover{
     color: #DA806A;
 }
 
+main li{
+  padding-bottom:0.75em;
+}
+
 header{
     margin-top:20px;
     padding-top:10px;

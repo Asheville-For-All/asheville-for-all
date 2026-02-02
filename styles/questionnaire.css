@@ -1,0 +1,23 @@
+.response{
+    padding:1em;
+    margin-top:1em;
+    margin-bottom:1em;
+}
+.response:nth-child(odd){
+    background-color: #def5ee;
+}
+.response:nth-child(even){
+    background-color: rgb(250, 238, 235);
+}
+
+.response p:first-child{
+    font-size: smaller;
+    font-weight: bold;
+}
+
+.question{
+    margin-top:1em;
+    margin-bottom:1em;
+    padding-top:1em;
+    padding-bottom:1em;
+}

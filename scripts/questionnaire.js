@@ -1,15 +1,22 @@
 window.onload = function() {
-    filterResponses();
+
+    checkParams();
 };
 
-function filterResponses(){
+function checkParams(){
 
     const urlParams = new URLSearchParams(window.location.search);
     const myParam = urlParams.get('name');
 
     if (myParam === null || myParam == ""){
         return;
+    }else{
+        filterResponses(myParam)
     }
+
+}
+
+function filterResponses(myParam){
 
     const responseDivs = document.querySelectorAll("div .response");
 

@@ -66,6 +66,7 @@ February 2, 2026
 <div id="questionnaire-info">
 <p>The responses below were collected in January 2026, and are presented in the order that they were received.</p>
 </div>
+<div id="filter-info"></div>
 <div class="question">
 <h2>Past Support for Housing</h2>
 <p><strong><em>Are there pro-housing policies or specific housing developments you have supported in the past that you would like to highlight?</em></strong></p>
@@ -528,6 +529,25 @@ February 2, 2026
 <p>Permitting Reforms: We need streamlined development review timelines and reduced administrative barriers, especially for small developers and ADUs. This requires investing in staff capacity and breaking our culture of delay with clear timelines and accountability. I support form-based codes and pre-approved housing designs to accelerate approvals.</p>
 <p>Integrated Approach: Housing can&rsquo;t be solved in isolation. We must connect housing to transit, jobs, and services while pairing anti-displacement protections with supply increases. This is a regional challenge requiring regional coordination. Post-Helene, we have an opportunity to integrate climate resilience—building where infrastructure exists reduces costs and protects natural areas.</p>
 <p>I&rsquo;m committed to action over process and delivering results that expand housing access for all residents during this critical moment. </p>
+</div>
+</div>
+<div aria-hidden="true" aria-labelledby="filter-modal-label" class="modal fade" id="filter-modal" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h1 class="modal-title fs-5" id="filter-modal-label">Filter Responses</h1>
+<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body" id="filter-modal-body">
+<select class="custom-select" id="filter-select">
+  <option selected="selected" value="all">Show All Responses</option>
+</select>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+<button type="button" id="filter-go-button" class="btn btn-primary">Go</button>
+</div>
+</div>
 </div>
 </div>
 </main>

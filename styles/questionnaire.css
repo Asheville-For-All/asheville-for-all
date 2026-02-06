@@ -21,3 +21,18 @@
     padding-top:1em;
     padding-bottom:1em;
 }
+
+#filter-button{
+  position: fixed;
+  bottom:1rem;
+  left:1rem;
+  border-radius: 0.25em;
+  border: 1px gray solid;
+  background-color: white;
+}
+
+@media screen and (min-width: 65rem) {
+#filter-button{
+  left: 20%;
+}
+}

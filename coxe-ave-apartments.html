@@ -97,7 +97,7 @@ Asheville For All</p>
 
 <link href='https://actionnetwork.org/css/style-embed-whitelabel-v3.css' rel='stylesheet' type='text/css' /><script src='https://actionnetwork.org/widgets/v6/form/downtown-asheville-is-for-all-kinds-of-working-people-and-families?format=js&source=widget&style=full'></script><div id='can-form-area-downtown-asheville-is-for-all-kinds-of-working-people-and-families' style='width: 100%'></div>
 </div>
-<div id="scrollDownToAddName" style="position:fixed;left:1em;bottom:-20em;border-radius:0.5em 0.5em 0em 0em;padding:1em;color: #298C6C;background-color:white;border:1px black solid;transition: bottom 0.4s">
+<div id="scrollDownToAddName" style="position:fixed;left:1em;bottom:-20em;border-radius:0.5em;padding:1em;color: #298C6C;background-color:white;border:1px black solid;transition: bottom 0.4s">
 
 <span id="num-sigs-collected">-</span> signatures collected<br/>Scroll to add your name ⬇️
 
@@ -118,7 +118,7 @@ function setScrollMessage(){
     }
     else if (document.scrollTop < actNetPosition - viewportHeight || document.documentElement.scrollTop < actNetPosition-viewportHeight)
     {
-        popUp.style.bottom = "-1px";
+        popUp.style.bottom = "1rem";
     }
     else{
         popUp.style.bottom = "-" + popUpHeight.toString() + "px";

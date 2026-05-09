@@ -277,3 +277,13 @@ margin-bottom:-0.5rem;
   margin-left:auto;
   margin-right:auto;
 }
+
+.gauge-low{
+  filter: invert(18%) sepia(49%) saturate(7269%) hue-rotate(355deg);
+}
+.gauge-medium{
+  filter: invert(47%) sepia(79%) saturate(16%) hue-rotate(6deg);
+}
+.gauge-high{
+  filter: invert(17%) sepia(98%) saturate(5152%) hue-rotate(116deg);
+}

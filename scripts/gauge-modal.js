@@ -4,15 +4,31 @@ let content = `
     <div class="modal-content">
       <div class="modal-body">
       <h2>What does this icon mean?</h2>
+      <hr/>
         <div class="clearfix">
-          <img class="me-3 mb-3 gauge-high float-start" style="height:2rem;" src="img/tracker-imgs/gauge-high.svg"/><p>We think that this agenda item is in support of or has the potential to support pro-housing goals.</p>
-        </div>
-        <div class="clearfix mt-3">
-          <img class="gauge-low float-start me-3 mb-3" style="height:2rem;" src="img/tracker-imgs/gauge-low.svg"/><p>We think that this agenda item is in opposition or in conflict with pro-housing goals or policies.</p>
-        </div>
-        <div class="clearfix">
-          <img class="gauge-medium me-3 mb-3 float-start" style="height:2rem;" src="img/tracker-imgs/gauge-medium.svg"/><p>This may signal that we are or were ambivalent, confused, or on-the-fence about the agenda item; that there were complicating details associated with the item; or that we did not have enough information or time to make a call.</p>
+
+          <div style="float:left; margin-right:1rem;"><img src="img/tracker-imgs/file-lines-solid-full.svg" class="gauge-low"/>
+          <img class="gauge-medium" src="img/tracker-imgs/file-lines-solid-full.svg"/>
+          <img class="gauge-high" src="img/tracker-imgs/file-lines-solid-full.svg"/></div>
+
+          <p>The paper icon illustrates Asheville For All's position on <b>the proposed agenda item</b>, at the time of the hearing.</p>
+          <p> The color reflects whether the agenda item was pro-housing, anti-housing, or something that Asheville For All was unable to determine by the time of the hearing.</p>
+          
       </div>
+      <hr/>
+
+      <div class="clearfix">
+
+          <div style="float:left; margin-right:1rem;"><img class="gauge-low" src="img/tracker-imgs/gavel-solid-full.svg"/>
+          <img class="gauge-medium" src="img/tracker-imgs/gavel-solid-full.svg"/>
+          <img class="gauge-high" src="img/tracker-imgs/gavel-solid-full.svg"/></div>
+
+          <p>The gavel icon illustrates Asheville For All's assessment of <b>the final decision, or <i>motion</i></b> associated with the agenda item.</p>
+          <p> The color reflects whether the outcome was pro-housing, anti-housing, or something more complicated and/or ambiguous.</p>
+          
+      </div>
+
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>

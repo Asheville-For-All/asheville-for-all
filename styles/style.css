@@ -280,10 +280,20 @@ margin-bottom:-0.5rem;
 
 .gauge-low{
   filter: invert(18%) sepia(49%) saturate(7269%) hue-rotate(355deg);
+  height: 1.2rem;
 }
 .gauge-medium{
   filter: invert(47%) sepia(79%) saturate(16%) hue-rotate(6deg);
+  height: 1.2rem;
 }
 .gauge-high{
   filter: invert(17%) sepia(98%) saturate(5152%) hue-rotate(116deg);
+  height: 1.2rem;
 }
+.gauge-holder{
+    cursor: pointer;
+}
+.gauge-holder > div:first-child{
+  margin-bottom:0.25rem;
+}
+

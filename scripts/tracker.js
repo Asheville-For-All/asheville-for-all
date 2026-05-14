@@ -517,7 +517,9 @@ function populateVoteItemsContainer(){
                 badProposal = " bad-proposal"
             }
 
-            let newCardHTML = `<div class="card h-100"><div class="card-body">${badgeString}<h3 class="card-title ${badProposal}">${v.name}</h3><p class="vote-date">${d}</p><p class="vote-outcome">Outcome: ${v.outcome}</p> ${buildVoteVizBox(v)}</div><div class="card-footer">${iconString}</div></div>`;
+            let gaugeString = getGaugeString(v.pro_housing_scale__proposal, v.pro_housing_scale__motion);
+
+            let newCardHTML = `<div class="card h-100"><div class="card-body">${badgeString}${gaugeString}<h3 class="card-title ${badProposal}">${v.name}</h3><p class="vote-date">${d}</p><p class="vote-outcome">Outcome: ${v.outcome}</p> ${buildVoteVizBox(v)}</div><div class="card-footer">${iconString}</div></div>`;
 
             let newCard = $(newCardHTML);
 
@@ -532,6 +534,13 @@ function populateVoteItemsContainer(){
 
     $("vote-list-outer").append("<div class='container-40 container mt-4'><p>Visit the <i>settings</i> menu to adjust the number of years that are displayed.</p></div>");
 
+}
+
+function getGaugeString(proposalScale, motionScale){
+
+    let gaugeClasses = ["gauge-low", "gauge-medium", "gauge-high"];
+
+    return `<div class="gauge-icon-outer" data-bs-toggle='modal' data-bs-target='#gaugeModal' style='float:right;border-radius:0.2rem;border:0.5px solid gray; background:white;padding-left:0.25rem;padding-right:0.25rem;padding-bottom:0.25rem;'><img class='gauge-icon ${gaugeClasses[proposalScale + 1]}' src='img/tracker-imgs/file-lines-solid-full.svg'/><img class='gauge-icon ${gaugeClasses[motionScale + 1]}' src='img/tracker-imgs/gavel-solid-full.svg'/></div>`;
 }
 
 function addBootstrapScripts() {
@@ -561,9 +570,16 @@ function addBootstrapScripts() {
 
     });
 
-    $("#tracker-frame-2").on("click", ".card", function(){
+    $("#tracker-frame-2").on("click", ".card", function(event){
 
-       loadSidePanel(this);
+      let t = event.target; //#TODO - this is the innermost element that was clicked. I should check if it's in the icon box with the scale icons...
+
+      if(t.classList.contains('gauge-icon') || t.classList.contains('gauge-icon-outer')){
+
+      }
+      else{
+      loadSidePanel(this);
+      }
     });
 
     $('#tracker-frame-3').on("click", ".profile-pic-outer", function(){

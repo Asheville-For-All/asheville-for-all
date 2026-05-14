@@ -12,7 +12,7 @@ let content = `
           <img class="gauge-high" src="img/tracker-imgs/file-lines-solid-full.svg"/></div>
 
           <p>The paper icon illustrates Asheville For All's position on <b>the proposed agenda item</b>, at the time of the hearing.</p>
-          <p> The color reflects whether the agenda item was pro-housing, anti-housing, or something that Asheville For All was unable to determine by the time of the hearing.</p>
+          <p> The color reflects whether the agenda item was generally pro-housing, anti-housing, or something that Asheville For All was unable to determine by the time of the hearing.</p>
           
       </div>
       <hr/>

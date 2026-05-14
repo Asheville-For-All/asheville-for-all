@@ -19,7 +19,9 @@ export class ImageLoader {
             "/img/newspaper.svg",
             "/img/dome-building.svg",
             "/img/afa-small.svg",
-            "/img/tracker-imgs/asterisk.svg"
+            "/img/tracker-imgs/asterisk.svg",
+            "/img/tracker-imgs/file-lines-solid-full.svg",
+            "/img/tracker-imgs/gavel-solid-full.svg"
         ];
 
         var self = this;

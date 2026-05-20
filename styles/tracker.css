@@ -157,6 +157,9 @@ background-position: 50% 50%;
   .vote-viz-red{
     border: red solid 0.5px;
   }
+    .vote-viz-neutral{
+    border: gray solid 0.5px;
+  }
 
 #loading-bar-one{
 background-color: #DA806A;

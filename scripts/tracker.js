@@ -456,10 +456,13 @@ function buildVoteVizBox(scorecard){
         });
     }
 
-    let forStrOuter = `<div class="vote-viz vote-viz-for vote-viz-green">${forStr}</div>`
+    let forStrOuter = `<div class="vote-viz vote-viz-for vote-viz-neutral">${forStr}</div>`
 
     if (scorecard.pro_housing_scale__motion == -1){
         forStrOuter = `<div class="vote-viz vote-viz-for vote-viz-red">${forStr}</div>`
+    }
+    if (scorecard.pro_housing_scale__motion == 1){
+        forStrOuter = `<div class="vote-viz vote-viz-for vote-viz-green">${forStr}</div>`
     }
 
     let againstStr = `<div class='vote-viz-label'>AGAINST:&nbsp;</div>`
@@ -475,10 +478,13 @@ function buildVoteVizBox(scorecard){
 
     }
 
-    let againstStrOuter = `<div class="vote-viz vote-viz-against vote-viz-red">${againstStr}</div>`
+    let againstStrOuter = `<div class="vote-viz vote-viz-against vote-viz-neutral">${againstStr}</div>`
 
     if (scorecard.pro_housing_scale__motion == -1){
         againstStrOuter = `<div class="vote-viz vote-viz-against vote-viz-green">${againstStr}</div>`
+    }
+    if (scorecard.pro_housing_scale__motion == 1){
+        againstStrOuter = `<div class="vote-viz vote-viz-against vote-viz-red">${againstStr}</div>`
     }
 
     let newStr = forStrOuter

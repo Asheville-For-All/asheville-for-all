@@ -686,7 +686,7 @@ function loadSidePanel(cardThatTriggered) {
 
     let body = $(`<div></div>`);
 
-    body.append($(cardThatTriggered).find(".vote-outcome").clone());
+    body.append($(cardThatTriggered).find(".vote-outcome").clone()); 
 
     let voteItemRecordDetailOuter = populateVoteItemRecordDetailOuter(data);
 
@@ -726,14 +726,19 @@ function loadSidePanel(cardThatTriggered) {
     body.append(lateralNavsOuter);
 
     let jqTitle = $("#voteSidePanel").find(".offcanvas-title");
-    let jqBadge = $("<div class='mb-2'></div>");
+    let jqBadge = $("<div class='mb-2' style='float:left;'></div>");
     jqBadge.append($(cardThatTriggered).find('.badge').clone());
-    let jqName = $('<h2>' + data.name + '</h2>');
+    let jqName = $('<h2 style="clear:both;">' + data.name + '</h2>');
     let jqVoteDate = $('<div class="vote-date"></div>');
     jqVoteDate.append($(cardThatTriggered).find(".vote-date").html());
 
-    jqTitle.html("");
-    jqTitle.append(jqBadge);
+    jqTitle.html(""); //#TODO add the gauge icons here
+
+    let infoBar = $("<div></div>");
+    infoBar.append(jqBadge);
+    infoBar.append(getGaugeString(data.pro_housing_scale__proposal, data.pro_housing_scale__motion));
+
+    jqTitle.append(infoBar);
     jqTitle.append(jqName);
     jqTitle.append(jqVoteDate);
 

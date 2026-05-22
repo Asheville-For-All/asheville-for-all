@@ -664,8 +664,9 @@ function populateVoteItemRecordDetailOuter(data){
             outer.append(`<div class='row header-row'>${v.toUpperCase()}:</div>`);
 
             $.each(data[v], function(j,w){
-                outer.append(`<div class='row'>${w}</div>`);
+                outer.append(`<div class='row mb-1' style='flex-wrap:nowrap;'><div style="height:2.5rem;max-width:2.5rem;background-size: cover;background-position: 50% 50%;aspect-ratio: 1 / 1; border-radius:0.25rem;background-image: url('${retrieveCouncilorFromName(w).pic}')"></div><div>${w}</div>`);
             });
+
     }
 
     });

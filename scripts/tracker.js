@@ -726,7 +726,7 @@ function loadSidePanel(cardThatTriggered) {
     body.append(lateralNavsOuter);
 
     let jqTitle = $("#voteSidePanel").find(".offcanvas-title");
-    let jqBadge = $("<div class='mb-2' style='vertical-align:middle;'></div>");
+    let jqBadge = $("<div style='vertical-align:middle;'></div>");
     jqBadge.append($(cardThatTriggered).find('.badge').clone());
     let jqName = $('<h2 style="clear:both;">' + data.name + '</h2>');
     let jqVoteDate = $('<div class="vote-date"></div>');
@@ -734,7 +734,7 @@ function loadSidePanel(cardThatTriggered) {
 
     jqTitle.html("");
 
-    let infoBar = $("<div class='sidePaneInfoBar'></div>");
+    let infoBar = $("<div class='sidePaneInfoBar mb-2 mt-2'></div>");
     infoBar.append(jqBadge);
     infoBar.append(getGaugeString(data.pro_housing_scale__proposal, data.pro_housing_scale__motion));
 
@@ -749,6 +749,8 @@ function loadSidePanel(cardThatTriggered) {
     }else{
         $("#voteSidePanel").find(".offcanvas-title").removeClass("bad-proposal");
     }
+
+    jqBadge.css("vertical-align", "center");
 
     bsOffcanvas.show();
 }

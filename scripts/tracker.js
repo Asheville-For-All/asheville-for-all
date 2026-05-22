@@ -578,7 +578,7 @@ function addBootstrapScripts() {
 
     $("#tracker-frame-2").on("click", ".card", function(event){
 
-      let t = event.target; //#TODO - this is the innermost element that was clicked. I should check if it's in the icon box with the scale icons...
+      let t = event.target;
 
       if(t.classList.contains('gauge-icon') || t.classList.contains('gauge-icon-outer')){
 
@@ -726,15 +726,15 @@ function loadSidePanel(cardThatTriggered) {
     body.append(lateralNavsOuter);
 
     let jqTitle = $("#voteSidePanel").find(".offcanvas-title");
-    let jqBadge = $("<div class='mb-2' style='float:left;'></div>");
+    let jqBadge = $("<div class='mb-2' style='vertical-align:middle;'></div>");
     jqBadge.append($(cardThatTriggered).find('.badge').clone());
     let jqName = $('<h2 style="clear:both;">' + data.name + '</h2>');
     let jqVoteDate = $('<div class="vote-date"></div>');
     jqVoteDate.append($(cardThatTriggered).find(".vote-date").html());
 
-    jqTitle.html(""); //#TODO add the gauge icons here
+    jqTitle.html("");
 
-    let infoBar = $("<div></div>");
+    let infoBar = $("<div class='sidePaneInfoBar'></div>");
     infoBar.append(jqBadge);
     infoBar.append(getGaugeString(data.pro_housing_scale__proposal, data.pro_housing_scale__motion));
 

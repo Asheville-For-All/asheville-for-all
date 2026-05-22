@@ -161,6 +161,16 @@ background-position: 50% 50%;
     border: gray solid 0.5px;
   }
 
+.sidePaneInfoBar{
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+}
+.sidePaneInfoBar > *{
+    vertical-align: middle !important;
+    align-self: center !important;
+}
+
 #loading-bar-one{
 background-color: #DA806A;
 }

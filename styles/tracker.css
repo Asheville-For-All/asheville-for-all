@@ -270,3 +270,16 @@ background-color: #DA806A;
     bottom:2.7rem;
     right:-0.45rem;
 }
+
+.gauge-icon{
+    display:inline-block;
+    background-position: 50% 50%;
+}
+
+.gauge-icon-outer{
+    vertical-align:center;
+    float:right;
+    border-radius:0.2rem;
+    border:0.5px solid gray;
+    background:white;
+}

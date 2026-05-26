@@ -7,9 +7,11 @@ let content = `
       <hr/>
         <div class="clearfix">
 
-          <div style="float:left; margin-right:1rem;"><img src="img/tracker-imgs/file-lines-solid-full.svg" class="gauge-low"/>
-          <img class="gauge-medium" src="img/tracker-imgs/file-lines-solid-full.svg"/>
-          <img class="gauge-high" src="img/tracker-imgs/file-lines-solid-full.svg"/></div>
+          <div style="float:left; margin-right:1rem;">
+          <div style="mask: url(img/tracker-imgs/file-lines-solid-full.svg);display:inline-block;" class="gauge-low"></div>
+          <div class="gauge-medium" style="mask: url(img/tracker-imgs/file-lines-solid-full.svg);display:inline-block;"></div>
+          <div class="gauge-high" style="mask: url(img/tracker-imgs/file-lines-solid-full.svg);display:inline-block;"></div>
+          </div>
 
           <p>The paper icon illustrates Asheville For All's position on <b>the proposed agenda item</b>, at the time of the hearing.</p>
           <p> The color reflects whether the agenda item was generally pro-housing, anti-housing, or something that Asheville For All was unable to determine by the time of the hearing.</p>
@@ -19,9 +21,11 @@ let content = `
 
       <div class="clearfix">
 
-          <div style="float:left; margin-right:1rem;"><img class="gauge-low" src="img/tracker-imgs/gavel-solid-full.svg"/>
-          <img class="gauge-medium" src="img/tracker-imgs/gavel-solid-full.svg"/>
-          <img class="gauge-high" src="img/tracker-imgs/gavel-solid-full.svg"/></div>
+          <div style="float:left; margin-right:1rem;">
+          <div style="mask: url(img/tracker-imgs/gavel-solid-full.svg);display:inline-block;" class="gauge-low"></div>
+          <div class="gauge-medium" style="mask: url(img/tracker-imgs/gavel-solid-full.svg);display:inline-block;"></div>
+          <div class="gauge-high" style="mask: url(img/tracker-imgs/gavel-solid-full.svg);display:inline-block;"></div>
+          </div>
 
           <p>The gavel icon illustrates Asheville For All's assessment of <b>the final decision, or <i>motion</i></b> associated with the agenda item.</p>
           <p> The color reflects whether the outcome was pro-housing, anti-housing, or something more complicated and/or ambiguous.</p>

@@ -279,25 +279,26 @@ margin-bottom:-0.5rem;
 }
 
 .gauge-low{
-  filter: invert(18%) sepia(49%) saturate(7269%) hue-rotate(355deg);
+  background-color:red;
   height: 1.2rem;
+  aspect-ratio: 1 / 1;
+  mask-size: cover;
 }
-.gauge-low-med{
-  filter: invert(41%) sepia(11%) saturate(2999%) hue-rotate(317deg) brightness(101%) contrast(86%);
-  height:1.2rem;
-}
+
 .gauge-medium{
-  filter: invert(47%) sepia(79%) saturate(16%) hue-rotate(6deg);
+  background-color:gray;
   height: 1.2rem;
+  aspect-ratio: 1 / 1;
+  mask-size: cover;
 }
-.gauge-med-high{
-  height:1.2rem;
-filter: invert(61%) sepia(12%) saturate(1612%) hue-rotate(44deg) brightness(84%) contrast(88%);
-}
+
 .gauge-high{
-  filter: invert(17%) sepia(98%) saturate(5152%) hue-rotate(116deg);
+  background-color:green;
   height: 1.2rem;
+  aspect-ratio: 1 / 1;
+  mask-size: cover;
 }
+
 .gauge-holder{
     cursor: pointer;
 }

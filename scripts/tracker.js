@@ -13,6 +13,10 @@ import * as Helper from "./tracker_helpers.js";
 
 var loadingStartTime = Date.now();
 
+let params = new URLSearchParams(document.location.search);
+var debug = false;
+if (params.get("debug") == true || params.get("debug") == "true" || params.get("debug") == "y"){debug = true;console.log("Debug mode is activated.");}
+
 const loadingTotalCount = scoreCardCollection.length + AshevilleCouncilRoster.length;
 
 var loadingCount = 0;
@@ -36,9 +40,47 @@ const gradeColors = [
     [101, 255, 0],
     [50, 255, 0],
     [0, 255, 0]
-]
+];
 
 const minimumVotesToShow = 3;
+
+const scoreMaps = {
+        "Approved":{
+            "for": 1,
+            "against": -1,
+            "abstain": -1,
+            "recused": 0,
+            "absent": 0
+            },
+        "Amended and Approved":{
+            "for": 1,
+            "against": -1,
+            "abstain": -1,
+            "recused": 0,
+            "absent": 0
+            },
+        "Denied":{
+            "for": 1,
+            "against": -1,
+            "abstain": -1,
+            "recused": 0,
+            "absent": 0
+            },
+        "Continued":{
+            "for": 1,
+            "against": -1,
+            "abstain": -1,
+            "recused": 0,
+            "absent": 0
+            },
+        "Failed":{
+            "for": -1,
+            "against": 1,
+            "abstain": 1,
+            "recused": 0,
+            "absent": 0
+            }
+    };
 
 // ******* Initiating Function ************//
 
@@ -141,7 +183,6 @@ function setUpCouncilors(){
         councilor.points = 0;
         councilor.totalEligiblePoints = 0;
         councilor.totalVoteInstancesInTerm = 0;
-        councilor.totalVotesRecorded = 0;
         councilor.notEnoughData = false;
 
         manageLoading();
@@ -164,14 +205,14 @@ function assignScores(){
         
     });
 
-    let maxGrade = 0.0;
-    let minGrade = 1.0;
+    let maxGrade = -2.0;
+    let minGrade = 2.0;
 
     $.each(AshevilleCouncilRoster, function(i, v){
 
         if (v.totalEligiblePoints < minimumVotesToShow){
             v.notEnoughData = true;
-            v.grade = -1;
+            v.grade = -2.0;
         }
         else{
             v.grade = v.points / v.totalEligiblePoints
@@ -200,6 +241,8 @@ function assignScores(){
 
 function assignScoresFromSingleScorecard(scorecard){
 
+    scorecard.councilorStats = {};
+
     if("pro_housing_scale__motion" in scorecard == false){
         scorecard.pro_housing_scale__motion = 1;
     }
@@ -220,86 +263,31 @@ function assignScoresFromSingleScorecard(scorecard){
         });
     }
 
-    $.each(scorecard["for"], function(i, v){
+    $.each(scoreMaps[scorecard.outcome], function(k,v){
 
-        var c = retrieveCouncilorFromName(v);
+        if (k in scorecard){ //k is "for" or "against" or ... etc
 
-        if (c != undefined){
+            $.each(scorecard[k], function(i, x){ //x is the councilor string name here
 
-            if (scorecard.pro_housing_scale__motion == 1){
-                c.points += pointsAtStake;
-            }
+                let c = retrieveCouncilorFromName(x);
 
-            c.totalEligiblePoints += pointsAtStake;
-            c.totalVoteInstancesInTerm += 1;
-            c.totalVotesRecorded += 1;
+                c.totalEligiblePoints += Math.abs(scoreMaps[scorecard.outcome][k] * pointsAtStake * scorecard.pro_housing_scale__motion);
+
+                c.totalVoteInstancesInTerm += 1;
+
+                if (k == "absent"){c.totalVoteInstancesInTerm -= 1;}
+
+                scorecard.councilorStats[x] = scoreMaps[scorecard.outcome][k] * pointsAtStake * scorecard.pro_housing_scale__motion;
+
+                c.points += scorecard.councilorStats[x];
+
+            });
         }
+
     });
 
-    if ("against" in scorecard){
-
-        $.each(scorecard["against"], function(i, v){
-
-            var c = retrieveCouncilorFromName(v)
-
-            if (c != undefined){
-
-                if (scorecard.pro_housing_scale__motion == -1){
-                c.points += pointsAtStake;
-                }
-
-                c.points += 0;
-                c.totalEligiblePoints += pointsAtStake;
-                c.totalVoteInstancesInTerm += 1;
-                c.totalVotesRecorded += 1;
-            }
-        });
-    }
-
-    if ("absent" in scorecard){
-
-        $.each(scorecard["absent"], function(i, v){
-
-            if (c != undefined){
-
-            var c = retrieveCouncilorFromName(v)
-
-            c.points += 0;
-            c.totalEligiblePoints += 0;
-            c.totalVoteInstancesInTerm += 1;
-            }
-        });
-    }
-
-    if ("recused" in scorecard){
-        $.each(scorecard["recused"], function(i, v){
-
-            if (c != undefined){
-
-            var c = retrieveCouncilorFromName(v)
-
-            c.points += 0;
-            c.totalEligiblePoints += 0;
-            c.totalVoteInstancesInTerm += 1;
-            }
-        });
-    }
-    if ("abstain" in scorecard){
-        $.each(scorecard["abstain"], function(i, v){
-
-            var c = retrieveCouncilorFromName(v)
-
-            if (c != undefined){
-
-                c.points += 0;
-                c.totalEligiblePoints += pointsAtStake;
-                c.totalVoteInstancesInTerm += 1;
-                c.totalVotesRecorded += 1;
-            }
-        });
-    }
-
 }
+
 
 function checkIfCurrentCouncilor(councilorData){
 
@@ -546,7 +534,7 @@ function getGaugeString(proposalScale, motionScale){
 
     let gaugeClasses = ["gauge-low", "gauge-medium", "gauge-high"];
 
-    return `<div class="gauge-icon-outer" data-bs-toggle='modal' data-bs-target='#gaugeModal' style='float:right;border-radius:0.2rem;border:0.5px solid gray; background:white;padding-left:0.25rem;padding-right:0.25rem;padding-bottom:0.25rem;'><img class='gauge-icon ${gaugeClasses[proposalScale + 1]}' src='img/tracker-imgs/file-lines-solid-full.svg'/><img class='gauge-icon ${gaugeClasses[motionScale + 1]}' src='img/tracker-imgs/gavel-solid-full.svg'/></div>`;
+    return `<div class="gauge-icon-outer" data-bs-toggle='modal' data-bs-target='#gaugeModal'><div class='gauge-icon ${gaugeClasses[proposalScale + 1]}' style="mask: url(img/tracker-imgs/file-lines-solid-full.svg);"></div><div class='gauge-icon ${gaugeClasses[motionScale + 1]}' style="mask: url(img/tracker-imgs/gavel-solid-full.svg);"></div></div>`;
 }
 
 function addBootstrapScripts() {
@@ -663,8 +651,19 @@ function populateVoteItemRecordDetailOuter(data){
         if (v in data && data.for.length > 0){
             outer.append(`<div class='row header-row'>${v.toUpperCase()}:</div>`);
 
+            //##TODO add debug info here.
+
             $.each(data[v], function(j,w){
-                outer.append(`<div class='row mb-1' style='flex-wrap:nowrap;'><div style="height:2.5rem;max-width:2.5rem;background-size: cover;background-position: 50% 50%;aspect-ratio: 1 / 1; border-radius:0.25rem;background-image: url('${retrieveCouncilorFromName(w).pic}')"></div><div>${w}</div>`);
+
+                //##TK what is the scorecard in this context??
+
+                let debugStr = "";
+                if(debug){
+                    debugStr = " " + String(data.councilorStats[w]);
+                }
+
+                outer.append(`<div class='row mb-1' style='flex-wrap:nowrap;'><div style="height:2.5rem;max-width:2.5rem;background-size: cover;background-position: 50% 50%;aspect-ratio: 1 / 1; border-radius:0.25rem;background-image: url('${retrieveCouncilorFromName(w).pic}')"></div><div>${w}${debugStr}</div>`);
+
             });
 
     }
@@ -795,12 +794,16 @@ function loadCouncilPanel(profileThatTriggered) {
 
     if (data.notEnoughData == false){
         
-        rightColumnText = `<p>${data.name}${termText}</p><p>Total housing-related votes recorded in the selected duration: ${data.totalVotesRecorded}</p>`;
+        rightColumnText = `<p>${data.name}${termText}</p><p>Total housing-related votes recorded in the selected duration: ${data.totalVoteInstancesInTerm}</p>`;
 
     }
     else{
         
         rightColumnText = `<p>${data.name}${termText}</p><p>* Not enough data available for this profile for the selected duration.</p>`;
+    }
+
+    if(debug){
+        rightColumnText += `<p>Grade: ${data.grade}</p><p>Scaled grade: ${data.scaledGrade}</p>`
     }
 
    

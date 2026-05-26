@@ -634,11 +634,7 @@ function populateVoteItemRecordDetailOuter(data){
         if (v in data && data.for.length > 0){
             outer.append(`<div class='row header-row'>${v.toUpperCase()}:</div>`);
 
-            //##TODO add debug info here.
-
             $.each(data[v], function(j,w){
-
-                //##TK what is the scorecard in this context??
 
                 let debugStr = "";
                 if(debug){

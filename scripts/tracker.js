@@ -432,56 +432,39 @@ function buildIconString(scorecard){
 
 function buildVoteVizBox(scorecard){
 
-    let forStr = "<div class='vote-viz-label'>FOR:&nbsp;</div>"
+    let outcomeMap = scoreMaps[scorecard.outcome];
 
-    if ("for" in scorecard){
+    let newString = "";
 
-        scorecard.for.sort( () => Math.random()-0.5 );
-        
-        $.each(scorecard.for, function(i, v){
+    let colorList = ["vote-viz-red", "vote-viz-neutral", "vote-viz-green"]
 
-            forStr += `<div class="mini-pic" style="background-image: url('${retrieveCouncilorFromName(v).pic}')"></div>`
-        });
-    }
+    $.each(outcomeMap, function(k, v){
 
-    let forStrOuter = `<div class="vote-viz vote-viz-for vote-viz-neutral">${forStr}</div>`
+        if(k == "for" || k == "against"){
 
-    if (scorecard.pro_housing_scale__motion == -1){
-        forStrOuter = `<div class="vote-viz vote-viz-for vote-viz-red">${forStr}</div>`
-    }
-    if (scorecard.pro_housing_scale__motion == 1){
-        forStrOuter = `<div class="vote-viz vote-viz-for vote-viz-green">${forStr}</div>`
-    }
+            if (k in scorecard){
 
-    let againstStr = `<div class='vote-viz-label'>AGAINST:&nbsp;</div>`
+                let box = `
+                <div class="vote-viz ${colorList[outcomeMap[k] * scorecard.pro_housing_scale__motion + 1]}">
+                    <div class="vote-viz-label">${k.toUpperCase()}:&nbsp;</div>`
 
-    if ("against" in scorecard){
+                $.each(scorecard[k], function(i, v){
 
-        scorecard.against.sort( () => Math.random()-0.5 );
+                    box += `<div class="mini-pic" style="background-image: url('${retrieveCouncilorFromName(v).pic}')"></div>`;
+                });
 
-        $.each(scorecard.against, function(i, v){
+                box += `</div>`;
 
-            againstStr += `<div class="mini-pic" style="background-image: url('${retrieveCouncilorFromName(v).pic}')"></div>`
-        });
+                newString += box;
 
-    }
+            }
 
-    let againstStrOuter = `<div class="vote-viz vote-viz-against vote-viz-neutral">${againstStr}</div>`
+        }
 
-    if (scorecard.pro_housing_scale__motion == -1){
-        againstStrOuter = `<div class="vote-viz vote-viz-against vote-viz-green">${againstStr}</div>`
-    }
-    if (scorecard.pro_housing_scale__motion == 1){
-        againstStrOuter = `<div class="vote-viz vote-viz-against vote-viz-red">${againstStr}</div>`
-    }
+    });
 
-    let newStr = forStrOuter
+    return newString;   
 
-    if("against" in scorecard){
-        newStr += againstStrOuter
-    }
-
-    return newStr
 }
 
 function populateVoteItemsContainer(){

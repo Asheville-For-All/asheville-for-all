@@ -256,12 +256,14 @@ function assignScoresFromSingleScorecard(scorecard){
         $.each(scorecard.scoreFlags, function(i, v){
 
             $.each(multipliers, function(j, w){
-                if (v = w.name){
+                if (v == w.name){
                     pointsAtStake = pointsAtStake * w.value;
                 }
             });
         });
     }
+
+    scorecard.pointsAtStake = pointsAtStake;
 
     $.each(scoreMaps[scorecard.outcome], function(k,v){
 
@@ -648,6 +650,10 @@ function populateVoteItemRecordDetailOuter(data){
     }
 
     });
+
+    if(debug){
+        outer.append("<p>Points at stake: " + data.pointsAtStake + "</p>");
+    }
 
     return outer;
 

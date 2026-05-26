@@ -228,6 +228,9 @@ function assignScores(){
             v.scaledGrade = -1;
         }
         else{
+
+        v. adjustedGrade = (v.grade + 1) / 2;
+
         v.scaledGrade = Helper.scaleBetween(v.grade, 0.0, 1.0, minGrade, maxGrade);
 
         let roundedGradeInt = Math.round(v.scaledGrade * 10);
@@ -387,7 +390,7 @@ function addCouncilorProfile(councilorData){
 
         let colorStr = "rgb(" + v.color[0] + ", " + v.color[1] + ", " + v.color[2] + ")"
 
-        let gradientStop1 = Math.min(Math.round(v.grade * 360), 355)
+        let gradientStop1 = Math.min(Math.round(v.adjustedGrade * 360), 355)
         let gradientStop2 = Math.min(gradientStop1 + 5, 359)
 
         let conicGradientStr = `${colorStr} 0deg, ${colorStr} ${gradientStop1}deg, snow ${gradientStop2}deg, snow 360deg`
@@ -788,7 +791,8 @@ function loadCouncilPanel(profileThatTriggered) {
     }
 
     if(debug){
-        rightColumnText += `<p>Grade: ${data.grade}</p><p>Scaled grade: ${data.scaledGrade}</p>`
+        rightColumnText += `<p>Grade: ${data.grade}</p><p>Scaled grade: ${data.scaledGrade}</p>
+        <p>Adjusted grade: ${data.adjustedGrade}</p>`
     }
 
    

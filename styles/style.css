@@ -285,8 +285,22 @@ margin-bottom:-0.5rem;
   mask-size: cover;
 }
 
+.gauge-medium-low{
+  background-image: linear-gradient(to top right, gray, orange);
+  height: 1.2rem;
+  aspect-ratio: 1 / 1;
+  mask-size: cover;
+}
+
 .gauge-medium{
   background-color:gray;
+  height: 1.2rem;
+  aspect-ratio: 1 / 1;
+  mask-size: cover;
+}
+
+.gauge-medium-high{
+  background-image: linear-gradient(to top right, gray, greenyellow);
   height: 1.2rem;
   aspect-ratio: 1 / 1;
   mask-size: cover;

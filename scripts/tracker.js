@@ -824,48 +824,29 @@ function switchOnHighlights(jqObjProfilePicOuter){
 
         let cardData = $(this).data("scorecard");
 
-        if ("for" in cardData){
+        let outcomeMap = scoreMaps[cardData.outcome];
 
-            $.each(cardData.for, function(i, v){
-                if (councilorName == v){
+        $.each(outcomeMap, function(k, v){
 
-                    if("pro_housing_scale__motion" in cardData && cardData.pro_housing_scale__motion == -1){
-                    currentCard.addClass("highlight-red");
+            if (k in cardData){
+
+                $.each(cardData[k], function(i, c){
+
+                    if (c == councilorName){
+
+                        let pts = v * cardData.pro_housing_scale__motion;
+                        if (pts > 0){
+                            currentCard.addClass("highlight-green");
+                        }
+                        else if (pts < 0){
+                            currentCard.addClass("highlight-red");
+                        }
                     }
-                    else{
-                        currentCard.addClass("highlight-green");
-                    }
-                }
-            });
+                });
+            }
 
-        }
+        });
 
-        if ("against" in cardData){
-
-            $.each(cardData.against, function(i, v){
-                if (councilorName == v){
-
-                    if("pro_housing_scale__motion" in cardData && cardData.pro_housing_scale__motion == -1){
-                    currentCard.addClass("highlight-green");
-                    }
-                    else{
-                        currentCard.addClass("highlight-red");
-                    }
-                }
-            });
-
-        }
-
-        if("abstain" in cardData){
-
-            $.each(cardData.against, function(i, v){
-                if (councilorName == v){
-
-                    currentCard.addClass("highlight-orange");
-                    }
-            });            
-
-        }
     });
 
     let clonePic = jqObjProfilePicOuter.clone();

@@ -520,9 +520,12 @@ function populateVoteItemsContainer(){
 
 function getGaugeString(proposalScale, motionScale){
 
-    let gaugeClasses = ["gauge-low", "gauge-medium", "gauge-high"];
+    let gaugeClasses = ["gauge-low", "gauge-medium-low", "gauge-medium", "gauge-medium-high", "gauge-high"];
 
-    return `<div class="gauge-icon-outer" data-bs-toggle='modal' data-bs-target='#gaugeModal'><div class='gauge-icon ${gaugeClasses[proposalScale + 1]}' style="mask: url(img/tracker-imgs/file-lines-solid-full.svg);"></div><div class='gauge-icon ${gaugeClasses[motionScale + 1]}' style="mask: url(img/tracker-imgs/gavel-solid-full.svg);"></div></div>`;
+    let proposal_i = parseInt((proposalScale + 1) * 2);
+    let motion_i = parseInt((motionScale + 1) * 2);
+
+    return `<div class="gauge-icon-outer" data-bs-toggle='modal' data-bs-target='#gaugeModal'><div class='gauge-icon ${gaugeClasses[proposal_i]}' style="mask: url(img/tracker-imgs/file-lines-solid-full.svg);"></div><div class='gauge-icon ${gaugeClasses[motion_i]}' style="mask: url(img/tracker-imgs/gavel-solid-full.svg);"></div></div>`;
 }
 
 function addBootstrapScripts() {
@@ -655,7 +658,7 @@ function populateVoteItemRecordDetailOuter(data){
     });
 
     if(debug){
-        outer.append("<p>Points at stake: " + data.pointsAtStake + "</p>");
+        outer.append("<p>Points at stake (given the motion): " + (data.pointsAtStake * Math.abs(data.pro_housing_scale__motion)) + "</p><p>Points at stake: " + data.pointsAtStake + "</p>");
     }
 
     return outer;
@@ -791,8 +794,8 @@ function loadCouncilPanel(profileThatTriggered) {
     }
 
     if(debug){
-        rightColumnText += `<p>Grade: ${data.grade}</p><p>Scaled grade: ${data.scaledGrade}</p>
-        <p>Adjusted grade: ${data.adjustedGrade}</p>`
+        rightColumnText += `<p>Grade (scale from -1 to 1): ${data.grade}</p><p>Scaled grade (relative to others): ${data.scaledGrade}</p>
+        <p>Adjusted grade (scale from 0 to 1): ${data.adjustedGrade}</p>`
     }
 
    

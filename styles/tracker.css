@@ -359,6 +359,10 @@ background-color: #DA806A;
     max-width:4rem;
 }
 
+dialog:open{
+    border:1px gray solid;
+}
+
 #dialog-h2h-item-detail:open{
     display:flex;
     flex-wrap: nowrap;

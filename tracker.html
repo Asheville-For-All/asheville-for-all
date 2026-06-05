@@ -201,8 +201,32 @@
 </div>
 
 <div class="d-none" id="highlight-mode">
-<button type="button" class="btn btn-outline-secondary">Turn Off Highlights</button>
+<button type="button" class="btn btn-outline-secondary">Turn Off Highlights</button>  
 </div>
+
+<div id="h2h-popover" popover="manual" style="width:100vw;height:100vh;background-color:white;">
+  <div class="container container-40 text-center" id="h2h-container">
+    <div class="row align-items-center sticky-top" id="h2h-header-row">
+      <div class="col" id="left-h2h-profile-outer">
+      </div>
+      <div class="col"><button class="btn btn-outline-secondary" popovertarget="h2h-popover" popovertargetaction="hide">Exit</button>
+      </div>
+      <div class="col" id="right-h2h-profile-outer">
+      </div>
+    </div>
+  </div>
+</div>
+
+<dialog id="h2h-popover-setup">
+
+</dialog>
+
+<dialog id="dialog-h2h-item-detail">
+  <div class="container container-40" id="h2h-item-detail-header">
+  </div>
+  <div class="container container-40" id="h2h-item-detail-body">
+  </div>
+</dialog>
 
 <script src="scripts/target-blank.js"></script><script src="scripts/date.js"></script><script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"  integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="   crossorigin="anonymous"></script><script src="scripts/tracker.js" type="module"></script><script src="scripts/gauge-modal.js" type="module"></script>
 

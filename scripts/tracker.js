@@ -184,6 +184,7 @@ function setUpCouncilors(){
         councilor.totalEligiblePoints = 0;
         councilor.totalVoteInstancesInTerm = 0;
         councilor.notEnoughData = false;
+        councilor.showMe = false;
 
         manageLoading();
     });
@@ -345,6 +346,8 @@ function populateCouncilContainer(){
 
         if(checkIfCurrentCouncilor(v)){
 
+            v.showMe = true;
+
             let profilePic = addCouncilorProfile(v);
 
             if (v.notEnoughData){
@@ -365,6 +368,8 @@ function populateCouncilContainer(){
         $("council-list-outer").append(divider);
 
         $.each(relevantCouncilors, function(i, v){
+
+            v.showMe = true;
 
             let profilePic = addCouncilorProfile(v);
 
@@ -484,13 +489,15 @@ function populateVoteItemsContainer(){
 
         if (Helper.isDateRecent(settings.numYears, v.date)){
 
+            v.showMe = true;
+
             let newCol = $('<div class="col"></div>');
 
             cardHolder.append(newCol);
 
-            let badgeString = `<div class='badge bg-primary type'>${v.type}</div>`
+            let badgeString = `<div class='badge bg-primary type'>${v.type}</div>`;
 
-            let d = Date.parse(v.date).toString("MMMM dS, yyyy")
+            let d = Date.parse(v.date).toString("MMMM dS, yyyy");
 
             let iconString = buildIconString(v);
 
@@ -508,6 +515,10 @@ function populateVoteItemsContainer(){
             newCard.data("scorecard", v);
 
             newCol.append(newCard);
+        }
+
+        else{
+            v.showMe = false;
         }
 
         manageLoading();
@@ -798,13 +809,22 @@ function loadCouncilPanel(profileThatTriggered) {
         <p>Adjusted grade (scale from 0 to 1): ${data.adjustedGrade}</p>`
     }
 
-   
-
     let highlightModeButton = $('<button data-bs-toggle="offcanvas" href="#councilBottomPanel" class="btn btn-outline-secondary">Enter Highlight Mode</button>');
 
+    let h2hBtn = $("<button class='btn btn-outline-secondary'>Compare ...</button>");
+
+    let btnGroup = $('<div class="btn-group"></div>')
+
+    btnGroup.append(highlightModeButton);
+    btnGroup.append(h2hBtn);
+
     $('#councilBottomPanel').find("#bs-oc-left-col").html(profileClone);
-    $('#councilBottomPanel').find("#bs-oc-left-col").append(highlightModeButton);
+    $('#councilBottomPanel').find("#bs-oc-left-col").append(btnGroup);
     $('#councilBottomPanel').find("#bs-oc-right-col").html(rightColumnText);
+
+    h2hBtn.on("click", function(){
+        populateH2hSetup(data.name);
+    });
 
     highlightModeButton.on("click", function(){
         let o = $(profileThatTriggered);
@@ -879,4 +899,208 @@ function endHighlights(){
     //show council panel again.
     $('#tracker-frame-3').removeClass("d-none");
     setHorizontalScrollers();
+}
+
+function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2){
+
+    $(".h2h-row").remove();
+    $("#right-h2h-profile-outer").children().remove();
+    $("#left-h2h-profile-outer").children().remove();
+
+    $("#h2h-header-row").children().each(function(i, v){
+
+        if (i == 0){
+
+            let clone1 = $(".profile-pic-outer[title='" + councilor1.name + "']").children().first().clone();
+
+            $(v).append(clone1);
+
+        }
+        if (i == 2){
+
+            let clone2 = $(".profile-pic-outer[title='" + councilor2.name + "']").children().first().clone();
+
+            $(v).append(clone2);
+
+        }
+    });
+
+    $.each(scorecards, function(i, v){
+
+        if (v.showMe == true){
+
+            if(councilor1.name in v.councilorStats && councilor2.name in v.councilorStats){
+
+                let newRow = $('<div class="row align-items-center h2h-row"></div>');
+
+                let col1 = $("<div class='col'></div");
+                let col2 = $("<div class='col'></div");
+                let col3 = $("<div class='col'></div");
+
+                if (v.councilorStats[councilor1.name] > 0 && v.councilorStats[councilor2.name] > 0){
+
+                    if (Math.abs(v.pro_housing_scale__motion < 1)){
+                    col1.append("<div class='trophy-minimal'></div>");
+                    col3.append("<div class='trophy-minimal'></div>");
+                    }
+                    else{
+                    col1.append("<div class='trophy-basic'></div>");
+                    col3.append("<div class='trophy-basic'></div>");
+                    }
+                }
+                else if(v.councilorStats[councilor1.name] > 0 && isRecusedOrAbsent(v, councilor2) != "false"){
+                    col3.append("<p><em>"+isRecusedOrAbsent(v, councilor2) +"</em></p>");
+
+                    if (Math.abs(v.pro_housing_scale__motion < 1)){
+                        col1.append("<div class='trophy-minimal'></div>")
+                    }
+                    else{
+                    col1.append("<div class='trophy-basic'></div>");}
+
+                }
+                else if (v.councilorStats[councilor2.name] > 0 && isRecusedOrAbsent(v, councilor1) != "false"){
+
+                    if (Math.abs(v.pro_housing_scale__motion < 1)){
+                        col3.append("<div class='trophy-minimal'></div>");
+                    }
+                    else{
+
+                        col3.append("<div class='trophy-basic'></div>");
+                    }
+
+                    col1.append("<p><em>"+isRecusedOrAbsent(v, councilor1) +"</em></p>");
+
+                }
+                else if (v.councilorStats[councilor1.name] > v.councilorStats[councilor2.name] && v.councilorStats[councilor1.name] > 0){
+
+                    if (Math.abs(v.pro_housing_scale__motion < 1)){
+                        col1.append("<div class='trophy-plus-minimal'></div>");
+                    }
+                    else{
+                    col1.append("<div class='trophy-plus'></div>");
+                    }
+                }
+                else if (v.councilorStats[councilor1.name] < v.councilorStats[councilor2.name] && v.councilorStats[councilor2.name] > 0){
+
+                    if (Math.abs(v.pro_housing_scale__motion < 1)){
+                        col3.append("<div class='trophy-plus-minimal'></div>");
+                    }
+                    else{
+                    col3.append("<div class='trophy-plus'></div>");}
+                }
+
+                col2.append("<p>" + v.name + "<br/><span class='vote-date'>" + Date.parse(v.date).toString("MMMM dS, yyyy") + "</span></p>");
+
+                newRow.append(col1);
+                newRow.append(col2);
+                newRow.append(col3);
+
+                $('#h2h-container').append(newRow);
+
+                newRow.data("scorecard", v);
+            }
+        }
+    });
+
+    const oldPpvr = document.getElementById("h2h-popover-setup");
+    const newPpvr = document.getElementById("h2h-popover");
+
+    oldPpvr.close();
+    newPpvr.showPopover();
+
+    $("#h2h-container").on("click", ".h2h-row", function(){
+
+        let d = $(this).data("scorecard");
+
+        populateH2HItemDetail(d);
+    });
+
+}
+
+function populateH2hSetup(councilorName){
+
+    let dialog = $("#h2h-popover-setup");
+
+    dialog.children().remove();
+
+    dialog.append("<p>Compare " + councilorName + " with:</p>");
+
+    let chooser = $("<select class='form-select mt-3 mb-3' aria-label='Comparison selector'>");
+
+    $.each(AshevilleCouncilRoster, function(i, v){
+        if (v.showMe && v.name != councilorName){
+
+            let option = $('<option value="'+ v.name + '">' + v.name + '</option>');
+            chooser.append(option);
+        }
+    });
+
+    dialog.append(chooser);
+
+    let btnGroup = $('<div class="btn-group" role="group"></div>');
+
+    let button1 = $("<button class='btn btn-outline-secondary'>Show Comparison</button>");
+    let button2 = $("<button commandfor='h2h-popover-setup' command='close' class='btn btn-outline-secondary'>Cancel</button>");
+
+    btnGroup.append(button1).append(button2);
+
+    dialog.append(btnGroup);
+
+    button1.on("click", function(){
+        populateHeadToHeadPopup(scoreCardCollection, AshevilleCouncilRoster, retrieveCouncilorFromName(councilorName), retrieveCouncilorFromName(chooser.val()));
+    });
+
+    const ppvr = document.getElementById("h2h-popover-setup");
+
+    ppvr.showModal();
+}
+
+function isRecusedOrAbsent(scorecard, councilorObj){
+
+    let result = "false";
+
+    if ("recused" in scorecard){
+        $.each(scorecard.recused, function(i, v){
+            if(councilorObj.name == v){
+                result = "recused";
+            }
+        });
+    }
+    if ("absent" in scorecard){
+        $.each(scorecard.absent, function(i, v){
+            if(councilorObj.name == v){
+                result = "absent";
+            }
+        });
+    }
+
+    return result;
+
+}
+
+function populateH2HItemDetail(data){
+
+    $("#h2h-item-detail-header").children().remove();
+    $("#h2h-item-detail-body").children().remove(); 
+    let badge = $(`<div class='badge bg-primary type'>${data.type}</div>`);
+
+    let closeBox = $("<button class='btn btn-close float-end' commandfor='dialog-h2h-item-detail' command='close'></button>");
+
+    $("#h2h-item-detail-header").append(closeBox);
+
+    $("#h2h-item-detail-header").append("<div class='sidePaneInfoBar'></div>");
+
+    $(".sidePaneInfoBar").append(badge).append(getGaugeString(data.pro_housing_scale__proposal, data.pro_housing_scale__motion));
+
+    $("#h2h-item-detail-header").append("<h2 class='mt-2'>" + data.name + "</h2>");
+
+    $("#h2h-item-detail-body").append("<p>Outcome: " + data.outcome + "</p>");
+
+    $("#h2h-item-detail-body").append(populateVoteItemRecordDetailOuter(data));
+
+    $("#h2h-item-detail-body").append(createLinkLists(data));
+
+    //TODO finish all this stuff.
+
+    document.getElementById("dialog-h2h-item-detail").showModal();
 }

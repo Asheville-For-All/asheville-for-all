@@ -21,7 +21,8 @@ export class ImageLoader {
             "/img/afa-small.svg",
             "/img/tracker-imgs/asterisk.svg",
             "/img/tracker-imgs/file-lines-solid-full.svg",
-            "/img/tracker-imgs/gavel-solid-full.svg"
+            "/img/tracker-imgs/gavel-solid-full.svg",
+            "/img/tracker-imgs/trophy-fill.svg"
         ];
 
         var self = this;

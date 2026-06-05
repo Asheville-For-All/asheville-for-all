@@ -283,3 +283,92 @@ background-color: #DA806A;
     border:0.5px solid gray;
     background:white;
 }
+
+#h2h-header-row{
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 255),rgba(255, 255, 255, 255),rgba(255, 255, 255, 255), rgba(255, 255, 255, 0));
+}
+
+.trophy-basic{
+    background-position: 50% 50%;
+    mask: url(/img/tracker-imgs/trophy-fill.svg);
+    background-color:gray;
+    height: 2rem;
+    aspect-ratio: 1 / 1;
+    mask-size: cover;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.trophy-minimal{
+    background-position: 50% 50%;
+    mask: url(/img/tracker-imgs/trophy-fill.svg);
+    background-color:rgb(191, 191, 191);
+    height: 2rem;
+    aspect-ratio: 1 / 1;
+    mask-size: cover;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.trophy-plus{
+    background-position: 50% 50%;
+    mask: url(/img/tracker-imgs/trophy-fill.svg);
+    background: conic-gradient(from var(--rotate), green, greenyellow, green, greenyellow);
+    height: 2rem;
+    aspect-ratio: 1 / 1;
+    mask-size: cover;
+    margin-left:auto;
+    margin-right:auto;
+    animation-name: trophy-anim;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: linear;
+}
+
+.trophy-plus-minimal{
+    background-position: 50% 50%;
+    mask: url(/img/tracker-imgs/trophy-fill.svg);
+    background: conic-gradient(from var(--rotate), gray, yellow, gray, yellow);
+    height: 2rem;
+    aspect-ratio: 1 / 1;
+    mask-size: cover;
+    margin-left:auto;
+    margin-right:auto;
+    animation-name: trophy-anim;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: linear;
+}
+
+@property --rotate {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes trophy-anim{
+    from {
+    --rotate: 0deg;}
+    to {
+    --rotate: 360deg;}
+}
+
+#h2h-container .profile-pic-inner{
+    max-width:4rem;
+}
+
+#dialog-h2h-item-detail:open{
+    display:flex;
+    flex-wrap: nowrap;
+    flex-direction:column;
+    overflow:hidden;
+    max-height:100vh;
+    max-width:100vw;
+}
+#h2h-item-detail-body{
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-top:2rem;
+}

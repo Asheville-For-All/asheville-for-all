@@ -536,7 +536,7 @@ function getGaugeString(proposalScale, motionScale){
     let proposal_i = parseInt((proposalScale + 1) * 2);
     let motion_i = parseInt((motionScale + 1) * 2);
 
-    return `<div class="gauge-icon-outer" data-bs-toggle='modal' data-bs-target='#gaugeModal'><div class='gauge-icon ${gaugeClasses[proposal_i]}' style="mask: url(img/tracker-imgs/file-lines-solid-full.svg);"></div><div class='gauge-icon ${gaugeClasses[motion_i]}' style="mask: url(img/tracker-imgs/gavel-solid-full.svg);"></div></div>`;
+    return `<button class="btn gauge-icon-outer" commandfor="gauge-info-dialog" command="show-modal"><div class='gauge-icon ${gaugeClasses[proposal_i]}' style="mask: url(img/tracker-imgs/file-lines-solid-full.svg);"></div><div class='gauge-icon ${gaugeClasses[motion_i]}' style="mask: url(img/tracker-imgs/gavel-solid-full.svg);"></div></button>`;
 }
 
 function addBootstrapScripts() {

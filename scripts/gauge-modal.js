@@ -1,11 +1,12 @@
 let content = `
-<div class="modal" id="gaugeModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-body">
-      <h2>What does this icon mean?</h2>
-      <hr/>
-        <div class="clearfix">
+<dialog id="gauge-info-dialog" closedby="any">
+  <div class="dialog-header">
+    <button class="btn btn-close float-end" commandfor="gauge-info-dialog" command="close"></button>
+    <h2 class="dialog-title">What does this icon mean?</h2>
+  </div>
+  <div class="dialog-body">
+
+  <div class="clearfix">
 
           <div style="float:left; margin-right:1rem;">
           <div style="mask: url(img/tracker-imgs/file-lines-solid-full.svg);display:inline-block;" class="gauge-low"></div>
@@ -19,6 +20,7 @@ let content = `
           <p> The color reflects whether the agenda item was generally pro-housing or anti-housing. An intermediate color suggests that there may have been potentially complicating or confusing circumstances involved.</p>
           
       </div>
+
       <hr/>
 
       <div class="clearfix">
@@ -34,13 +36,12 @@ let content = `
           
       </div>
 
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
   </div>
-</div>
+
+  <div class="dialog-footer">
+    <button class="btn btn-outline-secondary" commandfor="gauge-info-dialog" command="close">Close</button>
+  </div>
+</dialog>
 `
 
 document.body.insertAdjacentHTML('beforeend', content);

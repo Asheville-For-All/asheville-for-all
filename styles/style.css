@@ -314,9 +314,32 @@ margin-bottom:-0.5rem;
 }
 
 .gauge-holder{
-    cursor: pointer;
+    padding:0px;
 }
 .gauge-holder > div:first-child{
   margin-bottom:0.25rem;
+}
+
+dialog:open{
+  border:rgba(0, 0, 0, 0.5) 1px solid;
+  display:flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 0.3rem;
+  box-shadow:0px 0px 10px gray;
+}
+.dialog-header{
+margin-bottom:1rem;
+}
+.dialog-body{
+  max-width:40rem;
+  flex-grow: 1;
+  overflow-y:scroll;
+}
+.dialog-title{
+  max-width:35rem;
+}
+.dialog-footer{
+  padding-top:1rem;
 }
 

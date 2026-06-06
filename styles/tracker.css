@@ -282,6 +282,7 @@ background-color: #DA806A;
     border-radius:0.2rem;
     border:0.5px solid gray;
     background:white;
+    padding:0px;
 }
 
 #h2h-header-row{
@@ -357,10 +358,6 @@ background-color: #DA806A;
 
 #h2h-container .profile-pic-inner{
     max-width:4rem;
-}
-
-dialog:open{
-    border:1px gray solid;
 }
 
 #dialog-h2h-item-detail:open{

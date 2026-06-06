@@ -6,6 +6,8 @@ let content = `
   </div>
   <div class="dialog-body">
 
+  <div class="container">
+
   <div class="clearfix">
 
           <div style="float:left; margin-right:1rem;">
@@ -34,6 +36,8 @@ let content = `
           <p>The gavel icon illustrates Asheville For All's assessment of <b>the final decision, or <i>motion</i></b> associated with the agenda item.</p>
           <p> The color reflects whether the outcome was pro-housing or anti-housing. An intermediate color suggests an ambiguous outcome, or that there were complicating circumstances involved.</p>
           
+      </div>
+
       </div>
 
   </div>

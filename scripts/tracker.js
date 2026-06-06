@@ -88,7 +88,7 @@ $(function() {
 
     globalThis.imgLoader = new ImageLoader();
 
-    addBootstrapScripts();
+    addEventScripts();
 
     setHorizScrollEventHandlers();
 
@@ -539,10 +539,10 @@ function getGaugeString(proposalScale, motionScale){
     return `<button class="btn gauge-icon-outer" commandfor="gauge-info-dialog" command="show-modal"><div class='gauge-icon ${gaugeClasses[proposal_i]}' style="mask: url(img/tracker-imgs/file-lines-solid-full.svg);"></div><div class='gauge-icon ${gaugeClasses[motion_i]}' style="mask: url(img/tracker-imgs/gavel-solid-full.svg);"></div></button>`;
 }
 
-function addBootstrapScripts() {
+function addEventScripts() {
 
     const myModalEl = document.getElementById('settings-modal');
-    myModalEl.addEventListener('hidden.bs.modal', event => {
+    myModalEl.addEventListener('close', event => {
 
         let needReboot = false;
 

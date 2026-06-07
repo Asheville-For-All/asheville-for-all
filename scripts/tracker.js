@@ -580,7 +580,7 @@ function addEventScripts() {
 
     $('#tracker-frame-3').on("click", ".profile-pic-outer", function(){
 
-        loadCouncilPanel(this);
+        loadCouncilorPanelDialog(this);
 
     });
 }
@@ -774,13 +774,11 @@ function addListenerToLateralLink(jq_ATag, destinationCard){
     jq_ATag.on("click", {destinationCard: destinationCard}, lateralVoteLinkClicked);
 }
 
-function loadCouncilPanel(profileThatTriggered) {
-
-    let bsOffcanvas = new bootstrap.Offcanvas('#councilBottomPanel');
+function loadCouncilorPanelDialog(profileThatTriggered) {
 
     let t = $(profileThatTriggered).attr('title');
 
-    $('#councilBottomPanel').find(".offcanvas-title").html(t);
+    $('#councilor-detail-dialog').find("#councilor-dialog-title").html(t);
 
     let profileClone = $(profileThatTriggered).clone();
 
@@ -806,32 +804,33 @@ function loadCouncilPanel(profileThatTriggered) {
 
     if(debug){
         rightColumnText += `<p>Grade (scale from -1 to 1): ${data.grade}</p><p>Scaled grade (relative to others): ${data.scaledGrade}</p>
-        <p>Adjusted grade (scale from 0 to 1): ${data.adjustedGrade}</p>`
+        <p>Adjusted grade (scale from 0 to 1): ${data.adjustedGrade}</p>`;
     }
 
-    let highlightModeButton = $('<button data-bs-toggle="offcanvas" href="#councilBottomPanel" class="btn btn-outline-secondary">Enter Highlight Mode</button>');
+    $('#councilor-detail-dialog').find("#council-pane-left-col").html(profileClone);
 
-    let h2hBtn = $("<button class='btn btn-outline-secondary'>Compare ...</button>");
+    $('#councilor-detail-dialog').find("#council-pane-right-col").html(rightColumnText);
 
-    let btnGroup = $('<div class="btn-group"></div>')
 
-    btnGroup.append(highlightModeButton);
-    btnGroup.append(h2hBtn);
+    let btnGroup = $(`<div class="btn-group"></div>`);
 
-    $('#councilBottomPanel').find("#bs-oc-left-col").html(profileClone);
-    $('#councilBottomPanel').find("#bs-oc-left-col").append(btnGroup);
-    $('#councilBottomPanel').find("#bs-oc-right-col").html(rightColumnText);
+    let startHighlightButton = $(`<button id="start-highlight-button" class="btn btn-outline-secondary" commandfor="councilor-detail-dialog" command="close">Enter Highlight Mode</button>`);
 
-    h2hBtn.on("click", function(){
-        populateH2hSetup(data.name);
-    });
+    let compareButton = $(`<button class='btn btn-outline-secondary' id="compare-button" commandfor="councilor-detail-dialog" command="close">Compare ...</button>`);
 
-    highlightModeButton.on("click", function(){
+    $('#council-pane-button-group-outer').html(btnGroup);
+    btnGroup.append(startHighlightButton);
+    btnGroup.append(compareButton);
+
+    $('#compare-button').on("click", function(){
+        populateH2hSetup(data.name)});
+
+    $('#start-highlight-button').on("click", function(){
         let o = $(profileThatTriggered);
         switchOnHighlights(o)
     });
 
-    bsOffcanvas.show();
+    document.getElementById('councilor-detail-dialog').showModal();
 
 }
 
@@ -939,7 +938,7 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
 
                 if (v.councilorStats[councilor1.name] > 0 && v.councilorStats[councilor2.name] > 0){
 
-                    if (Math.abs(v.pro_housing_scale__motion < 1)){
+                    if (Math.abs(v.pro_housing_scale__motion) < 1){
                     col1.append("<div class='trophy-minimal'></div>");
                     col3.append("<div class='trophy-minimal'></div>");
                     }
@@ -951,7 +950,7 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
                 else if(v.councilorStats[councilor1.name] > 0 && isRecusedOrAbsent(v, councilor2) != "false"){
                     col3.append("<p><em>"+isRecusedOrAbsent(v, councilor2) +"</em></p>");
 
-                    if (Math.abs(v.pro_housing_scale__motion < 1)){
+                    if (Math.abs(v.pro_housing_scale__motion) < 1){
                         col1.append("<div class='trophy-minimal'></div>")
                     }
                     else{
@@ -973,7 +972,7 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
                 }
                 else if (v.councilorStats[councilor1.name] > v.councilorStats[councilor2.name] && v.councilorStats[councilor1.name] > 0){
 
-                    if (Math.abs(v.pro_housing_scale__motion < 1)){
+                    if (Math.abs(v.pro_housing_scale__motion) < 1){
                         col1.append("<div class='trophy-plus-minimal'></div>");
                     }
                     else{
@@ -982,7 +981,7 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
                 }
                 else if (v.councilorStats[councilor1.name] < v.councilorStats[councilor2.name] && v.councilorStats[councilor2.name] > 0){
 
-                    if (Math.abs(v.pro_housing_scale__motion < 1)){
+                    if (Math.abs(v.pro_housing_scale__motion) < 1){
                         col3.append("<div class='trophy-plus-minimal'></div>");
                     }
                     else{
@@ -1099,8 +1098,6 @@ function populateH2HItemDetail(data){
     $("#h2h-item-detail-body").append(populateVoteItemRecordDetailOuter(data));
 
     $("#h2h-item-detail-body").append(createLinkLists(data));
-
-    //TODO finish all this stuff.
 
     document.getElementById("dialog-h2h-item-detail").showModal();
 }

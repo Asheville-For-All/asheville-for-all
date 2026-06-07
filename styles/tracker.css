@@ -373,3 +373,32 @@ background-color: #DA806A;
     overflow-y: auto;
     padding-top:2rem;
 }
+
+.dialog-bottom:open{
+    height: 40vh;
+    bottom:0px;
+    left:0px;
+    margin-bottom:0px;
+    border-radius:0.3rem 0.3rem 0px 0px;
+}
+.dialog-bottom:open .dialog-body{
+    max-width:50rem;
+}
+.dialog-body{
+    align-self:center;
+}
+.councilor-dialog-title{
+    align-self:center;
+}
+
+.scrollGradient {
+  background: 
+    linear-gradient(#ffffff 33%, rgba(255,255,255, 0)),
+    linear-gradient(rgba(255,255,255, 0), #ffffff 66%) 0 100%,
+    radial-gradient(farthest-side at 50% 0, rgba(0,0,0, 0.5), rgba(0,0,0,0)),
+    radial-gradient(farthest-side at 50% 100%, rgba(0,0,0, 0.5), rgba(0,0,0,0)) 0 100%;
+  background-color: #ffffff;
+  background-repeat: no-repeat;
+  background-attachment: local, local, scroll, scroll;
+  background-size: 100% 24px, 100% 24px, 100% 8px, 100% 8px;
+}

@@ -99,7 +99,7 @@
 
   </div>
 
-  <div class="dialog-body">
+  <div class="dialog-body scrollGradient">
 
     <div class="container">
 
@@ -132,7 +132,7 @@
 
   </div>
 
-  <div class="dialog-body">
+  <div class="dialog-body scrollGradient">
 
     <div class="container">
 
@@ -181,24 +181,36 @@
   </div>
 </div>
 
-<div class="offcanvas offcanvas-bottom" tabindex="-1" id="councilBottomPanel" aria-labelledby="councilBottomPanelLabel">
-  <div class="offcanvas-header">
-    <h2 class="offcanvas-title" id="councilBottomPanelLabel">Councilor Name</h2>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+<dialog id="councilor-detail-dialog" class="dialog-bottom" closedby="any">
+
+    <div class="dialog-header">
+    <button class="btn btn-close float-end" commandfor="councilor-detail-dialog" command="close"></button>
+    <h2 id="councilor-dialog-title">Councilor Name</h2>
+
   </div>
-  <div class="offcanvas-body">
-    <div class="container container-fluid container-60">
-      <div class="row row-cols-2 g-2">
-        <div class="col" id="bs-oc-left-col">
+  <div class="dialog-body scrollGradient">
+
+    <div class="container">
+
+      <div class="row g-2 align-items-start row-cols-1 row-cols-sm-2">
+        <div class="col" id="council-pane-left-col">
           Left column
         </div>
-        <div class="col" id="bs-oc-right-col">
+        <div class="col" id="council-pane-right-col">
           Right column
         </div>
       </div>
+      <div class="row g-2 align-items-start" id="council-pane-button-group-outer">
+
+      </div>
     </div>
   </div>
-</div>
+
+  <div class="dialog-footer">
+    <button class="btn btn-outline-secondary" commandfor="councilor-detail-dialog" command="close">Close</button>
+  </div>
+
+</dialog>
 
 <div class="d-none" id="highlight-mode">
 <button type="button" class="btn btn-outline-secondary">Turn Off Highlights</button>  
@@ -224,7 +236,7 @@
 <dialog id="dialog-h2h-item-detail" closedby="any">
   <div class="container container-40" id="h2h-item-detail-header">
   </div>
-  <div class="container container-40" id="h2h-item-detail-body">
+  <div class="container container-40 scrollGradient" id="h2h-item-detail-body">
   </div>
 </dialog>
 

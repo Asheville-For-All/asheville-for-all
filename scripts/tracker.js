@@ -902,27 +902,24 @@ function endHighlights(){
 
 function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2){
 
-    $(".h2h-row").remove();
-    $("#right-h2h-profile-outer").children().remove();
-    $("#left-h2h-profile-outer").children().remove();
+    let profileContainer = $('#h2h-header-profile-container');
 
-    $("#h2h-header-row").children().each(function(i, v){
+    profileContainer.html("");
 
-        if (i == 0){
+    let clone1 = $(".profile-pic-outer[title='" + councilor1.name + "']").children().first().clone();
+    let clone2 = $(".profile-pic-outer[title='" + councilor2.name + "']").children().first().clone();
 
-            let clone1 = $(".profile-pic-outer[title='" + councilor1.name + "']").children().first().clone();
+    let col1 = $(`<div class='col-3'></div>`);
+    let col2 = $(`<div class='col-6'></div>`);
+    let col3 = $(`<div class='col-3'></div>`);
 
-            $(v).append(clone1);
+    col1.append(clone1);
+    col3.append(clone2);
 
-        }
-        if (i == 2){
+    profileContainer.append(col1).append(col2).append(col3);
 
-            let clone2 = $(".profile-pic-outer[title='" + councilor2.name + "']").children().first().clone();
-
-            $(v).append(clone2);
-
-        }
-    });
+    let bodyContainer = $('#h2h-dialog-body-container');
+    bodyContainer.html("");
 
     $.each(scorecards, function(i, v){
 
@@ -932,9 +929,9 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
 
                 let newRow = $('<div class="row align-items-center h2h-row"></div>');
 
-                let col1 = $("<div class='col'></div");
-                let col2 = $("<div class='col'></div");
-                let col3 = $("<div class='col'></div");
+                let col1 = $("<div class='col-3'></div");
+                let col2 = $("<div class='col-6'></div");
+                let col3 = $("<div class='col-3'></div");
 
                 if (v.councilorStats[councilor1.name] > 0 && v.councilorStats[councilor2.name] > 0){
 
@@ -994,20 +991,20 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
                 newRow.append(col2);
                 newRow.append(col3);
 
-                $('#h2h-container').append(newRow);
+                bodyContainer.append(newRow);
 
                 newRow.data("scorecard", v);
             }
         }
     });
 
-    const oldPpvr = document.getElementById("h2h-popover-setup");
-    const newPpvr = document.getElementById("h2h-popover");
+    const oldDialog = document.getElementById("h2h-popover-setup");
+    const newPpvr = document.getElementById("h2h-dialog");
 
-    oldPpvr.close();
-    newPpvr.showPopover();
+    oldDialog.close();
+    newPpvr.showModal();
 
-    $("#h2h-container").on("click", ".h2h-row", function(){
+    $("#h2h-dialog-body-container").on("click", ".h2h-row", function(){
 
         let d = $(this).data("scorecard");
 

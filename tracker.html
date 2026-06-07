@@ -216,18 +216,23 @@
 <button type="button" class="btn btn-outline-secondary">Turn Off Highlights</button>  
 </div>
 
-<div id="h2h-popover" popover="manual" style="width:100vw;height:100vh;background-color:white;">
-  <div class="container container-40 text-center" id="h2h-container">
-    <div class="row align-items-center sticky-top" id="h2h-header-row">
-      <div class="col" id="left-h2h-profile-outer">
-      </div>
-      <div class="col"><button class="btn btn-outline-secondary" popovertarget="h2h-popover" popovertargetaction="hide">Exit</button>
-      </div>
-      <div class="col" id="right-h2h-profile-outer">
-      </div>
+<dialog id="h2h-dialog" closedby="any">
+  <div class="dialog-header">
+    <div><button class="btn btn-close float-end" commandfor="h2h-dialog" command="close"></button><h2>Comparison Tool</h2></div>
+    <div class="container">
+      <div class="row align-items-center" id="h2h-header-profile-container"></div>
     </div>
   </div>
-</div>
+  <div class="dialog-body scrollGradient">
+    <div class="container" id="h2h-dialog-body-container">
+
+    </div>
+  </div>
+  <div class="dialog-footer">
+    <button class="btn btn-outline-secondary" commandfor="h2h-dialog" command="close">Close</button>
+  </div>
+  
+</dialog>
 
 <dialog id="h2h-popover-setup" closedby="any">
 

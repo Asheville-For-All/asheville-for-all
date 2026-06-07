@@ -356,7 +356,7 @@ background-color: #DA806A;
     --rotate: 360deg;}
 }
 
-#h2h-container .profile-pic-inner{
+#h2h-header-profile-container .profile-pic-inner{
     max-width:4rem;
 }
 

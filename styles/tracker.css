@@ -365,8 +365,6 @@ background-color: #DA806A;
     flex-wrap: nowrap;
     flex-direction:column;
     overflow:hidden;
-    max-height:100vh;
-    max-width:100vw;
 }
 #h2h-item-detail-body{
     flex-grow: 1;

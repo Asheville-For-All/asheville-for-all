@@ -410,6 +410,11 @@ background-color: #DA806A;
   animation-name: anim-from-bottom;
   animation-direction: normal;
 }
+.dialog-from-center:open{
+  animation-duration: .3s;
+  animation-name: anim-from-center;
+  animation-direction: normal;
+}
 
 @keyframes anim-from-bottom{
     from{
@@ -421,16 +426,38 @@ background-color: #DA806A;
 }
 @keyframes anim-to-bottom{
     from{
-                transform:translateY(0%);
+        transform:translateY(0%);
         
     }
     to{
-transform:translateY(100%);
+        transform:translateY(100%);
+    }
+}
+
+@keyframes anim-from-center{
+    from{
+        scale:0.01;
+    }
+    to{
+        scale:1.0;
+    }
+}
+@keyframes anim-to-center{
+    from{
+        scale:1.0;
+    }
+    to{
+        scale:0.01;
     }
 }
 
 .from-bottom-is-closing:open{
   animation-duration: .4s;
   animation-name: anim-to-bottom;
+  animation-direction: normal;
+}
+.from-center-is-closing:open{
+  animation-duration: .3s;
+  animation-name: anim-to-center;
   animation-direction: normal;
 }

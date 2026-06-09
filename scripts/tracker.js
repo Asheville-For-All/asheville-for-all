@@ -583,6 +583,19 @@ function addEventScripts() {
         loadCouncilorPanelDialog(this);
 
     });
+
+    $('#councilor-detail-dialog').on("cancel", function(event){
+        event.preventDefault();
+        $(this).addClass("from-bottom-is-closing");
+        
+    });
+
+    $('#councilor-detail-dialog').on("animationend", function(){
+        if($(this).hasClass("from-bottom-is-closing")){
+            $(this).removeClass("from-bottom-is-closing");
+            this.close();
+        }
+    });
 }
 
 function createLinkLists(scorecard){

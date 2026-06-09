@@ -1111,4 +1111,6 @@ function populateH2HItemDetail(data){
     $("#h2h-item-detail-body").append(createLinkLists(data));
 
     document.getElementById("dialog-h2h-item-detail").showModal();
+
+    $("#h2h-item-detail-body").scrollTop(0);
 }

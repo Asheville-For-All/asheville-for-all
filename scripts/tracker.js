@@ -845,6 +845,7 @@ function loadCouncilorPanelDialog(profileThatTriggered) {
 
     document.getElementById('councilor-detail-dialog').showModal();
 
+    $('#councilor-detail-dialog .dialog-body').scrollTop(0);
 }
 
 function switchOnHighlights(jqObjProfilePicOuter){

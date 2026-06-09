@@ -598,6 +598,11 @@ function addEventScripts() {
         $(this).addClass("from-center-is-closing");
         
     });
+    $('#settings-modal').on("cancel", function(event){
+        event.preventDefault();
+        $(this).addClass("from-center-is-closing");
+        
+    });
 
     $('#councilor-detail-dialog').on("animationend", function(){
         if($(this).hasClass("from-bottom-is-closing")){
@@ -606,6 +611,12 @@ function addEventScripts() {
         }
     });
     $('#info-modal').on("animationend", function(){
+        if($(this).hasClass("from-center-is-closing")){
+            $(this).removeClass("from-center-is-closing");
+            this.close();
+        }
+    });
+    $('#settings-modal').on("animationend", function(){
         if($(this).hasClass("from-center-is-closing")){
             $(this).removeClass("from-center-is-closing");
             this.close();

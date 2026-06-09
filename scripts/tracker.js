@@ -541,6 +541,10 @@ function getGaugeString(proposalScale, motionScale){
 
 function addEventScripts() {
 
+    document.getElementById("info-modal").addEventListener("cancel", (event) => {
+        $("#info-modal .dialog-body").scrollTop(0);
+    });
+
     const myModalEl = document.getElementById('settings-modal');
     myModalEl.addEventListener('close', event => {
 

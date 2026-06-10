@@ -377,6 +377,7 @@ background-color: #DA806A;
     bottom:0px;
     left:0px;
     margin-bottom:0px;
+    border-bottom:0px;
     border-radius:0.3rem 0.3rem 0px 0px;
 }
 .dialog-bottom:open .dialog-body{

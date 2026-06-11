@@ -166,6 +166,21 @@ border: rgb(182, 118, 1) solid 0.5px;
   .vote-viz-yellow{
 border: rgb(122, 143, 2) solid 0.5px;
   }
+.vote-viz-badge-green{
+    background-color: green;
+  }
+  .vote-viz-badge-red{
+    background-color: red;
+  }
+    .vote-viz-badge-neutral{
+    background-color: gray;
+  }
+  .vote-viz-badge-orange{
+background-color: rgb(182, 118, 1);
+  }
+  .vote-viz-badge-yellow{
+background-color: rgb(122, 143, 2);
+  }
 
 .sidePaneInfoBar{
     display:flex;

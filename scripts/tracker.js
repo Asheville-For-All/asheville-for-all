@@ -683,14 +683,21 @@ function createLinkLists(scorecard){
 
 function populateVoteItemRecordDetailOuter(data){
 
-    let map = ["for", "against", "recused", "abstain", "absent"];
+    const map = ["for", "against", "recused", "abstain", "absent"];
 
     let outer = $("<div id='voteItemRecordDetailOuter' class='container container-40'></div>");
+
+    const headingMap = ["vote-viz-badge-red", "vote-viz-badge-orange", "vote-viz-badge-neutral", "vote-viz-badge-yellow", "vote-viz-badge-green"];
 
     $.each(map, function(i, v){
 
         if (v in data && data.for.length > 0){
-            outer.append(`<div class='row header-row'>${v.toUpperCase()}:</div>`);
+
+            let points = data.pro_housing_scale__motion * scoreMaps[data.outcome][v];
+
+            let style = headingMap[parseInt(points * 2 + 2)];
+
+            outer.append(`<div class='row header-row'><div class="col ps-0 mb-3"><div class="badge rounded-pill ${style} ms-0">${v.toUpperCase()}:</div></div></div>`);
 
             $.each(data[v], function(j,w){
 

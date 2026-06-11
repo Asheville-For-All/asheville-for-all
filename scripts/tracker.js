@@ -617,6 +617,11 @@ function addEventScripts() {
         $(this).addClass("from-center-is-closing");
         
     });
+        $('#h2h-popover-setup').on("cancel", function(event){
+        event.preventDefault();
+        $(this).addClass("from-center-is-closing");
+        
+    });
 
     $('#councilor-detail-dialog').on("animationend", function(){
         if($(this).hasClass("from-bottom-is-closing")){
@@ -643,6 +648,12 @@ function addEventScripts() {
         }
     });
     $('#h2h-dialog').on("animationend", function(){
+        if($(this).hasClass("from-center-is-closing")){
+            $(this).removeClass("from-center-is-closing");
+            this.close();
+        }
+    });
+    $('#h2h-popover-setup').on("animationend", function(){
         if($(this).hasClass("from-center-is-closing")){
             $(this).removeClass("from-center-is-closing");
             this.close();
@@ -1124,7 +1135,7 @@ function populateH2hSetup(councilorName){
     let btnGroup = $('<div class="btn-group" role="group"></div>');
 
     let button1 = $("<button disabled class='btn btn-outline-secondary'>Show Comparison</button>");
-    let button2 = $("<button commandfor='h2h-popover-setup' command='close' class='btn btn-outline-secondary'>Cancel</button>");
+    let button2 = $("<button commandfor='h2h-popover-setup' command='request-close' class='btn btn-outline-secondary'>Cancel</button>");
 
     btnGroup.append(button1).append(button2);
 

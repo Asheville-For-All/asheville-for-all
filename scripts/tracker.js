@@ -608,6 +608,11 @@ function addEventScripts() {
         $(this).addClass("from-left-is-closing");
         
     });
+    $('#h2h-dialog').on("cancel", function(event){
+        event.preventDefault();
+        $(this).addClass("from-center-is-closing");
+        
+    });
 
     $('#councilor-detail-dialog').on("animationend", function(){
         if($(this).hasClass("from-bottom-is-closing")){
@@ -630,6 +635,12 @@ function addEventScripts() {
     $('#dialog-h2h-item-detail').on("animationend", function(){
         if($(this).hasClass("from-left-is-closing")){
             $(this).removeClass("from-left-is-closing");
+            this.close();
+        }
+    });
+    $('#h2h-dialog').on("animationend", function(){
+        if($(this).hasClass("from-center-is-closing")){
+            $(this).removeClass("from-center-is-closing");
             this.close();
         }
     });

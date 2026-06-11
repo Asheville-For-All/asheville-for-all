@@ -216,9 +216,9 @@
 <button type="button" class="btn btn-outline-secondary">Turn Off Highlights</button>  
 </div>
 
-<dialog id="h2h-dialog" closedby="any">
+<dialog id="h2h-dialog" closedby="any" class="dialog-from-center">
   <div class="dialog-header">
-    <div><button class="btn btn-close float-end" commandfor="h2h-dialog" command="close"></button><h2>Comparison Tool</h2></div>
+    <div><button class="btn btn-close float-end" commandfor="h2h-dialog" command="request-close"></button><h2>Comparison Tool</h2></div>
     <div class="container">
       <div class="row align-items-center" id="h2h-header-profile-container"></div>
     </div>
@@ -229,7 +229,7 @@
     </div>
   </div>
   <div class="dialog-footer">
-    <button class="btn btn-outline-secondary" commandfor="h2h-dialog" command="close">Close</button>
+    <button class="btn btn-outline-secondary" commandfor="h2h-dialog" command="request-close">Close</button>
   </div>
   
 </dialog>

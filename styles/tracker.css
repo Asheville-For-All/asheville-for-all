@@ -202,6 +202,9 @@ background-color: #DA806A;
 .title-bar-svg{
     width:1.25em;height:1.25em;fill:#298C6C;vertical-align: -0.125em;
 }
+.title-bar-svg-blue{
+    width:1.25em;height:1.25em;fill:#0501e7;vertical-align: -0.125em;
+}
 
 #tracker-frame-1 .btn{
     border:0px;

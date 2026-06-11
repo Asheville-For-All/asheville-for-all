@@ -541,6 +541,10 @@ function getGaugeString(proposalScale, motionScale){
 
 function addEventScripts() {
 
+    $('#h2h-title-button').on("click", function(){
+        populateH2hSetup("");
+    });
+
     document.getElementById("info-modal").addEventListener("cancel", (event) => {
         $("#info-modal .dialog-body").scrollTop(0);
     });
@@ -1088,36 +1092,88 @@ function populateH2hSetup(councilorName){
 
     dialog.children().remove();
 
-    dialog.append("<p>Compare " + councilorName + " with:</p>");
+    dialog.append(`<div class="dialog-header">
+    <button class="btn btn-close float-end" commandfor="h2h-popover-setup" command="request-close"></button><h2>Comparison Tool</h2></div>`);
 
-    let chooser = $("<select class='form-select mt-3 mb-3' aria-label='Comparison selector'>");
+    dialog.append("<p>Compare:</p>");
+
+    let chooser = $("<select class='form-select mt-3 mb-3'></select>");
+
+    chooser.append(`<option value='none' selected>Choose a councilor</option>`);
 
     $.each(AshevilleCouncilRoster, function(i, v){
-        if (v.showMe && v.name != councilorName){
+
+        if(v.showMe){
 
             let option = $('<option value="'+ v.name + '">' + v.name + '</option>');
             chooser.append(option);
         }
+        
     });
 
     dialog.append(chooser);
 
+    dialog.append(`<p>with:</p>`);
+
+    let chooser2 = $("<select class='form-select mt-3 mb-3' disabled></select>");
+
+    chooser2.append(`<option value='none' selected>Choose another councilor</option>`);
+
+    dialog.append(chooser2);
+
     let btnGroup = $('<div class="btn-group" role="group"></div>');
 
-    let button1 = $("<button class='btn btn-outline-secondary'>Show Comparison</button>");
+    let button1 = $("<button disabled class='btn btn-outline-secondary'>Show Comparison</button>");
     let button2 = $("<button commandfor='h2h-popover-setup' command='close' class='btn btn-outline-secondary'>Cancel</button>");
 
     btnGroup.append(button1).append(button2);
 
     dialog.append(btnGroup);
 
-    button1.on("click", function(){
-        populateHeadToHeadPopup(scoreCardCollection, AshevilleCouncilRoster, retrieveCouncilorFromName(councilorName), retrieveCouncilorFromName(chooser.val()));
+    chooser.on("change", function(){
+        if (chooser.val() != "none"){
+            chooser2.prop("disabled", false);
+            chooser2.html(`<option value='none' selected>Choose another councilor</option>`);
+            $.each(AshevilleCouncilRoster, function(i, v){
+                if(v.showMe && v.name != chooser.val()){
+                    let option = $('<option value="'+ v.name + '">' + v.name + '</option>');
+                    chooser2.append(option);
+                }
+            });
+        }
+        else{
+            chooser2.prop("disabled", true);
+            chooser2.val("none");
+        }
+
+        if(chooser.val() != "none" && chooser2.val() != "none"){
+            button1.prop("disabled", false);
+        }
+        else{
+            button1.prop("disabled", true);
+        }
     });
 
-    const ppvr = document.getElementById("h2h-popover-setup");
+    chooser2.on("change", function(){
+        if(chooser.val() != "none" && chooser2.val() != "none"){
+            button1.prop("disabled", false);
+        }
+        else{
+            button1.prop("disabled", true);
+        }
+    });
 
-    ppvr.showModal();
+    if (councilorName != "" && councilorName != null){
+        chooser.val(councilorName).change();
+    }
+
+    button1.on("click", function(){
+        populateHeadToHeadPopup(scoreCardCollection, AshevilleCouncilRoster, retrieveCouncilorFromName(chooser.val()), retrieveCouncilorFromName(chooser2.val()));
+    });
+
+    const dialg = document.getElementById("h2h-popover-setup");
+
+    dialg.showModal();
 }
 
 function isRecusedOrAbsent(scorecard, councilorObj){

@@ -408,9 +408,11 @@ background-color: #DA806A;
     align-self:center;
 }
 .dialog-left:open{
+    width:400px;
 margin-left:0px;
 border-left:0px;
 border-radius:0px 0.3rem 0.3rem 0px;
+min-height: 90vh;
 }
 .councilor-dialog-title{
     align-self:center;

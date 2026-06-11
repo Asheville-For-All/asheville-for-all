@@ -1088,6 +1088,8 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
     oldDialog.close();
     newPpvr.showModal();
 
+    $('#h2h-dialog .dialog-body').scrollTop(0);
+
     $("#h2h-dialog-body-container").on("click", ".h2h-row", function(){
 
         let d = $(this).data("scorecard");

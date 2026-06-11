@@ -603,6 +603,11 @@ function addEventScripts() {
         $(this).addClass("from-center-is-closing");
         
     });
+    $('#dialog-h2h-item-detail').on("cancel", function(event){
+        event.preventDefault();
+        $(this).addClass("from-left-is-closing");
+        
+    });
 
     $('#councilor-detail-dialog').on("animationend", function(){
         if($(this).hasClass("from-bottom-is-closing")){
@@ -619,6 +624,12 @@ function addEventScripts() {
     $('#settings-modal').on("animationend", function(){
         if($(this).hasClass("from-center-is-closing")){
             $(this).removeClass("from-center-is-closing");
+            this.close();
+        }
+    });
+    $('#dialog-h2h-item-detail').on("animationend", function(){
+        if($(this).hasClass("from-left-is-closing")){
+            $(this).removeClass("from-left-is-closing");
             this.close();
         }
     });
@@ -1127,7 +1138,7 @@ function populateH2HItemDetail(data){
     $("#h2h-item-detail-body").children().remove(); 
     let badge = $(`<div class='badge bg-primary type'>${data.type}</div>`);
 
-    let closeBox = $("<button class='btn btn-close float-end' commandfor='dialog-h2h-item-detail' command='close'></button>");
+    let closeBox = $("<button class='btn btn-close float-end' commandfor='dialog-h2h-item-detail' command='request-close'></button>");
 
     $("#h2h-item-detail-header").append(closeBox);
 

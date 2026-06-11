@@ -433,13 +433,18 @@ border-radius:0px 0.3rem 0.3rem 0px;
 }
 
 .dialog-from-bottom:open{
-  animation-duration: .4s;
+  animation-duration: .3s;
   animation-name: anim-from-bottom;
   animation-direction: normal;
 }
 .dialog-from-center:open{
   animation-duration: .3s;
   animation-name: anim-from-center;
+  animation-direction: normal;
+}
+.dialog-from-left:open{
+  animation-duration: .3s;
+  animation-name: anim-from-left;
   animation-direction: normal;
 }
 
@@ -478,6 +483,24 @@ border-radius:0px 0.3rem 0.3rem 0px;
     }
 }
 
+@keyframes anim-from-left{
+    from{
+        transform:translateX(-100%);
+    }
+    to{
+        transform:translateX(0%);
+    }
+}
+@keyframes anim-to-left{
+    from{
+        transform:translateX(0%);
+        
+    }
+    to{
+        transform:translateX(-100%);
+    }
+}
+
 .from-bottom-is-closing:open{
   animation-duration: .4s;
   animation-name: anim-to-bottom;
@@ -486,5 +509,10 @@ border-radius:0px 0.3rem 0.3rem 0px;
 .from-center-is-closing:open{
   animation-duration: .3s;
   animation-name: anim-to-center;
+  animation-direction: normal;
+}
+.from-left-is-closing:open{
+  animation-duration: .3s;
+  animation-name: anim-to-left;
   animation-direction: normal;
 }

@@ -446,7 +446,7 @@ function buildVoteVizBox(scorecard){
 
     let newString = "";
 
-    let colorList = ["vote-viz-red", "vote-viz-neutral", "vote-viz-green"]
+    let colorList = ["vote-viz-red", "vote-viz-orange", "vote-viz-neutral", "vote-viz-yellow", "vote-viz-green"]
 
     $.each(outcomeMap, function(k, v){
 
@@ -455,7 +455,7 @@ function buildVoteVizBox(scorecard){
             if (k in scorecard){
 
                 let box = `
-                <div class="vote-viz ${colorList[outcomeMap[k] * scorecard.pro_housing_scale__motion + 1]}">
+                <div class="vote-viz ${colorList[parseInt(outcomeMap[k] * scorecard.pro_housing_scale__motion * 2 + 2)]}">
                     <div class="vote-viz-label">${k.toUpperCase()}:&nbsp;</div>`
 
                 $.each(scorecard[k], function(i, v){

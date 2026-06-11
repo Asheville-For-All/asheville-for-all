@@ -160,6 +160,12 @@ background-position: 50% 50%;
     .vote-viz-neutral{
     border: gray solid 0.5px;
   }
+  .vote-viz-orange{
+border: rgb(182, 118, 1) solid 0.5px;
+  }
+  .vote-viz-yellow{
+border: rgb(122, 143, 2) solid 0.5px;
+  }
 
 .sidePaneInfoBar{
     display:flex;

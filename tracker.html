@@ -141,31 +141,32 @@
 
     <div class="container">
 
-    <p>Show votes from:</p>
+      <div class="card mb-3">
+  <div class="card-body">
+    <p>Show votes from the past <select id="past-years-selector"><option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option></select> years.</p>
+  </div>
+</div>
 
-        <div class="btn-group mb-2" role="group">
-          <input type="radio" class="btn-check" name="btnradiotime" id="btnradiotime1" autocomplete="off" value="1">
-          <label class="btn btn-outline-secondary" for="btnradiotime1">Past 1 Year</label>
+    <div class="card">
+  <div class="card-body">
 
-          <input type="radio" class="btn-check" name="btnradiotime" id="btnradiotime2" autocomplete="off" value="2">
-          <label class="btn btn-outline-secondary" for="btnradiotime2">Past 2 Years</label>
+    <div class="form-check">
+  <input class="form-check-input" type="radio" value="no" name="showCouncilors" id="showCouncilors1" checked>
+  <label class="form-check-label" for="radioDefault1">
+    Show current councilors
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" value="yes" name="showCouncilors" id="showCouncilors2">
+  <label class="form-check-label" for="radioDefault2">
+    Show all councilors (in selected past duration)
+  </label>
+</div>
+    
+  </div>
+</div>
 
-          <input type="radio" class="btn-check" name="btnradiotime" id="btnradiotime3" autocomplete="off" value="3" checked>
-          <label class="btn btn-outline-secondary" for="btnradiotime3">Past 3 Years</label>
-
-          <input type="radio" class="btn-check" name="btnradiotime" id="btnradiotime4" autocomplete="off" value="4">
-          <label class="btn btn-outline-secondary" for="btnradiotime4">Past 4 Years</label>
-
-        </div>
-
-        <div class="btn-group" role="group">
-          <input type="radio" class="btn-check" name="btnradioshowallcouncilors" id="btnradioshowallcouncilors1" autocomplete="off" value="no" checked>
-          <label class="btn btn-outline-secondary" for="btnradioshowallcouncilors1">Only Show Current Councilors</label>
-
-          <input type="radio" class="btn-check" name="btnradioshowallcouncilors" id="btnradioshowallcouncilors2" autocomplete="off" value="yes">
-          <label class="btn btn-outline-secondary" for="btnradioshowallcouncilors2">Show All Councilors (in Selected Past Duration)</label>
-
-        </div>
+        
         </div>
 
   </div>

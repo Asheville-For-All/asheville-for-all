@@ -521,3 +521,8 @@ min-height: 90vh;
   animation-name: anim-to-left;
   animation-direction: normal;
 }
+
+#showCouncilors1:checked, #showCouncilors2:checked{
+    background-color: rgb(62, 62, 62);
+    border-color:gray;
+}

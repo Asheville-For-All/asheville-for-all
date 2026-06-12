@@ -554,9 +554,9 @@ function addEventScripts() {
 
         let needReboot = false;
 
-        let newNumYears = $("input[name='btnradiotime']:checked").val();
+        let newNumYears = $("#past-years-selector").val();
 
-        let newShowCouncilors = $("input[name='btnradioshowallcouncilors']:checked").val();
+        let newShowCouncilors = $("input[name='showCouncilors']:checked").val();
 
         if (newNumYears != settings.numYears) {
             settings.numYears = newNumYears;

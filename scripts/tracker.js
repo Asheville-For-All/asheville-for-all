@@ -454,9 +454,15 @@ function buildVoteVizBox(scorecard){
 
             if (k in scorecard){
 
+                let labelTxt = k.toUpperCase();
+
+                if (scorecard.outcome == "Denied"){
+                    labelTxt = k.toUpperCase() + " (denial)";
+                }
+
                 let box = `
                 <div class="vote-viz ${colorList[parseInt(outcomeMap[k] * scorecard.pro_housing_scale__motion * 2 + 2)]}">
-                    <div class="vote-viz-label">${k.toUpperCase()}:&nbsp;</div>`
+                    <div class="vote-viz-label">${labelTxt}:&nbsp;</div>`
 
                 $.each(scorecard[k], function(i, v){
 

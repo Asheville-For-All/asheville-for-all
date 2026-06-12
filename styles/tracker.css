@@ -526,3 +526,10 @@ min-height: 90vh;
     background-color: rgb(62, 62, 62);
     border-color:gray;
 }
+
+.h2h-row{
+    cursor:pointer;
+}
+.h2h-row:hover{
+    background-color:aliceblue;
+}

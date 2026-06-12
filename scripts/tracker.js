@@ -743,7 +743,7 @@ function populateVoteItemRecordDetailOuter(data){
                     debugStr = " " + String(data.councilorStats[w]);
                 }
 
-                outer.append(`<div class='row mb-1' style='flex-wrap:nowrap;'><div style="height:2.5rem;max-width:2.5rem;background-size: cover;background-position: 50% 50%;aspect-ratio: 1 / 1; border-radius:0.25rem;background-image: url('${retrieveCouncilorFromName(w).pic}')"></div><div>${w}${debugStr}</div>`);
+                outer.append(`<div class='row mb-1' style='flex-wrap:nowrap;'><div class="col d-flex align-items-center"><div style="height:2.5rem;max-width:2.5rem;background-size: cover;background-position: 50% 50%;aspect-ratio: 1 / 1; border-radius:0.25rem;background-image: url('${retrieveCouncilorFromName(w).pic}')"></div><div class="ms-2">${w}${debugStr}</div></div>`);
 
             });
 

@@ -1005,6 +1005,8 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
     let bodyContainer = $('#h2h-dialog-body-container');
     bodyContainer.html("");
 
+    let h2hRowCount = 0;
+
     $.each(scorecards, function(i, v){
 
         if (v.showMe == true){
@@ -1077,10 +1079,23 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
 
                 bodyContainer.append(newRow);
 
+                h2hRowCount += 1;
+
                 newRow.data("scorecard", v);
             }
         }
     });
+
+    if (h2hRowCount == 0){
+        bodyContainer.append(`<div class="alert alert-warning mt-4">
+  No relevant council meeting items were found. Try adjusting the settings.
+</div>`);
+    }
+    else{
+        bodyContainer.append(`<div class="alert alert-primary mt-4">
+  The above records include relevant council meeting items during which both councilors served on the council. Items may have been omitted based on selected settings.
+</div>`);
+    }
 
     const oldDialog = document.getElementById("h2h-popover-setup");
     const newPpvr = document.getElementById("h2h-dialog");

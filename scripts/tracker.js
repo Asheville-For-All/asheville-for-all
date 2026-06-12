@@ -740,7 +740,15 @@ function populateVoteItemRecordDetailOuter(data){
 
             let style = headingMap[parseInt(points * 2 + 2)];
 
-            outer.append(`<div class='row header-row'><div class="col ps-0 mb-3"><div class="badge rounded-pill ${style} ms-0">${v.toUpperCase()}:</div></div></div>`);
+            let labelTxt = v.toUpperCase();
+
+            if(data.outcome == "Denied"){
+                if (v == "for" || v == "against"){
+                    labelTxt += " (denial)";
+                }
+            }
+
+            outer.append(`<div class='row header-row'><div class="col ps-0 mb-3"><div class="badge rounded-pill ${style} ms-0">${labelTxt}:</div></div></div>`);
 
             $.each(data[v], function(j,w){
 

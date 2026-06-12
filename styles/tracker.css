@@ -363,6 +363,57 @@ background-color: #DA806A;
     animation-timing-function: linear;
 }
 
+.face-0{
+    background-position: 50% 50%;
+    mask: url(/img/tracker-imgs/face-0.svg);
+    background-color:red;
+    height: 2rem;
+    aspect-ratio: 1 / 1;
+    mask-size: cover;
+    margin-left:auto;
+    margin-right:auto;
+}
+.face-1{
+    background-position: 50% 50%;
+    mask: url(/img/tracker-imgs/face-1.svg);
+    background-color:orange;
+    height: 2rem;
+    aspect-ratio: 1 / 1;
+    mask-size: cover;
+    margin-left:auto;
+    margin-right:auto;
+}
+.face-2{
+    background-position: 50% 50%;
+    mask: url(/img/tracker-imgs/face-2.svg);
+    background-color:gray;
+    height: 2rem;
+    aspect-ratio: 1 / 1;
+    mask-size: cover;
+    margin-left:auto;
+    margin-right:auto;
+}
+.face-3{
+    background-position: 50% 50%;
+    mask: url(/img/tracker-imgs/face-3.svg);
+    background-color:yellowgreen;
+    height: 2rem;
+    aspect-ratio: 1 / 1;
+    mask-size: cover;
+    margin-left:auto;
+    margin-right:auto;
+}
+.face-4{
+    background-position: 50% 50%;
+    mask: url(/img/tracker-imgs/face-4.svg);
+    background-color:green;
+    height: 2rem;
+    aspect-ratio: 1 / 1;
+    mask-size: cover;
+    margin-left:auto;
+    margin-right:auto;
+}
+
 @property --rotate {
   syntax: '<angle>';
   initial-value: 0deg;

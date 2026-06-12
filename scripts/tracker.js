@@ -15,7 +15,9 @@ var loadingStartTime = Date.now();
 
 let params = new URLSearchParams(document.location.search);
 var debug = false;
-if (params.get("debug") == true || params.get("debug") == "true" || params.get("debug") == "y"){debug = true;console.log("Debug mode is activated.");}
+if (params.get("debug") == true || params.get("debug") == "true" || params.get("debug") == "y"){debug = true;}
+var h2hStyle = "trophy";
+if (params.get("h2hStyle") == "faces"){h2hStyle = "faces"};
 
 const loadingTotalCount = scoreCardCollection.length + AshevilleCouncilRoster.length;
 
@@ -1033,56 +1035,101 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
                 let col2 = $("<div class='col-6'></div");
                 let col3 = $("<div class='col-3'></div");
 
-                if (v.councilorStats[councilor1.name] > 0 && v.councilorStats[councilor2.name] > 0){
+                function trophyStyle(){
 
-                    if (Math.abs(v.pro_housing_scale__motion) < 1){
-                    col1.append("<div class='trophy-minimal'></div>");
-                    col3.append("<div class='trophy-minimal'></div>");
-                    }
-                    else{
-                    col1.append("<div class='trophy-basic'></div>");
-                    col3.append("<div class='trophy-basic'></div>");
-                    }
-                }
-                else if(v.councilorStats[councilor1.name] > 0 && isRecusedOrAbsent(v, councilor2) != "false"){
-                    col3.append("<p><em>"+isRecusedOrAbsent(v, councilor2) +"</em></p>");
+                    if (v.councilorStats[councilor1.name] > 0 && v.councilorStats[councilor2.name] > 0){
 
-                    if (Math.abs(v.pro_housing_scale__motion) < 1){
-                        col1.append("<div class='trophy-minimal'></div>")
-                    }
-                    else{
-                    col1.append("<div class='trophy-basic'></div>");}
-
-                }
-                else if (v.councilorStats[councilor2.name] > 0 && isRecusedOrAbsent(v, councilor1) != "false"){
-
-                    if (Math.abs(v.pro_housing_scale__motion < 1)){
+                        if (Math.abs(v.pro_housing_scale__motion) < 1){
+                        col1.append("<div class='trophy-minimal'></div>");
                         col3.append("<div class='trophy-minimal'></div>");
-                    }
-                    else{
-
+                        }
+                        else{
+                        col1.append("<div class='trophy-basic'></div>");
                         col3.append("<div class='trophy-basic'></div>");
+                        }
                     }
+                    else if(v.councilorStats[councilor1.name] > 0 && isRecusedOrAbsent(v, councilor2) != "false"){
+                        col3.append("<p><em>"+isRecusedOrAbsent(v, councilor2) +"</em></p>");
 
-                    col1.append("<p><em>"+isRecusedOrAbsent(v, councilor1) +"</em></p>");
+                        if (Math.abs(v.pro_housing_scale__motion) < 1){
+                            col1.append("<div class='trophy-minimal'></div>")
+                        }
+                        else{
+                        col1.append("<div class='trophy-basic'></div>");}
+
+                    }
+                    else if (v.councilorStats[councilor2.name] > 0 && isRecusedOrAbsent(v, councilor1) != "false"){
+
+                        if (Math.abs(v.pro_housing_scale__motion < 1)){
+                            col3.append("<div class='trophy-minimal'></div>");
+                        }
+                        else{
+
+                            col3.append("<div class='trophy-basic'></div>");
+                        }
+
+                        col1.append("<p><em>"+isRecusedOrAbsent(v, councilor1) +"</em></p>");
+
+                    }
+                    else if (v.councilorStats[councilor1.name] > v.councilorStats[councilor2.name] && v.councilorStats[councilor1.name] > 0){
+
+                        if (Math.abs(v.pro_housing_scale__motion) < 1){
+                            col1.append("<div class='trophy-plus-minimal'></div>");
+                        }
+                        else{
+                        col1.append("<div class='trophy-plus'></div>");
+                        }
+                    }
+                    else if (v.councilorStats[councilor1.name] < v.councilorStats[councilor2.name] && v.councilorStats[councilor2.name] > 0){
+
+                        if (Math.abs(v.pro_housing_scale__motion) < 1){
+                            col3.append("<div class='trophy-plus-minimal'></div>");
+                        }
+                        else{
+                        col3.append("<div class='trophy-plus'></div>");}
+                    }
 
                 }
-                else if (v.councilorStats[councilor1.name] > v.councilorStats[councilor2.name] && v.councilorStats[councilor1.name] > 0){
+                function faceStyle(){
 
-                    if (Math.abs(v.pro_housing_scale__motion) < 1){
-                        col1.append("<div class='trophy-plus-minimal'></div>");
+                    if (v.councilorStats[councilor1.name] >= 1){
+                        col1.append("<div class='face-4'></div>");
                     }
-                    else{
-                    col1.append("<div class='trophy-plus'></div>");
+                    else if (v.councilorStats[councilor1.name] < 1 && v.councilorStats[councilor1.name] > 0){
+                        col1.append("<div class='face-3'></div>");
+                    }
+                    else if (v.councilorStats[councilor1.name] == 0){
+                        col1.append("<div class='face-2'></div>");
+                    }
+                    else if (v.councilorStats[councilor1.name] < 0 && v.councilorStats[councilor1.name] > -1){
+                        col1.append("<div class='face-1'></div>");
+                    }
+                    else if (v.councilorStats[councilor1.name] <= -1){
+                        col1.append("<div class='face-0'></div>");
+                    }
+
+                    if (v.councilorStats[councilor2.name] >= 1){
+                        col3.append("<div class='face-4'></div>");
+                    }
+                    else if (v.councilorStats[councilor2.name] < 1 && v.councilorStats[councilor2.name] > 0){
+                        col3.append("<div class='face-3'></div>");
+                    }
+                    else if (v.councilorStats[councilor2.name] == 0){
+                        col3.append("<div class='face-2'></div>");
+                    }
+                    else if (v.councilorStats[councilor2.name] < 0 && v.councilorStats[councilor2.name] > -1){
+                        col3.append("<div class='face-1'></div>");
+                    }
+                    else if (v.councilorStats[councilor2.name] <= -1){
+                        col3.append("<div class='face-0'></div>");
                     }
                 }
-                else if (v.councilorStats[councilor1.name] < v.councilorStats[councilor2.name] && v.councilorStats[councilor2.name] > 0){
 
-                    if (Math.abs(v.pro_housing_scale__motion) < 1){
-                        col3.append("<div class='trophy-plus-minimal'></div>");
-                    }
-                    else{
-                    col3.append("<div class='trophy-plus'></div>");}
+                if (h2hStyle == "faces"){
+                    faceStyle();
+                }
+                else{
+                    trophyStyle();
                 }
 
                 col2.append("<div>" + v.name + "<br/><span class='vote-date'>" + Date.parse(v.date).toString("MMMM dS, yyyy") + "</span></div>");

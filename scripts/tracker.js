@@ -1013,7 +1013,7 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
 
             if(councilor1.name in v.councilorStats && councilor2.name in v.councilorStats){
 
-                let newRow = $('<div class="row align-items-center h2h-row"></div>');
+                let newRow = $('<div class="row align-items-center h2h-row mt-2 mb-2"></div>');
 
                 let col1 = $("<div class='col-3'></div");
                 let col2 = $("<div class='col-6'></div");
@@ -1071,7 +1071,7 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
                     col3.append("<div class='trophy-plus'></div>");}
                 }
 
-                col2.append("<p>" + v.name + "<br/><span class='vote-date'>" + Date.parse(v.date).toString("MMMM dS, yyyy") + "</span></p>");
+                col2.append("<div>" + v.name + "<br/><span class='vote-date'>" + Date.parse(v.date).toString("MMMM dS, yyyy") + "</span></div>");
 
                 newRow.append(col1);
                 newRow.append(col2);

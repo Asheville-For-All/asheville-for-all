@@ -1093,35 +1093,67 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
                 function faceStyle(){
 
                     if (v.councilorStats[councilor1.name] >= 1){
-                        col1.append("<div class='face-4'></div>");
+                        if (v.councilorStats[councilor1.name] > v.councilorStats[councilor2.name] && isRecusedOrAbsent(v, councilor2) =="false"){
+                            col1.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><div class='face-4'></div><div class='star-gold'></div></div>`);
+
+                        }
+                        else{
+                            col1.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><div class='face-4'></div></div>`);
+                        }
                     }
                     else if (v.councilorStats[councilor1.name] < 1 && v.councilorStats[councilor1.name] > 0){
-                        col1.append("<div class='face-3'></div>");
+                        if (v.councilorStats[councilor1.name] > v.councilorStats[councilor2.name] && isRecusedOrAbsent(v, councilor2) == "false"){
+                            col1.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><div class='face-3'></div><div class='star-gold'></div></div>`);
+                        }
+                        else{
+                            col1.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><div class='face-3'></div></div>`);
+                        }
                     }
                     else if (v.councilorStats[councilor1.name] == 0){
-                        col1.append("<div class='face-2'></div>");
+                        if(isRecusedOrAbsent(v, councilor1) != "false"){
+                            col1.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><em>${isRecusedOrAbsent(v, councilor1)}</em></div>`);
+                        }
+                        else{
+                            col1.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><div class='face-2'></div></div>`);
+                        }                        
                     }
                     else if (v.councilorStats[councilor1.name] < 0 && v.councilorStats[councilor1.name] > -1){
-                        col1.append("<div class='face-1'></div>");
+                        col1.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><div class='face-1'></div></div>`);
                     }
                     else if (v.councilorStats[councilor1.name] <= -1){
-                        col1.append("<div class='face-0'></div>");
+                        col1.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><div class='face-0'></div></div>`);
                     }
 
                     if (v.councilorStats[councilor2.name] >= 1){
-                        col3.append("<div class='face-4'></div>");
+                        if (v.councilorStats[councilor2.name] > v.councilorStats[councilor1.name] && isRecusedOrAbsent(v, councilor1) =="false"){
+                            col3.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><div class='face-4'></div><div class='star-gold'></div></div>`);
+
+                        }
+                        else{
+                            col3.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><div class='face-4'></div></div>`);
+                        }
                     }
                     else if (v.councilorStats[councilor2.name] < 1 && v.councilorStats[councilor2.name] > 0){
-                        col3.append("<div class='face-3'></div>");
+                        if (v.councilorStats[councilor2.name] > v.councilorStats[councilor1.name] && isRecusedOrAbsent(v, councilor1) == "false"){
+                            col3.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><div class='face-3'></div><div class='star-gold'></div></div>`);
+                        }
+                        else{
+                            col3.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><div class='face-3'></div></div>`);
+                        }
                     }
                     else if (v.councilorStats[councilor2.name] == 0){
-                        col3.append("<div class='face-2'></div>");
+                        if(isRecusedOrAbsent(v, councilor2) != "false"){
+                            col3.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><em>${isRecusedOrAbsent(v, councilor2)}</em></div>`);
+                        }
+                        else{
+                            col3.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><div class='face-2'></div></div>`);
+                        }                        
                     }
                     else if (v.councilorStats[councilor2.name] < 0 && v.councilorStats[councilor2.name] > -1){
-                        col3.append("<div class='face-1'></div>");
+                        col3.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><div class='face-1'></div></div>`);
                     }
                     else if (v.councilorStats[councilor2.name] <= -1){
-                        col3.append("<div class='face-0'></div>");
+                        col3.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><div class='face-0'></div></div>`);
                     }
                 }
 

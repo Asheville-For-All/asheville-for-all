@@ -27,7 +27,8 @@ export class ImageLoader {
             "/img/tracker-imgs/face-1.svg",
             "/img/tracker-imgs/face-2.svg",
             "/img/tracker-imgs/face-3.svg",
-            "/img/tracker-imgs/face-4.svg"
+            "/img/tracker-imgs/face-4.svg",
+            "/img/tracker-imgs/star-gold.svg"
         ];
 
         var self = this;

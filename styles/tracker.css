@@ -608,12 +608,12 @@ min-height: 90vh;
 
 @keyframes star-rotate {
     0%{
-        transform:rotate(0deg) 
+        transform:translate(0.25rem, 0.25rem) rotate(0deg) 
         scale(1.3);
     }50%{
-        transform:rotate(180deg) scale(0.7);
+        transform:translate(0.25rem, 0.25rem) rotate(180deg) scale(0.7);
     }100%{
-transform:rotate(359deg) scale(1.3);
+transform:translate(0.25rem, 0.25rem) rotate(359deg) scale(1.3);
     }
     
 }

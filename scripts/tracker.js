@@ -16,8 +16,9 @@ var loadingStartTime = Date.now();
 let params = new URLSearchParams(document.location.search);
 var debug = false;
 if (params.get("debug") == true || params.get("debug") == "true" || params.get("debug") == "y"){debug = true;}
-var h2hStyle = "trophy";
+var h2hStyle = "faces";
 if (params.get("h2hStyle") == "faces"){h2hStyle = "faces"};
+if (params.get("h2hStyle") == "trophy"){h2hStyle = "trophy"};
 
 const loadingTotalCount = scoreCardCollection.length + AshevilleCouncilRoster.length;
 
@@ -1163,11 +1164,12 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
                     }
                 }
 
-                if (h2hStyle == "faces"){
-                    faceStyle();
+                if (h2hStyle == "trophy"){
+                    trophyStyle();
                 }
                 else{
-                    trophyStyle();
+                    
+                    faceStyle();
                 }
 
                 col2.append("<div>" + v.name + "<br/><span class='vote-date'>" + Date.parse(v.date).toString("MMMM dS, yyyy") + "</span></div>");

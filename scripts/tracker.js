@@ -1194,6 +1194,9 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
         bodyContainer.append(`<div class="alert alert-primary mt-4">
   The above records include relevant council meeting items during which both councilors served on the council. Items may have been omitted based on selected settings.
 </div>`);
+bodyContainer.prepend(`<div class="alert alert-primary"><div class="star-gold"></div>
+  <div style="text-align:left;">A star indicates a relatively pro-housing vote that contrasts with the other councilor's vote on the same item.</div>
+</div>`)
     }
 
     const oldDialog = document.getElementById("h2h-popover-setup");

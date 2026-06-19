@@ -496,6 +496,8 @@ function populateVoteItemsContainer(){
 
     $.each(scoreCardCollection, function(i, v){
 
+        v.index = i;
+
         if (Helper.isDateRecent(settings.numYears, v.date)){
 
             v.showMe = true;
@@ -652,6 +654,7 @@ function addEventScripts() {
     });
     $('#dialog-h2h-item-detail').on("animationend", function(){
         if($(this).hasClass("from-left-is-closing")){
+            $('.detail-active').addClass("detail-inactive").removeClass('detail-active');
             $(this).removeClass("from-left-is-closing");
             this.close();
         }
@@ -1213,7 +1216,7 @@ bodyContainer.prepend(`<div class="alert alert-primary"><div class="star-gold"><
 
         let d = $(this).data("scorecard");
 
-        populateH2HItemDetail(d);
+        populateH2HItemDetail($(this));
     });
 
 }
@@ -1331,7 +1334,9 @@ function isRecusedOrAbsent(scorecard, councilorObj){
 
 }
 
-function populateH2HItemDetail(data){
+function populateH2HItemDetail(jqRowThatTriggered){
+
+    let data = jqRowThatTriggered.data("scorecard");
 
     $("#h2h-item-detail-header").children().remove();
     $("#h2h-item-detail-body").children().remove(); 
@@ -1356,4 +1361,7 @@ function populateH2HItemDetail(data){
     document.getElementById("dialog-h2h-item-detail").showModal();
 
     $("#h2h-item-detail-body").scrollTop(0);
+
+    jqRowThatTriggered.removeClass("detail-inactive");
+    jqRowThatTriggered.addClass("detail-active");
 }

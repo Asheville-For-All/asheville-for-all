@@ -115,6 +115,8 @@ function reBoot(){
 
     endHighlights();
 
+    $('#tracker-frame-3').addClass('d-none');
+
     setUpPlaceHolders();
 
     setUpCouncilors();

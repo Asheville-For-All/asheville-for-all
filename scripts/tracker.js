@@ -536,7 +536,8 @@ function populateVoteItemsContainer(){
 
     });
 
-    $("vote-list-outer").append("<div class='container-40 container mt-4'><p>Visit the <i>settings</i> menu to adjust the number of years that are displayed.</p></div>");
+    $("vote-list-outer").append("<div class='container-40 container mt-4'><p><a id='link-to-settings-menu' href='javascript:void(0)'>Visit the <i>settings</i> menu</a> to adjust the number of years that are displayed.</p></div>");
+    $('#link-to-settings-menu').on("click", function(){openSettings()});
 
 }
 
@@ -1196,9 +1197,12 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
 </div>`);
     }
     else{
-        bodyContainer.append(`<div class="alert alert-primary mt-4">
-  The above records include relevant council meeting items during which both councilors served on the council. Items may have been omitted based on selected settings.
-</div>`);
+        let alert = $(`<div class="alert alert-primary mt-4">The above records include relevant council meeting items during which both councilors served on the council. Items may have been omitted based on selected settings. </div>`)
+        let link = $(`<a href='javascript:void(0);'>Go to the settings menu.</a>`)
+        alert.append(link);
+        bodyContainer.append(alert);
+        link.on("click", function(){openSettings();});
+
 bodyContainer.prepend(`<div class="alert alert-primary"><div class="star-gold"></div>
   <div style="text-align:left;">A star indicates a relatively pro-housing vote that contrasts with the other councilor's vote on the same item.</div>
 </div>`)
@@ -1364,4 +1368,14 @@ function populateH2HItemDetail(jqRowThatTriggered){
 
     jqRowThatTriggered.removeClass("detail-inactive");
     jqRowThatTriggered.addClass("detail-active");
+}
+
+function openSettings(){
+    let dialogs = $("dialog");
+    dialogs.each(function(){
+        if ($(this).prop("open")){
+            this.close();
+        }
+    });
+    $("#settings-modal")[0].showModal();
 }

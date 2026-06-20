@@ -1228,7 +1228,7 @@ function populateH2hSetup(councilorName){
     dialog.children().remove();
 
     dialog.append(`<div class="dialog-header">
-    <button class="btn btn-close float-end" commandfor="h2h-popover-setup" command="request-close"></button><h2>Comparison Tool</h2></div>`);
+    <button class="btn btn-close float-end" onclick="closeMe(this);"></button><h2>Comparison Tool</h2></div>`);
 
     dialog.append("<p>Compare:</p>");
 
@@ -1259,7 +1259,7 @@ function populateH2hSetup(councilorName){
     let btnGroup = $('<div class="btn-group" role="group"></div>');
 
     let button1 = $("<button disabled class='btn btn-outline-secondary'>Show Comparison</button>");
-    let button2 = $("<button commandfor='h2h-popover-setup' command='request-close' class='btn btn-outline-secondary'>Cancel</button>");
+    let button2 = $("<button onclick='closeMe(this);' class='btn btn-outline-secondary'>Cancel</button>");
 
     btnGroup.append(button1).append(button2);
 
@@ -1342,7 +1342,7 @@ function populateH2HItemDetail(jqRowThatTriggered){
     $("#h2h-item-detail-body").children().remove(); 
     let badge = $(`<div class='badge bg-primary type'>${data.type}</div>`);
 
-    let closeBox = $("<button class='btn btn-close float-end' commandfor='dialog-h2h-item-detail' command='request-close'></button>");
+    let closeBox = $("<button class='btn btn-close float-end' onclick='closeMe(this);'></button>");
 
     $("#h2h-item-detail-header").append(closeBox);
 

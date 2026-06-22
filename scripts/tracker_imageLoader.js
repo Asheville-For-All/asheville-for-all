@@ -22,14 +22,12 @@ export class ImageLoader {
             "/img/tracker-imgs/asterisk.svg",
             "/img/tracker-imgs/file-lines-solid-full.svg",
             "/img/tracker-imgs/gavel-solid-full.svg",
-            "/img/tracker-imgs/trophy-fill.svg",
             "/img/tracker-imgs/face-0.svg",
             "/img/tracker-imgs/face-1.svg",
             "/img/tracker-imgs/face-2.svg",
             "/img/tracker-imgs/face-3.svg",
             "/img/tracker-imgs/face-4.svg",
             "/img/tracker-imgs/star-gold.svg",
-            "/img/tracker-imgs/award-solid-full.svg"
         ];
 
         var self = this;

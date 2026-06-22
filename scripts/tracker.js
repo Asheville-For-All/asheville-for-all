@@ -121,7 +121,7 @@ function reBoot(){
 
     populateVoteItemsContainer();
 
-    readyToShow();    
+    readyToShow();
 }
 
 function readyToShow(){
@@ -130,6 +130,8 @@ function readyToShow(){
         $("#loading-info").addClass("d-none");
 
         $(".show-after-load").removeClass("d-none");
+
+            setHorizontalScrollGradients();
     }
     else{
         let elapsed = Date.now() - loadingStartTime;
@@ -381,6 +383,8 @@ function populateCouncilContainer(){
 
         });
     }
+
+    setHorizontalScrollGradients();
 
 }
 
@@ -666,6 +670,14 @@ function addEventScripts() {
             this.close();
         }
     });
+
+    $(window).on( "resize", function(){
+        setHorizontalScrollGradients();
+    });
+    $('council-list-outer').on("scroll", function(){
+        setHorizontalScrollGradients();
+    });
+
 }
 
 function createLinkLists(scorecard){
@@ -983,17 +995,13 @@ function switchOnHighlights(jqObjProfilePicOuter){
 }
 
 function endHighlights(){
-    //remove class on all scorecards
     let jqCardList = $("#tracker-frame-2").find('.card');
     jqCardList.removeClass('highlight-green');
     jqCardList.removeClass('highlight-red');
-
-    //hide highlight-mode box and remove profile pic from it
     $('#highlight-mode').find('.profile-pic-outer').remove();
     $('#highlight-mode').addClass("d-none");
-
-    //show council panel again.
     $('#tracker-frame-3').removeClass("d-none");
+    setHorizontalScrollGradients();
 }
 
 function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2){
@@ -1371,4 +1379,30 @@ function openSettings(){
         }
     });
     $("#settings-modal")[0].showModal();
+}
+
+function setHorizontalScrollGradients(){
+
+    console.log("Client Width: " + document.getElementById('council-list-outer').clientWidth);
+    console.log("Scroll Width: " + document.getElementById('council-list-outer').scrollWidth);
+
+    if (document.getElementById('council-list-outer').clientWidth >= document.getElementById('council-list-outer').scrollWidth - 2){
+        $('#councilor-scroll-gradient-right').addClass("d-none");
+        $('#councilor-scroll-gradient-left').addClass("d-none");
+    }
+    else{
+        if ($('council-list-outer').scrollLeft() < 2){
+            $('#councilor-scroll-gradient-left').addClass("d-none");
+        }
+        else{
+            $('#councilor-scroll-gradient-left').removeClass("d-none");
+        }
+        if ($('council-list-outer').scrollLeft() < document.getElementById('council-list-outer').scrollWidth - document.getElementById('council-list-outer').clientWidth - 2){
+            $('#councilor-scroll-gradient-right').removeClass("d-none");
+        }
+        else{
+            $('#councilor-scroll-gradient-right').addClass("d-none");
+        }
+
+    }
 }

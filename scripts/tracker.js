@@ -3,8 +3,6 @@ import { scoreCardCollection } from "./tracker-data.js";
 import multipliers from '../json/multipliers.json' with { type: 'json' };
 import AshevilleCouncilRoster from '../json/AshevilleCouncilRoster.json' with { type: 'json' };
 
-import { hideHorizontalScrollers, setHorizontalScrollers, setHorizScrollEventHandlers } from "./tracker_horizontal_scrollers.js";
-
 import { ImageLoader } from "./tracker_imageLoader.js";
 
 import * as Helper from "./tracker_helpers.js";
@@ -93,8 +91,6 @@ $(function() {
 
     addEventScripts();
 
-    setHorizScrollEventHandlers();
-
     reBoot();
 
 });
@@ -110,8 +106,6 @@ function reBoot(){
     $('council-list-outer').html("");
     $('vote-list-outer').html("");
     $(".show-after-load").addClass("d-none");
-
-    hideHorizontalScrollers();
 
     endHighlights();
 
@@ -136,8 +130,6 @@ function readyToShow(){
         $("#loading-info").addClass("d-none");
 
         $(".show-after-load").removeClass("d-none");
-
-        setHorizontalScrollers();
     }
     else{
         let elapsed = Date.now() - loadingStartTime;
@@ -986,8 +978,6 @@ function switchOnHighlights(jqObjProfilePicOuter){
 
     $('#tracker-frame-3').addClass("d-none");
 
-    hideHorizontalScrollers();
-
     $('#highlight-mode').find('button').on("click", endHighlights);
 
 }
@@ -1004,7 +994,6 @@ function endHighlights(){
 
     //show council panel again.
     $('#tracker-frame-3').removeClass("d-none");
-    setHorizontalScrollers();
 }
 
 function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2){

@@ -492,6 +492,7 @@ function populateVoteItemsContainer(){
     $.each(scoreCardCollection, function(i, v){
 
         v.index = i;
+        v.showMeH2H = false;
 
         if (Helper.isDateRecent(settings.numYears, v.date)){
 
@@ -1026,9 +1027,13 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
 
     $.each(scorecards, function(i, v){
 
+        v.showMeH2H = false;
+
         if (v.showMe == true){
 
             if(councilor1.name in v.councilorStats && councilor2.name in v.councilorStats){
+
+                v.showMeH2H = true;
 
                 let newRow = $('<div class="row align-items-center h2h-row mt-2 mb-2"></div>');
 

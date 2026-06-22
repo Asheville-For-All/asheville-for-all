@@ -1358,6 +1358,8 @@ function populateH2HItemDetail(jqRowThatTriggered){
 
     $("#h2h-item-detail-header").append("<h2 class='mt-2'>" + data.name + "</h2>");
 
+    $("#h2h-item-detail-body").append(`<p class='vote-date'>${Date.parse(data.date).toString("MMMM dS, yyyy")}</p>`);
+
     $("#h2h-item-detail-body").append("<p>Outcome: " + data.outcome + "</p>");
 
     $("#h2h-item-detail-body").append(populateVoteItemRecordDetailOuter(data));

@@ -18,7 +18,7 @@ export class ImageLoader {
             "/img/tracker-imgs/st.jpg",
             "/img/newspaper.svg",
             "/img/dome-building.svg",
-            "/img/afa-small.svg",
+            "/img/tracker-imgs/building-green-clay.svg",
             "/img/tracker-imgs/asterisk.svg",
             "/img/tracker-imgs/file-lines-solid-full.svg",
             "/img/tracker-imgs/gavel-solid-full.svg",

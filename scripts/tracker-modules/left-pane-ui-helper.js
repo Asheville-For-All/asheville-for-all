@@ -74,6 +74,8 @@ export class LeftPaneUIHelper{
 
     #buildVoteBreakdown(data){
 
+        let self = this;
+
         const map = ["for", "against", "recused", "abstain", "absent"];
 
         let outer = $("<div id='voteItemRecordDetailOuter' class='container container-40'></div>");
@@ -101,7 +103,7 @@ export class LeftPaneUIHelper{
                 $.each(data[v], function(j,w){
 
                     let debugStr = "";
-                    if(this.isDebugMode){
+                    if(self.isDebugMode){
                         debugStr = " " + String(data.councilorStats[w]);
                     }
 
@@ -125,7 +127,7 @@ export class LeftPaneUIHelper{
         let s = "<div class='container container-40 vote-link-list-container mt-4'>";
 
         let govImg = "img/dome-building.svg";
-        let afaImg = "img/afa-small.svg";
+        let afaImg = "img/tracker-imgs/building-green-clay.svg";
         let mediaImg = "img/newspaper.svg";
 
         if("afaLinks" in scorecard){

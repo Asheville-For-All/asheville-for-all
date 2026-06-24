@@ -431,7 +431,7 @@ function buildIconString(scorecard){
         iconStr += `<img class="vote-icon-media" src="img/newspaper.svg"/>`;
     }
     if(Helper.isKeyAndArr(scorecard, "afaLinks")){
-        iconStr += `<img class="vote-icon-afalink" src="img/afa-small.svg"/>`;
+        iconStr += `<img class="vote-icon-afalink" src="img/tracker-imgs/building-green-clay.svg"/>`;
     }
     if(Helper.isKeyAndArr(scorecard, "govLinks")){
         iconStr += `<img class="vote-icon-govt" src="img/dome-building.svg"/>`;

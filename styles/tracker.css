@@ -446,7 +446,7 @@ background-color: #DA806A;
 #left-pane-body{
     flex-grow: 1;
     overflow-y: auto;
-    padding-top:2rem;
+    padding-top:1rem;
 }
 
 .dialog{

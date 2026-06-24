@@ -3,9 +3,11 @@ import { scoreCardCollection } from "./tracker-data.js";
 import multipliers from '../json/multipliers.json' with { type: 'json' };
 import AshevilleCouncilRoster from '../json/AshevilleCouncilRoster.json' with { type: 'json' };
 
-import { ImageLoader } from "./tracker_imageLoader.js";
+import { ImageLoader } from "./tracker-modules/imageLoader.js";
 
-import * as Helper from "./tracker_helpers.js";
+import * as Helper from "./tracker-modules/helpers.js";
+
+import {LeftPaneUIHelper} from "./tracker-modules/left-pane-ui-helper.js";
 
 //**** VARIABLES *********/
 
@@ -86,6 +88,12 @@ $(function() {
 
     globalThis.imgLoader = new ImageLoader();
 
+    globalThis.leftPaneUIHelper = new LeftPaneUIHelper(debug);
+
+    globalThis.AshevilleCouncilRoster = AshevilleCouncilRoster;
+
+    globalThis.scoreMaps = scoreMaps;
+
     addEventScripts();
 
     reBoot();
@@ -131,9 +139,9 @@ function readyToShow(){
             setHorizontalScrollGradients();
     }
     else{
-        let elapsed = Date.now() - loadingStartTime;
+        const elapsed = Date.now() - loadingStartTime;
 
-        let progressPercent1 = Math.round(elapsed / 10);
+        const progressPercent1 = Math.round(elapsed / 10);
 
         $("#loading-bar-one").width(progressPercent1.toString() + "%");
 
@@ -148,13 +156,13 @@ function manageLoading(isDone = false){
         loadingCount += 1;
     }
 
-    let elapsed = Date.now() - loadingStartTime;
+    const elapsed = Date.now() - loadingStartTime;
 
-    let progressPercent1 = Math.round(elapsed / 10);
+    const progressPercent1 = Math.round(elapsed / 10);
 
     $("#loading-bar-one").width(progressPercent1.toString() + "%");
 
-    let progressPercent2 = Math.round( 100 * (loadingCount / loadingTotalCount));
+    const progressPercent2 = Math.round( 100 * (loadingCount / loadingTotalCount));
 
     $("#loading-bar-two").width([progressPercent2.toString() + "%"]);
 }
@@ -163,7 +171,7 @@ function setUpPlaceHolders(){
 
     $("#loading-info").removeClass("d-none");
 
-    let loadingString = `<div class="mt-3"><p><span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Loading</p><div class="progress mb-3" role="progressbar">
+    const loadingString = `<div class="mt-3"><p><span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Loading</p><div class="progress mb-3" role="progressbar">
   <div class="progress-bar progress-bar-striped progress-bar-animated" id="loading-bar-one" style="width: 0%"></div>
 </div><div class="progress" role="progressbar">
   <div class="progress-bar progress-bar-striped progress-bar-animated" id="loading-bar-two" style="width: 0%"></div>
@@ -184,11 +192,6 @@ function setUpCouncilors(){
 
         manageLoading();
     });
-}
-
-function retrieveCouncilorFromName(name){
-
-    return AshevilleCouncilRoster.find(function(x){return name === x.name;});
 }
 
 function assignScores(){
@@ -271,7 +274,7 @@ function assignScoresFromSingleScorecard(scorecard){
 
             $.each(scorecard[k], function(i, x){ //x is the councilor string name here
 
-                let c = retrieveCouncilorFromName(x);
+                let c = Helper.retrieveCouncilorFromName(x, AshevilleCouncilRoster);
 
                 c.totalEligiblePoints += Math.abs(scoreMaps[scorecard.outcome][k] * pointsAtStake * scorecard.pro_housing_scale__motion);
 
@@ -293,13 +296,13 @@ function assignScoresFromSingleScorecard(scorecard){
 
 function checkIfCurrentCouncilor(councilorData){
 
-    var current = false;
-    let now = new Date();
+    let current = false;
+    const now = new Date();
 
     $.each(councilorData.terms, function(i, v){
 
-        let start = new Date(v.start);
-        let end = new Date(v.end);
+        const start = new Date(v.start);
+        const end = new Date(v.end);
 
         if (now > start && now < end){
             current = true;
@@ -314,10 +317,10 @@ function checkIfCurrentCouncilor(councilorData){
 function checkIfRelevantCouncilor(councilorData){
     //Just like the checkIfCurrentCouncilor function, but this one will return true if councilor served at all during the selected duration, even if not presently serving.
 
-    var relevant = false;
+    let relevant = false;
 
-    let now = new Date();
-    let durationStartDate = now.add(-parseInt(settings.numYears)).years();
+    const now = new Date();
+    const durationStartDate = now.add(-parseInt(settings.numYears)).years();
 
     $.each(councilorData.terms, function(i, v){
         let start = new Date(v.start);
@@ -344,7 +347,7 @@ function populateCouncilContainer(){
 
             v.showMe = true;
 
-            let profilePic = addCouncilorProfile(v);
+            const profilePic = addCouncilorProfile(v);
 
             if (v.notEnoughData){
                 let asteriskBadge = $("<img src='img/tracker-imgs/asterisk.svg' class='asterisk-badge'></img>");
@@ -387,16 +390,16 @@ function populateCouncilContainer(){
 
 function addCouncilorProfile(councilorData){
 
-    let v = councilorData;
+    const v = councilorData;
 
     if(v.notEnoughData == false){
 
-        let colorStr = "rgb(" + v.color[0] + ", " + v.color[1] + ", " + v.color[2] + ")"
+        const colorStr = "rgb(" + v.color[0] + ", " + v.color[1] + ", " + v.color[2] + ")"
 
-        let gradientStop1 = Math.min(Math.round(v.adjustedGrade * 360), 355)
-        let gradientStop2 = Math.min(gradientStop1 + 5, 359)
+        const gradientStop1 = Math.min(Math.round(v.adjustedGrade * 360), 355)
+        const gradientStop2 = Math.min(gradientStop1 + 5, 359)
 
-        let conicGradientStr = `${colorStr} 0deg, ${colorStr} ${gradientStop1}deg, snow ${gradientStop2}deg, snow 360deg`
+        const conicGradientStr = `${colorStr} 0deg, ${colorStr} ${gradientStop1}deg, snow ${gradientStop2}deg, snow 360deg`
 
         let newElem = $(`<div class="profile-pic-outer" title= "${v.name}" style="background-image: conic-gradient(${conicGradientStr});"><div class="profile-pic-inner" style="background-image:url('${v.pic}')"></div></div>`);
 
@@ -440,11 +443,11 @@ function buildIconString(scorecard){
 
 function buildVoteVizBox(scorecard){
 
-    let outcomeMap = scoreMaps[scorecard.outcome];
+    const outcomeMap = scoreMaps[scorecard.outcome];
 
     let newString = "";
 
-    let colorList = ["vote-viz-red", "vote-viz-orange", "vote-viz-neutral", "vote-viz-yellow", "vote-viz-green"]
+    const colorList = ["vote-viz-red", "vote-viz-orange", "vote-viz-neutral", "vote-viz-yellow", "vote-viz-green"]
 
     $.each(outcomeMap, function(k, v){
 
@@ -464,7 +467,7 @@ function buildVoteVizBox(scorecard){
 
                 $.each(scorecard[k], function(i, v){
 
-                    box += `<div class="mini-pic" style="background-image: url('${retrieveCouncilorFromName(v).pic}')"></div>`;
+                    box += `<div class="mini-pic" style="background-image: url('${Helper.retrieveCouncilorFromName(v, AshevilleCouncilRoster).pic}')"></div>`;
                 });
 
                 box += `</div>`;
@@ -502,18 +505,18 @@ function populateVoteItemsContainer(){
 
             cardHolder.append(newCol);
 
-            let badgeString = `<div class='badge bg-primary type'>${v.type}</div>`;
+            const badgeString = `<div class='badge bg-primary type'>${v.type}</div>`;
 
             let d = Date.parse(v.date).toString("MMMM dS, yyyy");
 
-            let iconString = buildIconString(v);
+            const iconString = buildIconString(v);
 
             let badProposal = "";
             if (v.pro_housing_scale__proposal == -1){
                 badProposal = " bad-proposal"
             }
 
-            let gaugeString = getGaugeString(v.pro_housing_scale__proposal, v.pro_housing_scale__motion);
+            let gaugeString = Helper.getGaugeString(v.pro_housing_scale__proposal, v.pro_housing_scale__motion);
 
             let newCardHTML = `<div class="card h-100"><div class="card-body">${badgeString}${gaugeString}<h3 class="card-title ${badProposal}">${v.name}</h3><p class="vote-date">${d}</p><p class="vote-outcome">Outcome: ${v.outcome}</p> ${buildVoteVizBox(v)}</div><div class="card-footer">${iconString}</div></div>`;
 
@@ -537,16 +540,6 @@ function populateVoteItemsContainer(){
 
 }
 
-function getGaugeString(proposalScale, motionScale){
-
-    let gaugeClasses = ["gauge-low", "gauge-medium-low", "gauge-medium", "gauge-medium-high", "gauge-high"];
-
-    let proposal_i = parseInt((proposalScale + 1) * 2);
-    let motion_i = parseInt((motionScale + 1) * 2);
-
-    return `<button class="btn gauge-icon-outer" commandfor="gauge-info-dialog" command="show-modal"><div class='gauge-icon ${gaugeClasses[proposal_i]}' style="mask: url(img/tracker-imgs/file-lines-solid-full.svg);"></div><div class='gauge-icon ${gaugeClasses[motion_i]}' style="mask: url(img/tracker-imgs/gavel-solid-full.svg);"></div></button>`;
-}
-
 function addEventScripts() {
 
     $('#h2h-title-button').on("click", function(){
@@ -562,7 +555,7 @@ function addEventScripts() {
 
         let needReboot = false;
 
-        let newNumYears = $("#past-years-selector").val();
+        const newNumYears = $("#past-years-selector").val();
 
         let newShowCouncilors = $("input[name='showCouncilors']:checked").val();
 
@@ -584,13 +577,13 @@ function addEventScripts() {
 
     $("#tracker-frame-2").on("click", ".card", function(event){
 
-      let t = event.target;
+      const t = event.target;
 
       if(t.classList.contains('gauge-icon') || t.classList.contains('gauge-icon-outer')){
 
       }
       else{
-      loadSidePanel(this);
+      leftPaneUIHelper.showPane(this);
       }
     });
 
@@ -615,7 +608,7 @@ function addEventScripts() {
         $(this).addClass("from-center-is-closing");
         
     });
-    $('#dialog-h2h-item-detail').on("cancel", function(event){
+    $('#left-pane').on("cancel", function(event){
         event.preventDefault();
         $(this).addClass("from-left-is-closing");
         
@@ -649,7 +642,7 @@ function addEventScripts() {
             this.close();
         }
     });
-    $('#dialog-h2h-item-detail').on("animationend", function(){
+    $('#left-pane').on("animationend", function(){
         if($(this).hasClass("from-left-is-closing")){
             $('.detail-active').addClass("detail-inactive").removeClass('detail-active');
             $(this).removeClass("from-left-is-closing");
@@ -678,213 +671,9 @@ function addEventScripts() {
 
 }
 
-function createLinkLists(scorecard){
-
-    let s = "<div class='container container-40 vote-link-list-container mt-4'>";
-
-    let govImg = "img/dome-building.svg";
-    let afaImg = "img/afa-small.svg";
-    let mediaImg = "img/newspaper.svg";
-
-    if("afaLinks" in scorecard){
-
-        s += `<h3><img class="img-fluid voteLinkListImg" src="${afaImg}"/>&nbsp;Asheville For All Links</h3>`;
-        
-        s+= "<ul>";
-
-        $.each(scorecard.afaLinks, function(i, v){
-
-            s+= `<li><a href="${v.url}" target="_blank">${v.name}</a></li>`;
-
-        });
-
-        s+= "</ul>";
-
-    }
-
-    if("govLinks" in scorecard){
-
-        s += `<h3><img class="img-fluid voteLinkListImg" src="${govImg}"/>&nbsp;Government Links</h3>`;;
-        
-        s+="<ul>";
-
-        $.each(scorecard.govLinks, function(i, v){
-
-            s+= `<li><a href="${v.url}" target="_blank">${v.type}</a></li>`;
-        });
-
-        s+= "</ul>";
-
-    }
-    if("mediaCoverage" in scorecard){
-
-        s += `<h3><img class="img-fluid voteLinkListImg" src="${mediaImg}"/>&nbsp;Media Links</h3>`;
-
-        s+= "<ul>";
-
-        $.each(scorecard.mediaCoverage, function(i, v){
-
-            s += `<li><a href="${v.url}" target="_blank">${v.publication}: ${v.headline}</a></li>`;
-        });
-
-        s+= '</ul>';
-
-    }
-
-    return s += "</div>";
-
-}
-
-function populateVoteItemRecordDetailOuter(data){
-
-    const map = ["for", "against", "recused", "abstain", "absent"];
-
-    let outer = $("<div id='voteItemRecordDetailOuter' class='container container-40'></div>");
-
-    const headingMap = ["vote-viz-badge-red", "vote-viz-badge-orange", "vote-viz-badge-neutral", "vote-viz-badge-yellow", "vote-viz-badge-green"];
-
-    $.each(map, function(i, v){
-
-        if (v in data && data.for.length > 0){
-
-            let points = data.pro_housing_scale__motion * scoreMaps[data.outcome][v];
-
-            let style = headingMap[parseInt(points * 2 + 2)];
-
-            let labelTxt = v.toUpperCase();
-
-            if(data.outcome == "Denied"){
-                if (v == "for" || v == "against"){
-                    labelTxt += " (denial)";
-                }
-            }
-
-            outer.append(`<div class='row header-row'><div class="col ps-0 mb-3"><div class="badge rounded-pill ${style} ms-0">${labelTxt}:</div></div></div>`);
-
-            $.each(data[v], function(j,w){
-
-                let debugStr = "";
-                if(debug){
-                    debugStr = " " + String(data.councilorStats[w]);
-                }
-
-                outer.append(`<div class='row mb-1' style='flex-wrap:nowrap;'><div class="col d-flex align-items-center"><div style="height:2.5rem;max-width:2.5rem;background-size: cover;background-position: 50% 50%;aspect-ratio: 1 / 1; border-radius:0.25rem;background-image: url('${retrieveCouncilorFromName(w).pic}')"></div><div class="ms-2">${w}${debugStr}</div></div>`);
-
-            });
-
-    }
-
-    });
-
-    if(debug){
-        outer.append("<p>Points at stake (given the motion): " + (data.pointsAtStake * Math.abs(data.pro_housing_scale__motion)) + "</p><p>Points at stake: " + data.pointsAtStake + "</p>");
-    }
-
-    return outer;
-
-}
-
-function loadSidePanel(cardThatTriggered) {
-
-    $("#voteSidePanel").find(".offcanvas-title").html(`<div class="spinner-border spinner-border-sm" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>`);
-
-    let bsOffcanvas = new bootstrap.Offcanvas('#voteSidePanel');
-
-    let data = $(cardThatTriggered).data("scorecard");
-
-    let body = $(`<div></div>`);
-
-    body.append($(cardThatTriggered).find(".vote-outcome").clone()); 
-
-    let voteItemRecordDetailOuter = populateVoteItemRecordDetailOuter(data);
-
-    body.append(voteItemRecordDetailOuter);
-
-    body.append(`${createLinkLists(data)}`);
-
-    let lateralNavsOuter = $("<div class='side-panel-lateral-navs mt-4'></div>");
-
-    let previousCard = $(cardThatTriggered).parent().prev().children();
-    let nextCard = $(cardThatTriggered).parent().next().children();
-
-    if(previousCard.length){
-
-            let d = Date.parse(previousCard.data("scorecard").date).toString("MMMM dS, yyyy");
-
-            let jq_a = $(`<a href="javascript:void(0)">← ${previousCard.data("scorecard").name} / <em>${d}</em></a>`);
-            let outerD = $(`<div class="mb-2"></div>`);
-
-            lateralNavsOuter.append(outerD);
-            outerD.append(jq_a);
-
-            addListenerToLateralLink(jq_a, previousCard[0]);
-    }
-    if(nextCard.length){
-
-            let d = Date.parse(nextCard.data("scorecard").date).toString("MMMM dS, yyyy");
-
-            let jq_a = $(`<a href="javascript:void(0)">${nextCard.data("scorecard").name} / <em>${d}</em> →</a>`);
-            let outerD = $(`<div class="mb-2"></div>`);
-
-            lateralNavsOuter.append(outerD);
-            outerD.append(jq_a);
-
-            addListenerToLateralLink(jq_a, nextCard[0]);
-    }
-    body.append(lateralNavsOuter);
-
-    let jqTitle = $("#voteSidePanel").find(".offcanvas-title");
-    let jqBadge = $("<div style='vertical-align:middle;'></div>");
-    jqBadge.append($(cardThatTriggered).find('.badge').clone());
-    let jqName = $('<h2 style="clear:both;">' + data.name + '</h2>');
-    let jqVoteDate = $('<div class="vote-date"></div>');
-    jqVoteDate.append($(cardThatTriggered).find(".vote-date").html());
-
-    jqTitle.html("");
-
-    let infoBar = $("<div class='sidePaneInfoBar mb-2 mt-2'></div>");
-    infoBar.append(jqBadge);
-    infoBar.append(getGaugeString(data.pro_housing_scale__proposal, data.pro_housing_scale__motion));
-
-    jqTitle.append(infoBar);
-    jqTitle.append(jqName);
-    jqTitle.append(jqVoteDate);
-
-    $("#voteSidePanel").find(".offcanvas-body").html(body);
-
-    if(data.pro_housing_scale__proposal == -1){
-        $("#voteSidePanel").find(".offcanvas-title").addClass("bad-proposal");
-    }else{
-        $("#voteSidePanel").find(".offcanvas-title").removeClass("bad-proposal");
-    }
-
-    jqBadge.css("vertical-align", "center");
-
-    bsOffcanvas.show();
-}
-
-function lateralVoteLinkClicked(e){
-
-    $("#voteSidePanel").find(".offcanvas-title").html("");
-    $("#voteSidePanel").find(".offcanvas-body").html("");
-
-    let bsOffcanvas = bootstrap.Offcanvas.getOrCreateInstance('#voteSidePanel');
-
-    $('.modal-backdrop').remove();
-
-    loadSidePanel(e.data.destinationCard);
-}
-
-function addListenerToLateralLink(jq_ATag, destinationCard){
-
-    jq_ATag.on("click", {destinationCard: destinationCard}, lateralVoteLinkClicked);
-}
-
 function loadCouncilorPanelDialog(profileThatTriggered) {
 
-    let t = $(profileThatTriggered).attr('title');
+    const t = $(profileThatTriggered).attr('title');
 
     $('#councilor-detail-dialog').find("#councilor-dialog-title").html(t);
 
@@ -892,7 +681,7 @@ function loadCouncilorPanelDialog(profileThatTriggered) {
 
     let data = $(profileThatTriggered).data('councilor');
 
-    let termText = ""
+    let termText = "";
 
     $.each(data.terms, function (i, v) {
         termText += `<br/>${v.start.slice(0, 4)} - ${v.end.slice(0, 4)}`
@@ -945,7 +734,7 @@ function loadCouncilorPanelDialog(profileThatTriggered) {
 
 function switchOnHighlights(jqObjProfilePicOuter){
 
-    let councilorName = jqObjProfilePicOuter.data("councilor").name;
+    const councilorName = jqObjProfilePicOuter.data("councilor").name;
 
     let jqCardList = $("#tracker-frame-2").find('.card');
 
@@ -955,7 +744,7 @@ function switchOnHighlights(jqObjProfilePicOuter){
 
         let cardData = $(this).data("scorecard");
 
-        let outcomeMap = scoreMaps[cardData.outcome];
+        const outcomeMap = scoreMaps[cardData.outcome];
 
         $.each(outcomeMap, function(k, v){
 
@@ -1041,7 +830,7 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
                 let col2 = $("<div class='col-6'></div");
                 let col3 = $("<div class='col-3'></div");
 
-                let iconStr = `<div class='star-gold'></div>`;
+                const iconStr = `<div class='star-gold'></div>`;
 
                 if (v.councilorStats[councilor1.name] >= 1){
                     if (v.councilorStats[councilor1.name] > v.councilorStats[councilor2.name] && isRecusedOrAbsent(v, councilor2) =="false"){
@@ -1149,9 +938,7 @@ bodyContainer.prepend(`<div class="alert alert-primary"><div class="star-gold"><
 
     $("#h2h-dialog-body-container").on("click", ".h2h-row", function(){
 
-        let d = $(this).data("scorecard");
-
-        populateH2HItemDetail($(this));
+        leftPaneUIHelper.showPane(this);
     });
 
 }
@@ -1238,7 +1025,7 @@ function populateH2hSetup(councilorName){
     }
 
     button1.on("click", function(){
-        populateHeadToHeadPopup(scoreCardCollection, AshevilleCouncilRoster, retrieveCouncilorFromName(chooser.val()), retrieveCouncilorFromName(chooser2.val()));
+        populateHeadToHeadPopup(scoreCardCollection, AshevilleCouncilRoster, Helper.retrieveCouncilorFromName(chooser.val(), AshevilleCouncilRoster), Helper.retrieveCouncilorFromName(chooser2.val(), AshevilleCouncilRoster));
     });
 
     const dialg = document.getElementById("h2h-popover-setup");
@@ -1269,40 +1056,6 @@ function isRecusedOrAbsent(scorecard, councilorObj){
 
 }
 
-function populateH2HItemDetail(jqRowThatTriggered){
-
-    let data = jqRowThatTriggered.data("scorecard");
-
-    $("#h2h-item-detail-header").children().remove();
-    $("#h2h-item-detail-body").children().remove(); 
-    let badge = $(`<div class='badge bg-primary type'>${data.type}</div>`);
-
-    let closeBox = $("<button class='btn btn-close float-end' onclick='closeMe(this);'></button>");
-
-    $("#h2h-item-detail-header").append(closeBox);
-
-    $("#h2h-item-detail-header").append("<div class='sidePaneInfoBar'></div>");
-
-    $(".sidePaneInfoBar").append(badge).append(getGaugeString(data.pro_housing_scale__proposal, data.pro_housing_scale__motion));
-
-    $("#h2h-item-detail-header").append("<h2 class='mt-2'>" + data.name + "</h2>");
-
-    $("#h2h-item-detail-body").append(`<p class='vote-date'>${Date.parse(data.date).toString("MMMM dS, yyyy")}</p>`);
-
-    $("#h2h-item-detail-body").append("<p>Outcome: " + data.outcome + "</p>");
-
-    $("#h2h-item-detail-body").append(populateVoteItemRecordDetailOuter(data));
-
-    $("#h2h-item-detail-body").append(createLinkLists(data));
-
-    document.getElementById("dialog-h2h-item-detail").showModal();
-
-    $("#h2h-item-detail-body").scrollTop(0);
-
-    jqRowThatTriggered.removeClass("detail-inactive");
-    jqRowThatTriggered.addClass("detail-active");
-}
-
 function openSettings(){
     let dialogs = $("dialog");
     dialogs.each(function(){
@@ -1314,9 +1067,6 @@ function openSettings(){
 }
 
 function setHorizontalScrollGradients(){
-
-    console.log("Client Width: " + document.getElementById('council-list-outer').clientWidth);
-    console.log("Scroll Width: " + document.getElementById('council-list-outer').scrollWidth);
 
     if (document.getElementById('council-list-outer').clientWidth >= document.getElementById('council-list-outer').scrollWidth - 2){
         $('#councilor-scroll-gradient-right').addClass("d-none");

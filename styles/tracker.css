@@ -55,7 +55,7 @@ tracker-frame{
     box-shadow:0px 0px 10px gray;
   }
   #tracker-frame-2{
-    background-color: hsl(161, 55%, 96%);
+    background-color:hsl(161, 55%, 96%);
   }
   #tracker-frame-3{
     display:flex;
@@ -437,13 +437,13 @@ background-color: #DA806A;
     max-width:4rem;
 }
 
-#dialog-h2h-item-detail:open{
+#left-pane:open{
     display:flex;
     flex-wrap: nowrap;
     flex-direction:column;
     overflow:hidden;
 }
-#h2h-item-detail-body{
+#left-pane-body{
     flex-grow: 1;
     overflow-y: auto;
     padding-top:2rem;
@@ -656,6 +656,9 @@ transform:translate(0.25rem, 0.25rem) rotate(359deg) scale(1.3);
     background-color:transparent;
     transition: background-color 3s;
     transition-delay:2s;
+}
+.card.detail-inactive{
+    background-color:white;
 }
 
 #councilor-scroll-gradient-left{

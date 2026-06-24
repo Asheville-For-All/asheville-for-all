@@ -1,7 +1,6 @@
-import { scoreCardCollection } from "./tracker-data.js";
-
 import multipliers from '../json/multipliers.json' with { type: 'json' };
 import AshevilleCouncilRoster from '../json/AshevilleCouncilRoster.json' with { type: 'json' };
+import scoreCardCollection from '../json/scorebox-export.json' with { type: 'json' };
 
 import { ImageLoader } from "./tracker-modules/imageLoader.js";
 

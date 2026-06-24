@@ -826,9 +826,9 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
 
                 let newRow = $('<div class="row align-items-center h2h-row mt-2 mb-2"></div>');
 
-                let col1 = $("<div class='col-3'></div");
-                let col2 = $("<div class='col-6'></div");
-                let col3 = $("<div class='col-3'></div");
+                let col1 = $("<div class='col-2'></div");
+                let col2 = $("<div class='col-8'></div");
+                let col3 = $("<div class='col-2'></div");
 
                 const iconStr = `<div class='star-gold'></div>`;
 
@@ -851,7 +851,7 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
                 }
                 else if (v.councilorStats[councilor1.name] == 0){
                     if(isRecusedOrAbsent(v, councilor1) != "false"){
-                        col1.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><em>${isRecusedOrAbsent(v, councilor1)}</em></div>`);
+                        col1.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><em><small>${isRecusedOrAbsent(v, councilor1)}</small></em></div>`);
                     }
                     else{
                         col1.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><div class='face-2'></div></div>`);
@@ -883,7 +883,7 @@ function populateHeadToHeadPopup(scorecards, councilors, councilor1, councilor2)
                 }
                 else if (v.councilorStats[councilor2.name] == 0){
                     if(isRecusedOrAbsent(v, councilor2) != "false"){
-                        col3.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><em>${isRecusedOrAbsent(v, councilor2)}</em></div>`);
+                        col3.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><em><small>${isRecusedOrAbsent(v, councilor2)}</small></em></div>`);
                     }
                     else{
                         col3.append(`<div style="position:relative;width:fit-content;margin-left:auto;margin-right:auto;"><div class='face-2'></div></div>`);

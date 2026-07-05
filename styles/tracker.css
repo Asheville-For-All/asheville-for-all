@@ -295,16 +295,17 @@ background-color: #DA806A;
 }
 
 .gauge-icon{
-    display:inline-block;
     background-position: 50% 50%;
 }
 
 .gauge-icon-outer{
     float:right;
+    display:flex;
+    align-items: center;
     border-radius:0.2rem;
     border:0.5px solid gray;
     background:white;
-    padding:0px;
+    padding:0;
 }
 
 .trophy-basic{

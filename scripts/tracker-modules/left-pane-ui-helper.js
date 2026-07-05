@@ -82,6 +82,10 @@ export class LeftPaneUIHelper{
 
         const headingMap = ["vote-viz-badge-red", "vote-viz-badge-orange", "vote-viz-badge-neutral", "vote-viz-badge-yellow", "vote-viz-badge-green"];
 
+        if (self.isDebugMode){
+            outer.append(`<p>pro_housing_scale__proposal: ${data.pro_housing_scale__proposal}<br/>pro_housing_scale__motion: ${data.pro_housing_scale__motion}</p>`)
+        }
+
         $.each(map, function(i, v){
 
             if (v in data && data.for.length > 0){

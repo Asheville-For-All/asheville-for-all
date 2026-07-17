@@ -504,7 +504,11 @@ function populateVoteItemsContainer(){
 
             cardHolder.append(newCol);
 
-            const badgeString = `<div class='badge bg-primary type'>${v.type}</div>`;
+            let categoryBadge = $(`<div class='badge bg-primary type'>${v.type}</div>`);
+
+            let gauges = $(Helper.getGaugeString(v.pro_housing_scale__proposal, v.pro_housing_scale__motion));
+
+            let infoBar = $("<div class='info-bar'></div>").append(categoryBadge).append(gauges);
 
             let d = Date.parse(v.date).toString("MMMM dS, yyyy");
 
@@ -515,11 +519,14 @@ function populateVoteItemsContainer(){
                 badProposal = " bad-proposal"
             }
 
-            let gaugeString = Helper.getGaugeString(v.pro_housing_scale__proposal, v.pro_housing_scale__motion);
+            let newCard = $(`<div class="card h-100"></div`);
+            let newCardInner = $(`<div class="card-body"></div>`);
 
-            let newCardHTML = `<div class="card h-100"><div class="card-body">${badgeString}${gaugeString}<h3 class="card-title ${badProposal}">${v.name}</h3><p class="vote-date">${d}</p><p class="vote-outcome">Outcome: ${v.outcome}</p> ${buildVoteVizBox(v)}</div><div class="card-footer">${iconString}</div></div>`;
+            newCard.append(newCardInner);
 
-            let newCard = $(newCardHTML);
+            newCardInner.append(infoBar);
+
+            newCardInner.append(`<h3 class="card-title ${badProposal}">${v.name}</h3><p class="vote-date">${d}</p><p class="vote-outcome">Outcome: ${v.outcome}</p> ${buildVoteVizBox(v)}</div><div class="card-footer">${iconString}</div>`);
 
             newCard.data("scorecard", v);
 

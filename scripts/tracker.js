@@ -526,7 +526,9 @@ function populateVoteItemsContainer(){
 
             newCardInner.append(infoBar);
 
-            newCardInner.append(`<h3 class="card-title ${badProposal}">${v.name}</h3><p class="vote-date">${d}</p><p class="vote-outcome">Outcome: ${v.outcome}</p> ${buildVoteVizBox(v)}</div><div class="card-footer">${iconString}</div>`);
+            newCardInner.append(`<h3 class="card-title ${badProposal}">${v.name}</h3><p class="vote-date">${d}</p><p class="vote-outcome">Outcome: ${v.outcome}</p> ${buildVoteVizBox(v)}</div>`);
+
+            newCard.append(`<div class="card-footer">${iconString}</div>`);
 
             newCard.data("scorecard", v);
 

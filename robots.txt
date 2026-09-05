@@ -1,4 +1,3 @@
 User-agent: *
-Disallow: /tracker.html
 Disallow: /design.html
 Disallow: /backend-data-*

@@ -24,7 +24,7 @@ btn.addEventListener("click", async (event) => {
     
     resultalert.innerHTML = "Loading . . .";
 
-    const fetch_url = "https://us-central1-ashevilleforall.cloudfunctions.net/rsvpv2";
+    const fetch_url = "https://app.ashevilleforall.org/rsvp";
 
     try{
         const response = await fetch(fetch_url, {

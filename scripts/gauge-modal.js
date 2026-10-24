@@ -1,4 +1,4 @@
-let content = `
+let content=`
 <dialog id="gauge-info-dialog" closedby="any">
   <div class="dialog-header">
     <button class="btn btn-close float-end" commandfor="gauge-info-dialog" command="close"></button>
@@ -46,7 +46,4 @@ let content = `
     <button class="btn btn-outline-secondary" commandfor="gauge-info-dialog" command="close">Close</button>
   </div>
 </dialog>
-`
-
-document.body.insertAdjacentHTML('beforeend', content);
-
+`;document.body.insertAdjacentHTML("beforeend",content);

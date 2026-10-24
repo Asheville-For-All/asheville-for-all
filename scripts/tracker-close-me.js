@@ -1,14 +1,1 @@
-function closeMe(triggeringElem){
-  let dialg;
-  if($(triggeringElem).is("dialog")){
-    dialg = $(triggeringElem);
-  }else{
-    dialg = $(triggeringElem).closest('dialog');
-  }
-  if (dialg.get(0).requestClose){
-    dialg.get(0).requestClose();
-  }
-  else{
-    dialg.get(0).close();
-  }
-}
+function closeMe(s){let e;$(s).is("dialog")?e=$(s):e=$(s).closest("dialog"),e.get(0).requestClose?e.get(0).requestClose():e.get(0).close()}

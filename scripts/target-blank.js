@@ -1,14 +1,1 @@
-//This script adjusts any links that point outside the host to add "target='_blank" to them.
-
-document.addEventListener('DOMContentLoaded', function() {
-
-    var links = document.links;
-
-    for (var i = 0, linksLength = links.length; i < linksLength; i++) {
-
-        if (links[i].hostname != window.location.hostname) {
-            links[i].target = '_blank';
-        }
-    }
-});
-
+document.addEventListener("DOMContentLoaded",function(){for(var t=document.links,n=0,e=t.length;n<e;n++)t[n].hostname!=window.location.hostname&&(t[n].target="_blank")});
